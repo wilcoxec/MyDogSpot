@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		217EB949BFF347A2065BBD6F /* Pods_MyDogSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DAD53DC5BE91B9D4E738D9 /* Pods_MyDogSpot.framework */; };
 		EAA646BD1CB44F9700BDF57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646BC1CB44F9700BDF57C /* AppDelegate.swift */; };
 		EAA646BF1CB44F9700BDF57C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646BE1CB44F9700BDF57C /* ViewController.swift */; };
 		EAA646C21CB44F9700BDF57C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA646C01CB44F9700BDF57C /* Main.storyboard */; };
@@ -14,6 +15,17 @@
 		EAA646C71CB44F9700BDF57C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA646C51CB44F9700BDF57C /* LaunchScreen.storyboard */; };
 		EAA646D21CB44F9700BDF57C /* MyDogSpotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646D11CB44F9700BDF57C /* MyDogSpotTests.swift */; };
 		EAA646DD1CB44F9700BDF57C /* MyDogSpotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646DC1CB44F9700BDF57C /* MyDogSpotUITests.swift */; };
+		EAA646F01CB460BB00BDF57C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646EF1CB460BB00BDF57C /* Constants.swift */; };
+		EAA646F21CB4616300BDF57C /* MaterialButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646F11CB4616300BDF57C /* MaterialButton.swift */; };
+		EAA646F41CB462E200BDF57C /* MaterialTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646F31CB462E200BDF57C /* MaterialTextField.swift */; };
+		EAA646F91CB473CF00BDF57C /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA646F61CB473CF00BDF57C /* Bolts.framework */; };
+		EAA646FA1CB473CF00BDF57C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA646F71CB473CF00BDF57C /* FBSDKCoreKit.framework */; };
+		EAA646FB1CB473CF00BDF57C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA646F81CB473CF00BDF57C /* FBSDKLoginKit.framework */; };
+		EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646FD1CB6CF0700BDF57C /* DataService.swift */; };
+		EABBB3CD1CCFFCAD00ACE9E7 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABBB3CC1CCFFCAD00ACE9E7 /* FeedVC.swift */; };
+		EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABBB3CE1CCFFFD600ACE9E7 /* PostCell.swift */; };
+		EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */; };
+		EAC9F0151CD04E96003B5F90 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F0141CD04E96003B5F90 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +46,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18739A6F8DA1A41974076543 /* Pods-MyDogSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDogSpot.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyDogSpot/Pods-MyDogSpot.release.xcconfig"; sourceTree = "<group>"; };
+		73DAD53DC5BE91B9D4E738D9 /* Pods_MyDogSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDogSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CD28734B01678CB1826695A2 /* Pods-MyDogSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDogSpot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyDogSpot/Pods-MyDogSpot.debug.xcconfig"; sourceTree = "<group>"; };
 		EAA646B91CB44F9600BDF57C /* MyDogSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDogSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA646BC1CB44F9700BDF57C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAA646BE1CB44F9700BDF57C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +62,17 @@
 		EAA646D81CB44F9700BDF57C /* MyDogSpotUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDogSpotUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA646DC1CB44F9700BDF57C /* MyDogSpotUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDogSpotUITests.swift; sourceTree = "<group>"; };
 		EAA646DE1CB44F9700BDF57C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EAA646EF1CB460BB00BDF57C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EAA646F11CB4616300BDF57C /* MaterialButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
+		EAA646F31CB462E200BDF57C /* MaterialTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialTextField.swift; sourceTree = "<group>"; };
+		EAA646F61CB473CF00BDF57C /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		EAA646F71CB473CF00BDF57C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		EAA646F81CB473CF00BDF57C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		EAA646FD1CB6CF0700BDF57C /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		EABBB3CC1CCFFCAD00ACE9E7 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		EABBB3CE1CCFFFD600ACE9E7 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
+		EAC9F0141CD04E96003B5F90 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +80,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAA646F91CB473CF00BDF57C /* Bolts.framework in Frameworks */,
+				EAA646FA1CB473CF00BDF57C /* FBSDKCoreKit.framework in Frameworks */,
+				EAA646FB1CB473CF00BDF57C /* FBSDKLoginKit.framework in Frameworks */,
+				217EB949BFF347A2065BBD6F /* Pods_MyDogSpot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +104,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6069CBFDC0897966D21AA0F6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD28734B01678CB1826695A2 /* Pods-MyDogSpot.debug.xcconfig */,
+				18739A6F8DA1A41974076543 /* Pods-MyDogSpot.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A48BF92556D35B155589D97D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				73DAD53DC5BE91B9D4E738D9 /* Pods_MyDogSpot.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EAA646B01CB44F9600BDF57C = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +128,8 @@
 				EAA646D01CB44F9700BDF57C /* MyDogSpotTests */,
 				EAA646DB1CB44F9700BDF57C /* MyDogSpotUITests */,
 				EAA646BA1CB44F9600BDF57C /* Products */,
+				6069CBFDC0897966D21AA0F6 /* Pods */,
+				A48BF92556D35B155589D97D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +146,14 @@
 		EAA646BB1CB44F9700BDF57C /* MyDogSpot */ = {
 			isa = PBXGroup;
 			children = (
+				EAA646FC1CB6CEF200BDF57C /* Services */,
+				EAA646F51CB473C000BDF57C /* Frameworks */,
+				EAA646EE1CB4513900BDF57C /* Util */,
+				EAA646ED1CB4513300BDF57C /* Resources */,
+				EAA646EC1CB4512C00BDF57C /* Model */,
+				EAA646EB1CB4512600BDF57C /* View */,
+				EAA646EA1CB4512000BDF57C /* Controller */,
 				EAA646BC1CB44F9700BDF57C /* AppDelegate.swift */,
-				EAA646BE1CB44F9700BDF57C /* ViewController.swift */,
 				EAA646C01CB44F9700BDF57C /* Main.storyboard */,
 				EAA646C31CB44F9700BDF57C /* Assets.xcassets */,
 				EAA646C51CB44F9700BDF57C /* LaunchScreen.storyboard */,
@@ -125,6 +180,67 @@
 			path = MyDogSpotUITests;
 			sourceTree = "<group>";
 		};
+		EAA646EA1CB4512000BDF57C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EAA646BE1CB44F9700BDF57C /* ViewController.swift */,
+				EABBB3CC1CCFFCAD00ACE9E7 /* FeedVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		EAA646EB1CB4512600BDF57C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EAA646F11CB4616300BDF57C /* MaterialButton.swift */,
+				EAA646F31CB462E200BDF57C /* MaterialTextField.swift */,
+				EABBB3CE1CCFFFD600ACE9E7 /* PostCell.swift */,
+				EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		EAA646EC1CB4512C00BDF57C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EAC9F0141CD04E96003B5F90 /* Post.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		EAA646ED1CB4513300BDF57C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		EAA646EE1CB4513900BDF57C /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				EAA646EF1CB460BB00BDF57C /* Constants.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		EAA646F51CB473C000BDF57C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EAA646F61CB473CF00BDF57C /* Bolts.framework */,
+				EAA646F71CB473CF00BDF57C /* FBSDKCoreKit.framework */,
+				EAA646F81CB473CF00BDF57C /* FBSDKLoginKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EAA646FC1CB6CEF200BDF57C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				EAA646FD1CB6CF0700BDF57C /* DataService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +248,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAA646E11CB44F9700BDF57C /* Build configuration list for PBXNativeTarget "MyDogSpot" */;
 			buildPhases = (
+				96F895E94030AE5CD5644205 /* Check Pods Manifest.lock */,
 				EAA646B51CB44F9600BDF57C /* Sources */,
 				EAA646B61CB44F9600BDF57C /* Frameworks */,
 				EAA646B71CB44F9600BDF57C /* Resources */,
+				E22A33055B19356D577A4F1D /* Embed Pods Frameworks */,
+				63B87CD21E155E4F9113BD22 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -193,6 +312,7 @@
 				TargetAttributes = {
 					EAA646B81CB44F9600BDF57C = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = B8265Z67V5;
 					};
 					EAA646CC1CB44F9700BDF57C = {
 						CreatedOnToolsVersion = 7.3;
@@ -251,13 +371,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		63B87CD21E155E4F9113BD22 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyDogSpot/Pods-MyDogSpot-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96F895E94030AE5CD5644205 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E22A33055B19356D577A4F1D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyDogSpot/Pods-MyDogSpot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EAA646B51CB44F9600BDF57C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EAA646BF1CB44F9700BDF57C /* ViewController.swift in Sources */,
+				EABBB3CD1CCFFCAD00ACE9E7 /* FeedVC.swift in Sources */,
 				EAA646BD1CB44F9700BDF57C /* AppDelegate.swift in Sources */,
+				EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */,
+				EAA646F41CB462E200BDF57C /* MaterialTextField.swift in Sources */,
+				EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */,
+				EAA646F21CB4616300BDF57C /* MaterialButton.swift in Sources */,
+				EAA646F01CB460BB00BDF57C /* Constants.swift in Sources */,
+				EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */,
+				EAC9F0151CD04E96003B5F90 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,23 +575,41 @@
 		};
 		EAA646E21CB44F9700BDF57C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD28734B01678CB1826695A2 /* Pods-MyDogSpot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyDogSpot",
+				);
 				INFOPLIST_FILE = MyDogSpot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erikawilcox.MyDogSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		EAA646E31CB44F9700BDF57C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18739A6F8DA1A41974076543 /* Pods-MyDogSpot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyDogSpot",
+				);
 				INFOPLIST_FILE = MyDogSpot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.erikawilcox.MyDogSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -484,6 +678,7 @@
 				EAA646E31CB44F9700BDF57C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EAA646E41CB44F9700BDF57C /* Build configuration list for PBXNativeTarget "MyDogSpotTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +687,7 @@
 				EAA646E61CB44F9700BDF57C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EAA646E71CB44F9700BDF57C /* Build configuration list for PBXNativeTarget "MyDogSpotUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +696,7 @@
 				EAA646E91CB44F9700BDF57C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
