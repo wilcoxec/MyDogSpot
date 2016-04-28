@@ -110,7 +110,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     @IBAction func selectImage(sender: UITapGestureRecognizer) {
         presentViewController(imagePicker, animated: true, completion: nil)
         
-    }
+    }// end of @IBAction func selectImage
     
     @IBAction func makePost(sender: AnyObject) {
         
@@ -125,6 +125,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
                 
                 
+                //This came from alamofire github page
                 Alamofire.upload(
                     .POST,
                     url,
@@ -141,6 +142,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                                     if let links = info["links"] as? Dictionary<String, AnyObject> {
                                         if let imgLink = links["image_link"] as? String {
                                             print ("LINK: \(imgLink)")
+                                            self.postToFirebase(imgLink)
                                         }
                                     }
                                 }
@@ -161,11 +163,31 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
         }
         
-    }
+    }//end of @IBAction makePost
     
     func postToFirebase(imgUrl: String?) {
+        var post: Dictionary<String, AnyObject> = [
+            "description": postField.text!,
+            "likes": 0
+        ]
         
-    }
+        //Check if an image exists in the post
+        if imgUrl != nil {
+            post["imageUrl"] = imgUrl!
+        }
+        
+        //Create new id for post object and set value of object
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+        
+        postField.text = ""
+        imageSelectorImage.image = UIImage(named: "camera")
+        imageSelected = false
+        
+        tableView.reloadData()
+        
+        
+    }//end of func postToFirebase
     
 
 }

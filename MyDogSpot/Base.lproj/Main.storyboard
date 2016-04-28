@@ -51,6 +51,7 @@
                                 </state>
                                 <connections>
                                     <action selector="attemptLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oYU-0l-Tua"/>
+                                    <segue destination="ZRF-7Z-KxC" kind="show" id="aUU-cb-TCi"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J8d-sJ-Nla" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
@@ -281,6 +282,7 @@
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="descriptionText" destination="2Fj-ly-BfR" id="lOR-gt-ayf"/>
+                                            <outlet property="likeImage" destination="4ev-YC-qba" id="ceX-7Q-K8M"/>
                                             <outlet property="likesLabel" destination="rJc-fF-M8l" id="VRA-z7-lmf"/>
                                             <outlet property="profileImg" destination="w1x-J1-B3c" id="hXA-g3-PY3"/>
                                             <outlet property="showcaseImg" destination="9Al-Gc-XSX" id="LBP-LA-2YT"/>
@@ -316,6 +318,130 @@
             </objects>
             <point key="canvasLocation" x="2046" y="429"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="4BJ-pq-BBa">
+            <objects>
+                <viewController id="ZRF-7Z-KxC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RC4-15-w5W"/>
+                        <viewControllerLayoutGuide type="bottom" id="tba-rs-CfW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c87-dF-Wlt">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q81-da-IL5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NEW ACCOUNT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdB-hq-gZ6">
+                                        <rect key="frame" x="231" y="17" width="138" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DOG'S NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b20-Wa-v5l">
+                                        <rect key="frame" x="260" y="358" width="81" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JOt-TD-qCE">
+                                        <rect key="frame" x="106" y="99" width="389" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KEB-xx-rL4">
+                                        <rect key="frame" x="106" y="162" width="389" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="YOUR NAME" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rrS-fh-4Zw">
+                                        <rect key="frame" x="262" y="70" width="76" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ADD PROFILE IMAGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuH-i8-bBw">
+                                        <rect key="frame" x="259" y="294" width="82" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="8"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LOCATION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8w-UO-2Qv">
+                                        <rect key="frame" x="268" y="137" width="64" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photoCameraPerson" translatesAutoresizingMaskIntoConstraints="NO" id="yTM-NI-Npx">
+                                        <rect key="frame" x="265" y="218" width="72" height="69"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ADD DOG'S IMAGE " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUI-Bl-LYy">
+                                        <rect key="frame" x="259" y="507" width="82" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="8"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="photoCameraPerson" translatesAutoresizingMaskIntoConstraints="NO" id="vtK-jp-GbK">
+                                        <rect key="frame" x="265" y="430" width="72" height="69"/>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k0f-98-qaL">
+                                        <rect key="frame" x="106" y="382" width="389" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.8980392157" green="0.26683039209999998" blue="0.23465285920000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tba-rs-CfW" firstAttribute="top" secondItem="Q81-da-IL5" secondAttribute="bottom" id="GYI-pN-Gij"/>
+                            <constraint firstAttribute="trailing" secondItem="Q81-da-IL5" secondAttribute="trailing" id="HL3-Kf-2km"/>
+                            <constraint firstItem="Q81-da-IL5" firstAttribute="top" secondItem="c87-dF-Wlt" secondAttribute="top" id="Kzy-JM-5Na"/>
+                            <constraint firstItem="Q81-da-IL5" firstAttribute="leading" secondItem="c87-dF-Wlt" secondAttribute="leading" id="fiP-Pq-jNp"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Olk-qb-hTR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1257" y="-458"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="UKt-sw-6Tm">
+            <objects>
+                <viewController id="ECo-8F-vXR" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2JJ-YD-9ts"/>
+                        <viewControllerLayoutGuide type="bottom" id="Es4-yN-2po"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vv5-c6-TOO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEX-2L-v1e">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vEo-l4-aoZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="228"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wEX-2L-v1e" firstAttribute="leading" secondItem="vv5-c6-TOO" secondAttribute="leading" id="77g-7v-XFi"/>
+                            <constraint firstItem="wEX-2L-v1e" firstAttribute="top" secondItem="vv5-c6-TOO" secondAttribute="top" id="Jnk-wm-BiZ"/>
+                            <constraint firstAttribute="trailing" secondItem="wEX-2L-v1e" secondAttribute="trailing" id="w1n-zU-0mU"/>
+                            <constraint firstItem="Es4-yN-2po" firstAttribute="top" secondItem="wEX-2L-v1e" secondAttribute="bottom" id="xHM-0P-2aJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J6M-IY-RGx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2041" y="-316"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="HCW-Ld-EMH">
             <objects>
@@ -341,5 +467,6 @@
         <image name="dogMain" width="1126" height="1400"/>
         <image name="like" width="91" height="80"/>
         <image name="nav" width="200" height="135"/>
+        <image name="photoCameraPerson" width="516" height="515"/>
     </resources>
 </document>
