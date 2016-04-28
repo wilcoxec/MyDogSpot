@@ -20,7 +20,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     var posts = [Post]()
     
-    
+    var imageSelected = false
     var imagePicker: UIImagePickerController!
     static var imageCache = NSCache()
 
@@ -103,6 +103,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)
         imageSelectorImage.image = image
+        imageSelected = true
     }
 
 
@@ -115,7 +116,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         if let txt = postField.text where txt != "" {
             
-            if let img = imageSelectorImage.image {
+            if let img = imageSelectorImage.image where imageSelected == true {
                 let urlStr = "https://post.imageshack.us/upload_api.php"
                 let url = NSURL(string: urlStr)!
                 let imgData = UIImageJPEGRepresentation(img, 0.2)!
@@ -153,13 +154,18 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 
                 
             }
+            else {
+                self.postToFirebase(nil)
+            }
             
             
         }
         
     }
     
-
+    func postToFirebase(imgUrl: String?) {
+        
+    }
     
 
 }
