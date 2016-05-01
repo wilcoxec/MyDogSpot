@@ -26,6 +26,12 @@
 		EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABBB3CE1CCFFFD600ACE9E7 /* PostCell.swift */; };
 		EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */; };
 		EAC9F0151CD04E96003B5F90 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F0141CD04E96003B5F90 /* Post.swift */; };
+		EAC9F0171CD29E2A003B5F90 /* CreateUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F0161CD29E2A003B5F90 /* CreateUserVC.swift */; };
+		EAC9F0191CD29FCB003B5F90 /* CreateUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F0181CD29FCB003B5F90 /* CreateUser.swift */; };
+		EAC9F01D1CD2E9B2003B5F90 /* PorfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F01C1CD2E9B2003B5F90 /* PorfileVC.swift */; };
+		EAC9F01F1CD2E9ED003B5F90 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */; };
+		EAC9F0211CD3169B003B5F90 /* profileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F0201CD3169B003B5F90 /* profileImage.swift */; };
+		EAD6221E1CD43B1000CBEB03 /* UsersProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +79,12 @@
 		EABBB3CE1CCFFFD600ACE9E7 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
 		EAC9F0141CD04E96003B5F90 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		EAC9F0161CD29E2A003B5F90 /* CreateUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserVC.swift; sourceTree = "<group>"; };
+		EAC9F0181CD29FCB003B5F90 /* CreateUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUser.swift; sourceTree = "<group>"; };
+		EAC9F01C1CD2E9B2003B5F90 /* PorfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PorfileVC.swift; sourceTree = "<group>"; };
+		EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		EAC9F0201CD3169B003B5F90 /* profileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileImage.swift; sourceTree = "<group>"; };
+		EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +197,9 @@
 			children = (
 				EAA646BE1CB44F9700BDF57C /* ViewController.swift */,
 				EABBB3CC1CCFFCAD00ACE9E7 /* FeedVC.swift */,
+				EAC9F0161CD29E2A003B5F90 /* CreateUserVC.swift */,
+				EAC9F01C1CD2E9B2003B5F90 /* PorfileVC.swift */,
+				EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -196,6 +211,8 @@
 				EAA646F31CB462E200BDF57C /* MaterialTextField.swift */,
 				EABBB3CE1CCFFFD600ACE9E7 /* PostCell.swift */,
 				EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */,
+				EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */,
+				EAC9F0201CD3169B003B5F90 /* profileImage.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -204,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				EAC9F0141CD04E96003B5F90 /* Post.swift */,
+				EAC9F0181CD29FCB003B5F90 /* CreateUser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -426,13 +444,19 @@
 			files = (
 				EAA646BF1CB44F9700BDF57C /* ViewController.swift in Sources */,
 				EABBB3CD1CCFFCAD00ACE9E7 /* FeedVC.swift in Sources */,
+				EAC9F01D1CD2E9B2003B5F90 /* PorfileVC.swift in Sources */,
 				EAA646BD1CB44F9700BDF57C /* AppDelegate.swift in Sources */,
 				EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */,
 				EAA646F41CB462E200BDF57C /* MaterialTextField.swift in Sources */,
 				EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */,
 				EAA646F21CB4616300BDF57C /* MaterialButton.swift in Sources */,
 				EAA646F01CB460BB00BDF57C /* Constants.swift in Sources */,
+				EAC9F0171CD29E2A003B5F90 /* CreateUserVC.swift in Sources */,
 				EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */,
+				EAD6221E1CD43B1000CBEB03 /* UsersProfileVC.swift in Sources */,
+				EAC9F0191CD29FCB003B5F90 /* CreateUser.swift in Sources */,
+				EAC9F01F1CD2E9ED003B5F90 /* ProfileView.swift in Sources */,
+				EAC9F0211CD3169B003B5F90 /* profileImage.swift in Sources */,
 				EAC9F0151CD04E96003B5F90 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

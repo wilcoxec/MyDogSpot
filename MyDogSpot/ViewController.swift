@@ -59,7 +59,7 @@ class ViewController: UIViewController {
                         let user = ["provider": authData.provider!]
                         DataService.ds.createFirebaseUser(authData.uid, user: user)
                         
-                        self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                        self.performSegueWithIdentifier(SEGUE_CREATE_USER, sender: nil)
                     }
                 })
                 
@@ -89,7 +89,8 @@ class ViewController: UIViewController {
                                     DataService.ds.createFirebaseUser(authData.uid, user: user)
                                 })
                                 
-                                self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                                //self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                                self.performSegueWithIdentifier(SEGUE_CREATE_USER, sender: nil)
                             }
                         
                         })

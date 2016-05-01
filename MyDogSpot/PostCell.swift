@@ -13,6 +13,10 @@ import Firebase
 class PostCell: UITableViewCell {
 
     @IBOutlet weak var profileImg: UIImageView!
+    @IBOutlet weak var profileName: UILabel!
+    
+    @IBOutlet weak var profileBtn: UIButton!
+    
     @IBOutlet weak var showcaseImg: UIImageView!
     @IBOutlet weak var descriptionText: UITextView!
     @IBOutlet weak var likesLabel: UILabel!
@@ -29,6 +33,11 @@ class PostCell: UITableViewCell {
         tapLike.numberOfTouchesRequired = 1
         likeImage.addGestureRecognizer(tapLike)
         likeImage.userInteractionEnabled = true
+
+       // let userTap = UITapGestureRecognizer(target: self, action: #selector(PostCell.userTapped(_:)))
+       /// userTap.numberOfTapsRequired = 1
+       // profileName.addGestureRecognizer(userTap)
+       // profileName.userInteractionEnabled = true
     }
     
     override func drawRect(rect: CGRect) {
@@ -69,8 +78,8 @@ class PostCell: UITableViewCell {
             self.showcaseImg.hidden = true
         }
         
-        
-        
+        self.setUserInfo()
+
         //See if the like for post exists
         likeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             
@@ -101,6 +110,35 @@ class PostCell: UITableViewCell {
             }
         })
     }
+    
+    
+    func userTapped(sender: UITapGestureRecognizer) {
+  
+        
+    }
+    
+    
+    func setUserInfo () {
+        
+        //profileName.text = post.username
+        
+        profileBtn.setTitle(post.username, forState: .Normal)
+        
+        request = Alamofire.request(.GET, post.userImage!).validate(contentType: ["image/*"]).response(completionHandler: {
+            request, response, data, err in
+            
+            if err == nil {
+                let img = UIImage(data: data!)!
+                self.profileImg.image = img
+            }
+            else {
+                print(err.debugDescription)
+            }
+        })
+    }
+    
+    
+
 
 }
 

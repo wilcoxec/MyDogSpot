@@ -20,6 +20,19 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     var posts = [Post]()
     
+    var user: CreateUser!
+    
+    
+    var UserVC: UsersProfileVC!
+    
+    var buttonLabelToSend: String!
+    
+    
+    var userName: String!
+    var userImage: String!
+    
+    var userRef: Firebase!
+    
     var imageSelected = false
     var imagePicker: UIImagePickerController!
     static var imageCache = NSCache()
@@ -53,6 +66,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
             
             self.tableView.reloadData()
         })
+        
+        self.getUserInfo()
+        
+        
+        
     }
     
     
@@ -117,8 +135,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         if let txt = postField.text where txt != "" {
             
             if let img = imageSelectorImage.image where imageSelected == true {
-                let urlStr = "https://post.imageshack.us/upload_api.php"
-                let url = NSURL(string: urlStr)!
+                //let urlStr = "https://post.imageshack.us/upload_api.php"
+                //let url = NSURL(string: urlStr)!
                 let imgData = UIImageJPEGRepresentation(img, 0.2)!
                 
                 let keyData = "49ACILMSa3bb4f31c5b6f7aeee9e5623c70c83d7".dataUsingEncoding(NSUTF8StringEncoding)!
@@ -128,7 +146,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 //This came from alamofire github page
                 Alamofire.upload(
                     .POST,
-                    url,
+                    "https://post.imageshack.us/upload_api.php",
                     multipartFormData: { multipartFormData in
                         multipartFormData.appendBodyPart(data: imgData, name: "fileupload", fileName: "image", mimeType: "image/jpg")
                         multipartFormData.appendBodyPart(data: keyData, name: "key")
@@ -166,7 +184,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }//end of @IBAction makePost
     
     func postToFirebase(imgUrl: String?) {
+ 
+        //self.getUserInfo()
+        
         var post: Dictionary<String, AnyObject> = [
+            "username": userName,
+            "userImageUrl": userImage,
             "description": postField.text!,
             "likes": 0
         ]
@@ -189,6 +212,61 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
     }//end of func postToFirebase
     
+    
+    func getUserInfo() {
+        userRef = DataService.ds.REF_USER_CURRENT
+        
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            
+            print(snapshot.value)
+            
+            if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
+                let key = snapshot.key
+                let user = CreateUser(userKey: key, dictionary: userDict)
+                self.unwrapUserInfo(user)
+                //self.configureProfile(user)
+            }
+
+        })
+        
+    }
+    
+    func unwrapUserInfo(user: CreateUser) {
+        
+        self.userName = user.userName
+        self.userImage = user.userImageUrl
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
+        if(sender is UIButton!){
+            let UserVC = segue.destinationViewController as! UsersProfileVC
+            let btninfo = sender as! UIButton
+            
+            UserVC.userInfoFromVC = btninfo.titleLabel?.text
+        }
+    }
+    
+    
+    
+    
+    @IBAction func performProfileView(sender: UIButton!) {
+        
+      
+        let btn = sender
+        print("the button tag is :")
+        print(btn.titleLabel?.text)
+        
+        let btnLabel = btn.titleLabel?.text
+        buttonLabelToSend = btn.titleLabel?.text
+        
+        
+        self.performSegueWithIdentifier(SEGUE_GO_TO_USER, sender: sender)
+        
+        //self.navigationController?.pushViewController(UsersProfileVC, animated: true)
+    }
 
 }
 
