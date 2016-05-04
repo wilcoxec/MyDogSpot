@@ -56,6 +56,8 @@ class ViewController: UIViewController {
                         NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_ID)
                         
                         //Go change the !
+                        
+                        
                         let user = ["provider": authData.provider!]
                         DataService.ds.createFirebaseUser(authData.uid, user: user)
                         

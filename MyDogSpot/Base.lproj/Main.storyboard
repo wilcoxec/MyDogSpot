@@ -19,16 +19,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="GTL-MC-kKn">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="GTL-MC-kKn">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GTL-MC-kKn" secondAttribute="height" multiplier="1:1" id="Oc7-FS-PTB"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m49-6A-X00" customClass="MaterialButton" customModule="MyDogSpot" customModuleProvider="target">
-                                <rect key="frame" x="221" y="540" width="159" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m49-6A-X00" customClass="MaterialButton" customModule="MyDogSpot" customModuleProvider="target">
+                                <rect key="frame" x="221" y="481" width="159" height="30"/>
                                 <color key="backgroundColor" red="0.20642920977166743" green="0.32063984769012627" blue="0.59108047779922779" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                 <state key="normal" title="FACEBOOK LOGIN">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -36,22 +36,10 @@
                                     <action selector="fbBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lM0-rY-gaq"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EL3-NN-IaE" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
-                                <rect key="frame" x="141" y="369" width="319" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
-                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2Q-1s-A38" customClass="MaterialButton" customModule="MyDogSpot" customModuleProvider="target">
-                                <rect key="frame" x="221" y="490" width="159" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e2Q-1s-A38" customClass="MaterialButton" customModule="MyDogSpot" customModuleProvider="target">
+                                <rect key="frame" x="221" y="426" width="159" height="30"/>
                                 <color key="backgroundColor" red="0.98431372549019602" green="0.20000000000000001" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                 <state key="normal" title="LOGIN / SIGNUP">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -60,11 +48,32 @@
                                     <segue destination="ZRF-7Z-KxC" kind="show" identifier="createUser" id="aUU-cb-TCi"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J8d-sJ-Nla" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
-                                <rect key="frame" x="141" y="427" width="319" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="EMAIL ADDRESS" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EL3-NN-IaE" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
+                                <rect key="frame" x="141" y="290" width="319" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="25" id="WtJ-XK-fwJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="oHD-ef-TOy"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="wjJ-4P-C4S"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="PASSWORD" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J8d-sJ-Nla" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
+                                <rect key="frame" x="141" y="344" width="319" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="Mgj-r8-6DG"/>
+                                    <constraint firstAttribute="height" constant="30" id="ccm-MT-tmd"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -72,38 +81,36 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dogapplogo" translatesAutoresizingMaskIntoConstraints="NO" id="UbC-yh-Dyd">
-                                <rect key="frame" x="250" y="107" width="100" height="147"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dogLabel" translatesAutoresizingMaskIntoConstraints="NO" id="l4a-9E-GKh">
+                                <rect key="frame" x="211" y="95" width="178" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="avE-Hf-Gu7"/>
-                                    <constraint firstAttribute="height" constant="147" id="deC-Pe-dtV"/>
-                                    <constraint firstAttribute="width" constant="100" id="rp5-uj-h0i"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="tcy-5G-55C"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="147" id="ua5-f9-dgK"/>
+                                    <constraint firstAttribute="height" constant="130" id="bfN-2I-N0I"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Dog Spot" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ceO-tZ-5sv">
-                                <rect key="frame" x="186" y="252" width="228" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="228" id="L5S-zK-qxF"/>
-                                    <constraint firstAttribute="height" constant="47" id="MkC-h7-gQb"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="33"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GTL-MC-kKn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Y6-a3-byY"/>
-                            <constraint firstItem="m49-6A-X00" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9Oz-cy-qey"/>
-                            <constraint firstItem="UbC-yh-Dyd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DJe-QS-LdZ"/>
-                            <constraint firstItem="J8d-sJ-Nla" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OBX-RG-vct"/>
-                            <constraint firstItem="EL3-NN-IaE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XyH-dX-M9O"/>
-                            <constraint firstItem="ceO-tZ-5sv" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="232" id="YMf-d0-XbH"/>
-                            <constraint firstItem="ceO-tZ-5sv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zn2-p6-7jp"/>
-                            <constraint firstItem="e2Q-1s-A38" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nkR-7z-vYh"/>
-                            <constraint firstItem="UbC-yh-Dyd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="87" id="xIV-ep-cga"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e2Q-1s-A38" secondAttribute="trailing" constant="70" id="1Vr-Kz-7XK"/>
+                            <constraint firstItem="e2Q-1s-A38" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="70" id="1o5-lX-LKT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="m49-6A-X00" secondAttribute="bottom" constant="80" id="2Oe-uE-iuy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="m49-6A-X00" secondAttribute="trailing" constant="70" id="6dL-kG-qv5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="J8d-sJ-Nla" secondAttribute="trailing" constant="30" id="Cgc-cU-JDg"/>
+                            <constraint firstItem="EL3-NN-IaE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D0t-nu-euq"/>
+                            <constraint firstItem="e2Q-1s-A38" firstAttribute="top" secondItem="J8d-sJ-Nla" secondAttribute="bottom" constant="65" id="DCG-2Y-SSH"/>
+                            <constraint firstItem="m49-6A-X00" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="70" id="KP1-Ld-dat"/>
+                            <constraint firstItem="m49-6A-X00" firstAttribute="top" secondItem="e2Q-1s-A38" secondAttribute="bottom" constant="20" id="Kc3-AO-mdD"/>
+                            <constraint firstItem="GTL-MC-kKn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZI2-QY-mxd"/>
+                            <constraint firstItem="J8d-sJ-Nla" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cTq-km-rtJ"/>
+                            <constraint firstItem="GTL-MC-kKn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="eGt-bP-MHX"/>
+                            <constraint firstItem="EL3-NN-IaE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="fbb-kr-I9k"/>
+                            <constraint firstItem="J8d-sJ-Nla" firstAttribute="top" secondItem="EL3-NN-IaE" secondAttribute="bottom" constant="25" id="jrx-3D-rLb"/>
+                            <constraint firstItem="J8d-sJ-Nla" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="30" id="k9V-kI-bPe"/>
+                            <constraint firstItem="m49-6A-X00" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qta-Il-o9k"/>
+                            <constraint firstItem="l4a-9E-GKh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="t5N-K5-imo"/>
+                            <constraint firstItem="e2Q-1s-A38" firstAttribute="top" secondItem="J8d-sJ-Nla" secondAttribute="bottom" constant="45" id="te7-OP-JvE"/>
+                            <constraint firstItem="l4a-9E-GKh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="30" id="uFq-r7-qxK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EL3-NN-IaE" secondAttribute="trailing" constant="30" id="ukR-A8-hZP"/>
+                            <constraint firstItem="e2Q-1s-A38" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ulh-d9-CWd"/>
                         </constraints>
                     </view>
                     <connections>
@@ -372,14 +379,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q81-da-IL5">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ADD PROFILE IMAGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuH-i8-bBw">
-                                        <rect key="frame" x="258" y="320" width="82" height="21"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dogMain" translatesAutoresizingMaskIntoConstraints="NO" id="iwY-Gc-QiP">
+                                        <rect key="frame" x="0.0" y="-4" width="600" height="604"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ADD PROFILE IMAGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UuH-i8-bBw">
+                                        <rect key="frame" x="258" y="249" width="82" height="21"/>
                                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="8"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="photoCameraPerson" translatesAutoresizingMaskIntoConstraints="NO" id="yTM-NI-Npx">
-                                        <rect key="frame" x="264" y="251" width="72" height="69"/>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photoCameraPerson" translatesAutoresizingMaskIntoConstraints="NO" id="yTM-NI-Npx">
+                                        <rect key="frame" x="264" y="181" width="72" height="69"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="Hz9-uB-M6z"/>
@@ -389,8 +399,8 @@
                                             <outletCollection property="gestureRecognizers" destination="OcQ-YM-MCW" appends="YES" id="YRE-Cz-IEd"/>
                                         </connections>
                                     </imageView>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="photoCameraPerson" translatesAutoresizingMaskIntoConstraints="NO" id="vtK-jp-GbK">
-                                        <rect key="frame" x="264" y="431" width="72" height="69"/>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="photoCameraPerson" translatesAutoresizingMaskIntoConstraints="NO" id="vtK-jp-GbK">
+                                        <rect key="frame" x="264" y="329" width="72" height="69"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="nbd-rv-XiM"/>
@@ -400,14 +410,15 @@
                                             <outletCollection property="gestureRecognizers" destination="X3X-Do-Pd1" appends="YES" id="c7f-ZQ-JbF"/>
                                         </connections>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JOt-TD-qCE" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
-                                        <rect key="frame" x="184" y="144" width="233" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="NAME" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JOt-TD-qCE" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
+                                        <rect key="frame" x="184" y="90" width="233" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="BNY-e4-1bz"/>
                                             <constraint firstAttribute="width" constant="230" id="aEi-h6-Aw1"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -415,14 +426,15 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dog's Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r1x-Ya-XWR" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
-                                        <rect key="frame" x="183" y="371" width="233" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="DOG'S NAME" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r1x-Ya-XWR" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
+                                        <rect key="frame" x="183" y="291" width="233" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="230" id="JgM-9C-JS5"/>
+                                            <constraint firstAttribute="height" constant="30" id="a0V-vg-0aj"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -430,10 +442,10 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWD-T5-c1Y" customClass="MaterialButton" customModule="MyDogSpot" customModuleProvider="target">
-                                        <rect key="frame" x="208" y="553" width="182" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tWD-T5-c1Y" customClass="MaterialButton" customModule="MyDogSpot" customModuleProvider="target">
+                                        <rect key="frame" x="208" y="532" width="182" height="30"/>
                                         <color key="backgroundColor" red="0.98431372549999996" green="0.20000000000000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                         <state key="normal" title="CREATE PROFILE">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -441,26 +453,21 @@
                                             <action selector="createUser:" destination="ZRF-7Z-KxC" eventType="touchUpInside" id="viR-Oa-dRv"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="ADD DOG'S IMAGE " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUI-Bl-LYy">
-                                        <rect key="frame" x="258" y="504" width="82" height="21"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="8"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="USER PROFILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdB-hq-gZ6">
+                                        <rect key="frame" x="221" y="24" width="158" height="21"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="16"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="USER PROFILE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdB-hq-gZ6">
-                                        <rect key="frame" x="221" y="76" width="158" height="21"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sxz-Ki-lLf" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
-                                        <rect key="frame" x="183" y="194" width="233" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="LOCATION" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sxz-Ki-lLf" customClass="MaterialTextField" customModule="MyDogSpot" customModuleProvider="target">
+                                        <rect key="frame" x="184" y="132" width="233" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="TB1-hD-p4c"/>
                                             <constraint firstAttribute="width" constant="230" id="j7F-dP-Flh"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
@@ -468,27 +475,50 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="ADD DOG'S IMAGE " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUI-Bl-LYy">
+                                        <rect key="frame" x="258" y="409" width="82" height="21"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="8"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.086274509803921567" green="0.10980392156862745" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Sxz-Ki-lLf" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="9As-9i-01t"/>
-                                    <constraint firstItem="r1x-Ya-XWR" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="9Qw-ae-QZx"/>
-                                    <constraint firstItem="PUI-Bl-LYy" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="L8r-X7-Rf4"/>
-                                    <constraint firstItem="vtK-jp-GbK" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="Xal-JB-gRW"/>
-                                    <constraint firstItem="JOt-TD-qCE" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="bxD-E0-edq"/>
-                                    <constraint firstItem="tWD-T5-c1Y" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="ds2-fg-OiM"/>
-                                    <constraint firstItem="UuH-i8-bBw" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="dyA-ym-Zoa"/>
-                                    <constraint firstItem="OdB-hq-gZ6" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="ebi-Ep-zQA"/>
-                                    <constraint firstItem="yTM-NI-Npx" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="fNc-8s-3Eq"/>
+                                    <constraint firstItem="yTM-NI-Npx" firstAttribute="top" secondItem="Sxz-Ki-lLf" secondAttribute="bottom" constant="20" id="1Qr-hu-yQW"/>
+                                    <constraint firstItem="r1x-Ya-XWR" firstAttribute="top" secondItem="UuH-i8-bBw" secondAttribute="bottom" constant="20" id="4AJ-le-Ho7"/>
+                                    <constraint firstItem="iwY-Gc-QiP" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="8Dw-Hs-XhI"/>
+                                    <constraint firstAttribute="bottom" secondItem="tWD-T5-c1Y" secondAttribute="bottom" constant="30" id="ESe-Nn-4UM"/>
+                                    <constraint firstItem="yTM-NI-Npx" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="EdE-cE-htx"/>
+                                    <constraint firstItem="UuH-i8-bBw" firstAttribute="top" secondItem="Sxz-Ki-lLf" secondAttribute="bottom" constant="80" id="IVw-hq-K4k"/>
+                                    <constraint firstItem="JOt-TD-qCE" firstAttribute="top" secondItem="OdB-hq-gZ6" secondAttribute="bottom" constant="45" id="JeE-D2-zhL"/>
+                                    <constraint firstAttribute="trailing" secondItem="iwY-Gc-QiP" secondAttribute="trailing" id="NZo-sq-7do"/>
+                                    <constraint firstItem="JOt-TD-qCE" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="OFE-S1-EyB"/>
+                                    <constraint firstItem="r1x-Ya-XWR" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="Swc-Xh-FBd"/>
+                                    <constraint firstItem="Sxz-Ki-lLf" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="Ukp-mQ-TL3"/>
+                                    <constraint firstItem="tWD-T5-c1Y" firstAttribute="leading" secondItem="Q81-da-IL5" secondAttribute="leading" constant="70" id="VD3-TG-xag"/>
+                                    <constraint firstItem="OdB-hq-gZ6" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="Vkq-ZX-TMW"/>
+                                    <constraint firstItem="PUI-Bl-LYy" firstAttribute="top" secondItem="vtK-jp-GbK" secondAttribute="bottom" constant="8" id="WFi-sA-dtB"/>
+                                    <constraint firstItem="UuH-i8-bBw" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="bWe-nq-6g7"/>
+                                    <constraint firstItem="iwY-Gc-QiP" firstAttribute="top" secondItem="Q81-da-IL5" secondAttribute="top" id="c9a-0G-wTi"/>
+                                    <constraint firstItem="vtK-jp-GbK" firstAttribute="top" secondItem="r1x-Ya-XWR" secondAttribute="bottom" constant="15" id="gTp-Dt-ZaY"/>
+                                    <constraint firstItem="r1x-Ya-XWR" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="kL5-KZ-BBX"/>
+                                    <constraint firstItem="tWD-T5-c1Y" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="lSz-9a-RaU"/>
+                                    <constraint firstItem="iwY-Gc-QiP" firstAttribute="leading" secondItem="Q81-da-IL5" secondAttribute="leading" id="n3d-mC-eDS"/>
+                                    <constraint firstItem="OdB-hq-gZ6" firstAttribute="top" secondItem="Q81-da-IL5" secondAttribute="top" constant="25" id="nFB-mE-sE0"/>
+                                    <constraint firstAttribute="bottom" secondItem="iwY-Gc-QiP" secondAttribute="bottom" id="nXp-k9-g2v"/>
+                                    <constraint firstItem="vtK-jp-GbK" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="pKj-jy-8Fb"/>
+                                    <constraint firstItem="Sxz-Ki-lLf" firstAttribute="top" secondItem="JOt-TD-qCE" secondAttribute="bottom" constant="20" id="r9R-Hv-mZp"/>
+                                    <constraint firstAttribute="trailing" secondItem="tWD-T5-c1Y" secondAttribute="trailing" constant="70" id="wVe-mw-Ynr"/>
+                                    <constraint firstItem="PUI-Bl-LYy" firstAttribute="centerX" secondItem="Q81-da-IL5" secondAttribute="centerX" id="ybD-ND-hh4"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Q81-da-IL5" firstAttribute="leading" secondItem="c87-dF-Wlt" secondAttribute="leading" id="1Nz-5s-NQZ"/>
-                            <constraint firstItem="Q81-da-IL5" firstAttribute="top" secondItem="c87-dF-Wlt" secondAttribute="top" id="3h2-Bg-T5t"/>
-                            <constraint firstAttribute="trailing" secondItem="Q81-da-IL5" secondAttribute="trailing" id="gvD-A0-ytr"/>
-                            <constraint firstItem="tba-rs-CfW" firstAttribute="top" secondItem="Q81-da-IL5" secondAttribute="bottom" id="iX2-zQ-zaZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Q81-da-IL5" secondAttribute="trailing" id="Cp5-5e-8jG"/>
+                            <constraint firstItem="Q81-da-IL5" firstAttribute="leading" secondItem="c87-dF-Wlt" secondAttribute="leading" id="Fxy-wz-fZY"/>
+                            <constraint firstItem="Q81-da-IL5" firstAttribute="top" secondItem="c87-dF-Wlt" secondAttribute="top" id="lKX-yH-jYf"/>
+                            <constraint firstItem="tba-rs-CfW" firstAttribute="top" secondItem="Q81-da-IL5" secondAttribute="bottom" id="pTz-fO-PAf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -752,12 +782,13 @@
         <image name="back" width="654" height="720"/>
         <image name="blueBlur" width="284" height="177"/>
         <image name="camera" width="100" height="80"/>
-        <image name="dogapplogo" width="513" height="690"/>
+        <image name="dogLabel" width="484" height="369"/>
+        <image name="dogMain" width="1126" height="1400"/>
         <image name="like" width="91" height="80"/>
         <image name="nav" width="200" height="135"/>
         <image name="photoCameraPerson" width="516" height="515"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sYV-hY-UsM"/>
+        <segue reference="7DR-Oh-ege"/>
     </inferredMetricsTieBreakers>
 </document>

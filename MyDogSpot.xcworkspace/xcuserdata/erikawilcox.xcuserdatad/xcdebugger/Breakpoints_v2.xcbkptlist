@@ -9,86 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/CreateUserVC.swift"
-            timestampString = "483591983.785406"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "postDogImageToFirebase(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/CreateUserVC.swift"
-            timestampString = "483591983.785406"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "postDogURL()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/CreateUserVC.swift"
-            timestampString = "483589579.528426"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "createUser(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/CreateUserVC.swift"
-            timestampString = "483591983.785406"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
-            landmarkName = "postDogImageToFirebase(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/CreateUserVC.swift"
-            timestampString = "483591983.785406"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "postUserToFirebase(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MyDogSpot/ProfileView.swift"
             timestampString = "483595610.579648"
             startingColumnNumber = "9223372036854775807"
@@ -106,7 +26,7 @@
                   moduleName = "MyDogSpot"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/erikawilcox/Desktop/MyDogSpot/MyDogSpot/ProfileView.swift"
-                  timestampString = "483750936.788318"
+                  timestampString = "483825725.083326"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "79"
@@ -121,7 +41,7 @@
                   moduleName = "MyDogSpot"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/erikawilcox/Desktop/MyDogSpot/MyDogSpot/ProfileView.swift"
-                  timestampString = "483750936.788473"
+                  timestampString = "483825725.083426"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "82"
@@ -154,7 +74,7 @@
                   moduleName = "MyDogSpot"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/erikawilcox/Desktop/MyDogSpot/MyDogSpot/ProfileView.swift"
-                  timestampString = "483750936.789562"
+                  timestampString = "483825725.087319"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
@@ -169,7 +89,7 @@
                   moduleName = "MyDogSpot"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/erikawilcox/Desktop/MyDogSpot/MyDogSpot/ProfileView.swift"
-                  timestampString = "483750936.789661"
+                  timestampString = "483825725.087436"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "62"
@@ -201,28 +121,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/CreateUserVC.swift"
-            timestampString = "483591907.879194"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "createUser(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MyDogSpot/FeedVC.swift"
-            timestampString = "483723592.860353"
+            timestampString = "483825453.951396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "makePost(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -233,44 +137,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/CreateUserVC.swift"
-            timestampString = "483663919.643282"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "createUser(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/CreateUserVC.swift"
-            timestampString = "483663952.635943"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "postDogURL()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MyDogSpot/FeedVC.swift"
-            timestampString = "483723592.860353"
+            timestampString = "483825453.951396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "makePost(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -346,7 +218,7 @@
                   moduleName = "MyDogSpot"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/erikawilcox/Desktop/MyDogSpot/MyDogSpot/UsersProfileVC.swift"
-                  timestampString = "483750936.856271"
+                  timestampString = "483825725.092134"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
@@ -361,7 +233,7 @@
                   moduleName = "MyDogSpot"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/erikawilcox/Desktop/MyDogSpot/MyDogSpot/UsersProfileVC.swift"
-                  timestampString = "483750936.857353"
+                  timestampString = "483825725.092242"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "54"
@@ -410,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDogSpot/ViewController.swift"
-            timestampString = "483750903.828715"
+            timestampString = "483834369.883736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "fbBtnPressed(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -426,61 +298,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyDogSpot/ViewController.swift"
-            timestampString = "483750906.919126"
+            timestampString = "483834369.883736"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "fbBtnPressed(_:)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyDogSpot/ViewController.swift"
-            timestampString = "483750918.657009"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "fbBtnPressed(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyDogSpot.ViewController.fbBtnPressed (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIButton&gt;) -&gt; ()"
-                  moduleName = "MyDogSpot"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erikawilcox/Desktop/MyDogSpot/MyDogSpot/ViewController.swift"
-                  timestampString = "483750936.861482"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyDogSpot.ViewController.(fbBtnPressed (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UIButton&gt;) -&gt; ()).(closure #1)"
-                  moduleName = "MyDogSpot"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/erikawilcox/Desktop/MyDogSpot/MyDogSpot/ViewController.swift"
-                  timestampString = "483750936.861593"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "24">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -112,12 +112,6 @@ class PostCell: UITableViewCell {
     }
     
     
-    func userTapped(sender: UITapGestureRecognizer) {
-  
-        
-    }
-    
-    
     func setUserInfo () {
         
         //profileName.text = post.username

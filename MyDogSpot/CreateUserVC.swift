@@ -37,16 +37,21 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         
         userImagePicker.delegate = self
         dogImagePicker.delegate = self
-  
+
     }
+    
     
     
     @IBAction func dogImageTap(sender: UITapGestureRecognizer) {
         presentViewController(dogImagePicker, animated: true, completion: nil)
+        
+        
     }
     
     @IBAction func userImageTap(sender: UITapGestureRecognizer) {
         presentViewController(userImagePicker, animated: true, completion: nil)
+        
+        
     }
     
     
@@ -63,6 +68,7 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             dogImage.image = image
             dImgSelected = true
         }
+        
     }
     
     @IBAction func createUser(sender: AnyObject) {
@@ -75,9 +81,6 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         //let dImg = dogImage.image!
 
         if nameTxt != "" && locationTxt != "" && dogTxt != "" && dImgSelected == true && uImgSelected == true{
-            
-            let urlStr = "https://post.imageshack.us/upload_api.php"
-            let url = NSURL(string: urlStr)!
             
             
             let uImgData = UIImageJPEGRepresentation(uImg, 0.2)!

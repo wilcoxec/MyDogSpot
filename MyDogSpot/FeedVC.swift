@@ -35,6 +35,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     var imageSelected = false
     var imagePicker: UIImagePickerController!
+    
     static var imageCache = NSCache()
 
     override func viewDidLoad() {
