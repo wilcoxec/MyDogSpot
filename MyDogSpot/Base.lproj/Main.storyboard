@@ -643,11 +643,11 @@
             </objects>
             <point key="canvasLocation" x="3178" y="1037"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Feed-->
         <scene sceneID="HCW-Ld-EMH">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="F0X-Fr-6TR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="fcl-up-ltq"/>
+                    <tabBarItem key="tabBarItem" title="Feed" image="feedTab" id="fcl-up-ltq"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YQM-wl-e8O">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -772,11 +772,11 @@
             </objects>
             <point key="canvasLocation" x="3969" y="181"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="hhA-Mb-ntz">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZHL-aQ-WaO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="cIp-2o-qb6"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="userTab" id="cIp-2o-qb6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="WjK-5Y-KJf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -817,8 +817,10 @@
         <image name="camera" width="100" height="80"/>
         <image name="dogLabel" width="484" height="369"/>
         <image name="dogMain" width="1126" height="1400"/>
+        <image name="feedTab" width="30" height="23"/>
         <image name="like" width="91" height="80"/>
         <image name="nav" width="200" height="135"/>
         <image name="photoCameraPerson" width="516" height="515"/>
+        <image name="userTab" width="30" height="35"/>
     </resources>
 </document>
