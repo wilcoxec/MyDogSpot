@@ -224,7 +224,7 @@
                                                                             <rect key="frame" x="60" y="0.0" width="484" height="50"/>
                                                                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                                                             <state key="normal" title="Button">
-                                                                                <color key="titleColor" red="0.98431372549999996" green="0.20000000000000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                <color key="titleColor" red="0.086274509799999996" green="0.10980392160000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                                                             </state>
                                                                             <connections>
                                                                                 <action selector="performProfileView:" destination="6hj-yH-nD9" eventType="touchUpInside" id="03k-MV-dqL"/>
@@ -233,20 +233,20 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2Fj-ly-BfR">
-                                                                    <rect key="frame" x="0.0" y="55" width="544" height="52"/>
+                                                                    <rect key="frame" x="0.0" y="55" width="544" height="81"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 </textView>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Al-Gc-XSX">
-                                                                    <rect key="frame" x="0.0" y="112" width="544" height="200"/>
+                                                                    <rect key="frame" x="0.0" y="141" width="544" height="200"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="200" id="gYT-jv-IGt"/>
                                                                     </constraints>
                                                                 </imageView>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Flm-0C-8ut">
-                                                                    <rect key="frame" x="0.0" y="317" width="544" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="346" width="544" height="30"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="4ev-YC-qba">
                                                                             <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -255,6 +255,12 @@
                                                                                 <constraint firstAttribute="height" constant="30" id="Go0-1v-Ozq"/>
                                                                             </constraints>
                                                                         </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" fixedFrame="YES" text="likes label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJc-fF-M8l">
+                                                                            <rect key="frame" x="38" y="3" width="511" height="24"/>
+                                                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                                                            <color key="textColor" red="0.086274509799999996" green="0.10980392160000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
                                                                     </subviews>
                                                                     <constraints>
                                                                         <constraint firstItem="4ev-YC-qba" firstAttribute="top" secondItem="Flm-0C-8ut" secondAttribute="top" id="4bK-Sc-ptN"/>
@@ -262,26 +268,6 @@
                                                                         <constraint firstItem="4ev-YC-qba" firstAttribute="leading" secondItem="Flm-0C-8ut" secondAttribute="leading" id="dc2-3Q-RWX"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="on5-gZ-f28">
-                                                                    <rect key="frame" x="0.0" y="352" width="544" height="24"/>
-                                                                    <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="44" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJc-fF-M8l">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="19" height="24"/>
-                                                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
-                                                                            <color key="textColor" red="0.98431372549999996" green="0.20000000000000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahW-4s-sB8">
-                                                                            <rect key="frame" x="29" y="0.0" width="515" height="24"/>
-                                                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                                                            <color key="textColor" red="0.98431372549999996" green="0.20000000000000001" blue="0.30196078430000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="24" id="Lmh-Ml-PrE"/>
-                                                                    </constraints>
-                                                                </stackView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="4xO-ce-bV1" firstAttribute="leading" secondItem="dmI-NG-AYB" secondAttribute="leading" id="5Dp-jR-6Hf"/>
@@ -340,7 +326,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Dog Spot" id="qMP-Os-pTc">
-                        <barButtonItem key="backBarButtonItem" title="news feed" id="Kv9-fJ-fEU"/>
+                        <barButtonItem key="backBarButtonItem" title="Feed" id="Kv9-fJ-fEU"/>
                     </navigationItem>
                     <connections>
                         <outlet property="imageSelectorImage" destination="tCB-QG-nq7" id="QqX-le-yVh"/>

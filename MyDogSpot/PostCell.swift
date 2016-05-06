@@ -53,7 +53,7 @@ class PostCell: UITableViewCell {
         likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath(post.postKey)
 
         self.descriptionText.text = post.postDescription
-        self.likesLabel.text = "\(post.likes)"
+        self.likesLabel.text = "\(post.likes) likes"
         
         if post.imageUrl != nil {
             if img != nil {
