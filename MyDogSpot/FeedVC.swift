@@ -24,6 +24,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     
     var UserVC: UsersProfileVC!
+    var UserIDtoSend: String!
     
     var buttonLabelToSend: String!
     
@@ -32,6 +33,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var userImage: String!
     
     var userRef: Firebase!
+    
+    var userID: String!
     
     var imageSelected = false
     var imagePicker: UIImagePickerController!
@@ -185,14 +188,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     }//end of @IBAction makePost
     
     func postToFirebase(imgUrl: String?) {
- 
-        //self.getUserInfo()
         
         var post: Dictionary<String, AnyObject> = [
             "username": userName,
             "userImageUrl": userImage,
             "description": postField.text!,
-            "likes": 0
+            "likes": 0,
+            "userID": userID
         ]
         
         //Check if an image exists in the post
@@ -236,33 +238,68 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
         self.userName = user.userName
         self.userImage = user.userImageUrl
+        self.userID = user.userKey
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         
+        print("identifier")
+        print(segue.identifier)
+        
+        print("sender")
+        print(sender)
         
         if(sender is UIButton!){
             let UserVC = segue.destinationViewController as! UsersProfileVC
             let btninfo = sender as! UIButton
+            btninfo.titleLabel?.text = UserIDtoSend
             
-            UserVC.userInfoFromVC = btninfo.titleLabel?.text
+            print(btninfo.titleLabel?.text)
+            
+            UserVC.toPass = UserIDtoSend
         }
+        
+
+        
+        
     }
     
+    
+   // func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+     //   NSLog("You selected cell number: \(indexPath.row)!")
+        //self.performSegueWithIdentifier("yourIdentifier", sender: self)
+    //}
     
     
     
     @IBAction func performProfileView(sender: UIButton!) {
         
+        var uCell: Post!
+        var rowNum: Int!
+        
+        let point = tableView.convertPoint(CGPointZero, fromView: sender)
+        if let indexPath = tableView.indexPathForRowAtPoint(point) {
+            NSLog("You selected cell number: \(indexPath.row)!")
+            rowNum = indexPath.row
+            
+        }
+        
+        uCell = posts[rowNum]
+        
+        print("this is the cell:")
+        print(uCell)
+        
+        UserIDtoSend = uCell.userKey
+        
       
-        let btn = sender
-        print("the button tag is :")
-        print(btn.titleLabel?.text)
+        //let btn = sender
+        //print("the button tag is :")
+        print(UserIDtoSend)
         
-        let btnLabel = btn.titleLabel?.text
-        buttonLabelToSend = btn.titleLabel?.text
-        
+        //let btnLabel = btn.titleLabel?.text
+        //buttonLabelToSend = btn.titleLabel?.text
+        //sender.titleLabel?.text = UserIDtoSend
         
         self.performSegueWithIdentifier(SEGUE_GO_TO_USER, sender: sender)
         

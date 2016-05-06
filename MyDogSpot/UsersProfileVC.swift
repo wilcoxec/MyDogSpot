@@ -23,6 +23,8 @@ class UsersProfileVC: UIViewController {
     
     var userInfoFromVC: String!
     
+    var toPass:String!
+    
     var userInfo: CreateUser!
     
     var imgRequest: Request?
@@ -33,21 +35,25 @@ class UsersProfileVC: UIViewController {
     
     var userRef: Firebase!
     
+    var userKeyString:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //userName.text = userInfoFromVC
         
+        userKeyString = toPass
+        
         print("this is the user name that was sent:")
-        print(userInfoFromVC)
+        print(userKeyString)
         
         
         userRef = DataService.ds.REF_USERS
         
-        let userNameString = userInfoFromVC
+        //let userKeyString = userInfoFromVC
 
         
-        userRef.queryOrderedByChild("username").queryEqualToValue(userNameString)
+        userRef.queryOrderedByKey().queryEqualToValue(userKeyString)
             .observeEventType(.ChildAdded, withBlock: { snapshot in
                 print(snapshot.value)
                 
@@ -60,7 +66,6 @@ class UsersProfileVC: UIViewController {
 
         
     }
-    
     
     
     
