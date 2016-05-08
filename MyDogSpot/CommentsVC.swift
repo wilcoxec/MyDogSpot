@@ -14,16 +14,17 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var commentField: MaterialTextField!
+    
+    
+    @IBOutlet weak var commentField: UITextField!
     
     var comments = [Comment]()
     
     var userName: String!
     var userImage: String!
-    
     var userRef: Firebase!
-    
     var userID: String!
+    
     
     var keySent: String!
     var postKey: String!
@@ -31,6 +32,9 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
         
         postKey = keySent
         print("This is the post key: ")
@@ -60,11 +64,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             
         })
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        
-        //DataService.ds.REF_POSTS
+        self.getUserInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,7 +105,56 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
 
+    @IBAction func addComment(sender: UIButton) {
+        
+        if let txt = commentField.text where txt != "" {
+            
+            self.postCommentToFirebase()
+        }
+    }
+    
+    func postCommentToFirebase() {
+        
+        var commentPost: Dictionary<String, AnyObject> = [
+            "username": userName,
+            "userImageUrl": userImage,
+            "userID": userID,
+            "commentText": commentField.text!
+        ]
+        
+        let firebaseComment = DataService.ds.REF_POSTS.childByAppendingPath(postKey).childByAppendingPath("comments").childByAutoId()
+        firebaseComment.setValue(commentPost)
+        
+        
+        commentField.text = ""
+        
+        tableView.reloadData()
+        
+    }
 
+    func getUserInfo() {
+        userRef = DataService.ds.REF_USER_CURRENT
+        
+        userRef.observeEventType(.Value, withBlock: { snapshot in
+            
+            print(snapshot.value)
+            
+            if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
+                let key = snapshot.key
+                let user = CreateUser(userKey: key, dictionary: userDict)
+                self.unwrapUserInfo(user)
+                //self.configureProfile(user)
+            }
+            
+        })
+        
+    }
+    
+    func unwrapUserInfo(user: CreateUser) {
+        self.userName = user.userName
+        self.userImage = user.userImageUrl
+        self.userID = user.userKey
+    }
 
 
 }

@@ -52,6 +52,10 @@ class Post {
         return _userKey
     }
     
+    var postcomments: Int!{
+        return _postComments
+    }
+    
     init(description: String, imageUrl: String?, username: String){
         self._postDescription = description
         self._imageUrl = imageUrl

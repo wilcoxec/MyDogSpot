@@ -24,9 +24,13 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var commentLabel: UILabel!
     
+    @IBOutlet weak var commentsButton: UIButton!
+    
     var post: Post!
     var request: Request?
     var likeRef: Firebase!
+    
+    var commentRef: Firebase!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,17 +58,22 @@ class PostCell: UITableViewCell {
         self.post = post
         
         likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath(post.postKey)
-
+        
         self.descriptionText.text = post.postDescription
         
         if(post.likes == 0){
             self.likesLabel.text = ""
         }
+        else if (post.likes == 1){
+            self.likesLabel.text = "\(post.likes) like"
+        }
         else{
             self.likesLabel.text = "\(post.likes) likes"
         }
         
+        self.setCommentCount()
         
+
         if post.imageUrl != nil {
             if img != nil {
                 self.showcaseImg.image = img
@@ -142,6 +151,45 @@ class PostCell: UITableViewCell {
                 print(err.debugDescription)
             }
         })
+    }
+    
+    func setCommentCount(){
+        commentRef = DataService.ds.REF_POSTS.childByAppendingPath(post.postKey).childByAppendingPath("comments")
+        
+        var cCount: Int!
+        
+        cCount = 0
+        
+        
+        commentRef.observeEventType(.Value, withBlock: {
+            
+            snapshot in
+            print(snapshot.value)
+            
+            
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
+                for snap in snapshots {
+                    cCount = cCount + 1
+                }
+            }
+            
+            if(cCount == 0){
+                self.commentsButton.setTitle("", forState: .Normal)
+            }
+            else if(cCount == 1){
+                self.commentsButton.setTitle("\(cCount) comment", forState: .Normal)
+            }
+            else{
+                //self.commentsButton.titleLabel?.text = "\(cCount) comments"
+                self.commentsButton.setTitle("\(cCount) comments", forState: .Normal)
+            }
+            
+            
+        })
+        
+        self.commentsButton.setTitle("", forState: .Normal)
+        //self.commentsButton.titleLabel?.text = "comments"
+        
     }
     
     

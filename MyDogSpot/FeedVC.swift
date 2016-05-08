@@ -39,6 +39,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     var userID: String!
     
+    var commentsCount: Int!
+    
     var imageSelected = false
     var imagePicker: UIImagePickerController!
     
@@ -282,10 +284,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 
             }
         }
-        
-
-        
-        
+                
     }
     
     

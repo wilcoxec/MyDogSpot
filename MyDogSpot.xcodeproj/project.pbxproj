@@ -34,6 +34,7 @@
 		EAC9F01D1CD2E9B2003B5F90 /* PorfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F01C1CD2E9B2003B5F90 /* PorfileVC.swift */; };
 		EAC9F01F1CD2E9ED003B5F90 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */; };
 		EAC9F0211CD3169B003B5F90 /* profileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F0201CD3169B003B5F90 /* profileImage.swift */; };
+		EACF5BB41CDF6B44001AC8D9 /* PostCommentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF5BB31CDF6B44001AC8D9 /* PostCommentTextView.swift */; };
 		EAD6221E1CD43B1000CBEB03 /* UsersProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		EAC9F01C1CD2E9B2003B5F90 /* PorfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PorfileVC.swift; sourceTree = "<group>"; };
 		EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EAC9F0201CD3169B003B5F90 /* profileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileImage.swift; sourceTree = "<group>"; };
+		EACF5BB31CDF6B44001AC8D9 /* PostCommentTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentTextView.swift; sourceTree = "<group>"; };
 		EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +223,7 @@
 				EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */,
 				EAC9F0201CD3169B003B5F90 /* profileImage.swift */,
 				EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */,
+				EACF5BB31CDF6B44001AC8D9 /* PostCommentTextView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				EAA646F01CB460BB00BDF57C /* Constants.swift in Sources */,
 				EAC9F0171CD29E2A003B5F90 /* CreateUserVC.swift in Sources */,
 				EA2635E41CDE945700A0EDA1 /* CommentsVC.swift in Sources */,
+				EACF5BB41CDF6B44001AC8D9 /* PostCommentTextView.swift in Sources */,
 				EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */,
 				EAD6221E1CD43B1000CBEB03 /* UsersProfileVC.swift in Sources */,
 				EAC9F0191CD29FCB003B5F90 /* CreateUser.swift in Sources */,

@@ -20,18 +20,26 @@ class CommentCell: UITableViewCell {
     var comment: Comment!
     
     var request: Request?
-    
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         
+        
+        var cFrame = self.commentTxt.frame
+        cFrame.size.height = self.commentTxt.contentSize.height
+        self.commentTxt.frame = cFrame
+        
+        
+        commentTxt.scrollEnabled = false
     }
     
     override func drawRect(rect: CGRect) {
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
         
         profileImage.clipsToBounds = true
+        commentTxt.clipsToBounds = true
     }
     
     func configureCommentCell(comment: Comment) {
