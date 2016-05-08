@@ -90,8 +90,24 @@ h4 {
     line-height: 60px;
     margin: 0;
     padding: 0;
-    width: 33.33333333333%;
+    width: 33.3333333%;
  }
+ 
+  #comment-section {
+    background: #fff;
+    border: 0;
+    color: #9197A3;
+    font-size: 14px;
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+	padding-left: 5px;
+
+    width: 62.666666%;
+ }
+ 
  
  #like-count {
     background: #FFF;
@@ -126,4 +142,19 @@ h4 {
     padding: 0;
     margin-top: 20px;
    
+}
+
+.comments {
+	display:inline-block;
+	margin-top:10px;
+	padding:0px;
+	margin-bottom:15px;
+}
+
+.comment {
+	font-family: 'Open Sans', sans-serif;
+  	font-size: 14px;
+  	font-weight: 400;
+  	color: #3d3d3d;
+	padding-left:3em;
 }

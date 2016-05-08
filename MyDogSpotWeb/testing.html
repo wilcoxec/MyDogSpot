@@ -34,14 +34,20 @@
                 <span id="like-count">{{ msg.likes }} Likes</span>
 
                  <p>{{ msg.description }}</p>
+                 
+ 				
+                
                  <hr>
                  </div>
           			<button id="like-button"><span class="fa fa-heart"></span></button>
-					
+          			<div id="comment-section"> Write a comment... </div>
+
         		</div>
+              
 			</div>
-
-
+            <br>
+            <hr>
+            <div class="comments"><div class="comment" ng-repeat="comment in msg.comments"><span id="like-count">{{ comment.username }}</span><br>&nbsp;&nbsp;&nbsp;{{ comment.commentText }}</div></div>
     	</div>
     
     
@@ -52,8 +58,24 @@
  
       myApp.controller("MyController", ["$scope", "$firebaseArray",
         function($scope, $firebaseArray) {
-          var ref = new Firebase("hhttps://mydogspot.firebaseio.com/posts");
+          var ref = new Firebase("https://mydogspot.firebaseio.com/posts");
           $scope.messages = $firebaseArray(ref);
+		  
+		  console.log($scope.messages);
+		 
+		 
+		   ref.orderByChild("comments").on("child_added", function(snapshot) {
+  			console.log(snapshot.val().comments);
+			
+			});
+			
+			
+			
+			 /* snapshot.forEach(function(childSnapshot) {
+			  	    var childData = childSnapshot.val();
+
+			  });*/
+
         }
 
       ]);
