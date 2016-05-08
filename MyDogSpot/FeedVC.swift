@@ -26,6 +26,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var UserVC: UsersProfileVC!
     var UserIDtoSend: String!
     
+    var CommentVC: CommentsVC!
+    var PostKeyToSend: String!
+    
     var buttonLabelToSend: String!
     
     
@@ -250,14 +253,34 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         print("sender")
         print(sender)
         
-        if(sender is UIButton!){
-            let UserVC = segue.destinationViewController as! UsersProfileVC
-            let btninfo = sender as! UIButton
-            btninfo.titleLabel?.text = UserIDtoSend
-            
-            print(btninfo.titleLabel?.text)
-            
-            UserVC.toPass = UserIDtoSend
+        
+        
+        if(segue.identifier == SEGUE_GO_TO_USER){
+        
+            if(sender is UIButton!){
+                let UserVC = segue.destinationViewController as! UsersProfileVC
+                let btninfo = sender as! UIButton
+                btninfo.titleLabel?.text = UserIDtoSend
+                
+                print(btninfo.titleLabel?.text)
+                
+                UserVC.toPass = UserIDtoSend
+                
+            }
+        
+        }
+        
+        if (segue.identifier == SEGUE_COMMENTS_SECTION){
+            if(sender is UIButton!){
+                
+               // let vc: UINavigationController = segue.destinationViewController as! UINavigationController
+                let comVC = segue.destinationViewController as! CommentsVC
+                comVC.keySent = PostKeyToSend
+                //let CommentVC = segue.destinationViewController as! CommentsVC
+                
+                //CommentsVC.
+                
+            }
         }
         
 
@@ -306,6 +329,34 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         //self.navigationController?.pushViewController(UsersProfileVC, animated: true)
     }
 
+    @IBAction func goToComments(sender: UIButton) {
+        
+        var uCell: Post!
+        var rowNum: Int!
+        
+        let point = tableView.convertPoint(CGPointZero, fromView: sender)
+        
+        if let indexPath = tableView.indexPathForRowAtPoint(point) {
+            NSLog("You selected cell number: \(indexPath.row)!")
+            rowNum = indexPath.row
+            
+        }
+        
+        uCell = posts[rowNum]
+        
+        print("this is the cell:")
+        print(uCell)
+        
+        PostKeyToSend = uCell.postKey
+        
+        print("Post key to send:")
+        print(PostKeyToSend)
+        
+        
+        self.performSegueWithIdentifier(SEGUE_COMMENTS_SECTION, sender: sender)
+        
+    }
+   
 }
 
 

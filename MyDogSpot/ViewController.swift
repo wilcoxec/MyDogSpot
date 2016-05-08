@@ -41,6 +41,8 @@ class ViewController: UIViewController {
             
             if facebookError != nil {
                 print("Facebook login failed. Error \(facebookError)")
+            } else if facebookResult.isCancelled {
+                print("Facebook login was canceled.")
             }
             else{
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
@@ -53,15 +55,30 @@ class ViewController: UIViewController {
                     }
                     else{
                         print("Logged In!\(authData)")
-                        NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_ID)
                         
-                        //Go change the !
+
+                        
+                        let userRef = DataService.ds.REF_USERS.childByAppendingPath(authData.uid)
+                        
+                        userRef.observeSingleEventOfType(.Value, withBlock: {
+                            snap in
+                            
+                            if snap.value is NSNull {
+                                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_ID)
+
+                                let user = ["provider": authData.provider!]
+                                DataService.ds.createFirebaseUser(authData.uid, user: user)
+                                
+                                self.performSegueWithIdentifier(SEGUE_CREATE_USER, sender: nil)
+                            }
+                            else{
+                                NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_ID)
+                                self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
+                            }
+                            
+                       })
                         
                         
-                        let user = ["provider": authData.provider!]
-                        DataService.ds.createFirebaseUser(authData.uid, user: user)
-                        
-                        self.performSegueWithIdentifier(SEGUE_CREATE_USER, sender: nil)
                     }
                 })
                 

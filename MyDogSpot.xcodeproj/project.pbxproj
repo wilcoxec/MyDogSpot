@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		217EB949BFF347A2065BBD6F /* Pods_MyDogSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DAD53DC5BE91B9D4E738D9 /* Pods_MyDogSpot.framework */; };
+		EA2635E41CDE945700A0EDA1 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */; };
+		EA2635E61CDE9D6E00A0EDA1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */; };
+		EA2635E81CDE9FEF00A0EDA1 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */; };
 		EAA646BD1CB44F9700BDF57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646BC1CB44F9700BDF57C /* AppDelegate.swift */; };
 		EAA646BF1CB44F9700BDF57C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646BE1CB44F9700BDF57C /* ViewController.swift */; };
 		EAA646C21CB44F9700BDF57C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA646C01CB44F9700BDF57C /* Main.storyboard */; };
@@ -55,6 +58,9 @@
 		18739A6F8DA1A41974076543 /* Pods-MyDogSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDogSpot.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyDogSpot/Pods-MyDogSpot.release.xcconfig"; sourceTree = "<group>"; };
 		73DAD53DC5BE91B9D4E738D9 /* Pods_MyDogSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDogSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD28734B01678CB1826695A2 /* Pods-MyDogSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDogSpot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyDogSpot/Pods-MyDogSpot.debug.xcconfig"; sourceTree = "<group>"; };
+		EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
+		EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		EAA646B91CB44F9600BDF57C /* MyDogSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDogSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA646BC1CB44F9700BDF57C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAA646BE1CB44F9700BDF57C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +206,7 @@
 				EAC9F0161CD29E2A003B5F90 /* CreateUserVC.swift */,
 				EAC9F01C1CD2E9B2003B5F90 /* PorfileVC.swift */,
 				EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */,
+				EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 				EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */,
 				EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */,
 				EAC9F0201CD3169B003B5F90 /* profileImage.swift */,
+				EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -222,6 +230,7 @@
 			children = (
 				EAC9F0141CD04E96003B5F90 /* Post.swift */,
 				EAC9F0181CD29FCB003B5F90 /* CreateUser.swift */,
+				EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -442,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA2635E81CDE9FEF00A0EDA1 /* CommentCell.swift in Sources */,
 				EAA646BF1CB44F9700BDF57C /* ViewController.swift in Sources */,
 				EABBB3CD1CCFFCAD00ACE9E7 /* FeedVC.swift in Sources */,
 				EAC9F01D1CD2E9B2003B5F90 /* PorfileVC.swift in Sources */,
@@ -449,9 +459,11 @@
 				EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */,
 				EAA646F41CB462E200BDF57C /* MaterialTextField.swift in Sources */,
 				EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */,
+				EA2635E61CDE9D6E00A0EDA1 /* Comment.swift in Sources */,
 				EAA646F21CB4616300BDF57C /* MaterialButton.swift in Sources */,
 				EAA646F01CB460BB00BDF57C /* Constants.swift in Sources */,
 				EAC9F0171CD29E2A003B5F90 /* CreateUserVC.swift in Sources */,
+				EA2635E41CDE945700A0EDA1 /* CommentsVC.swift in Sources */,
 				EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */,
 				EAD6221E1CD43B1000CBEB03 /* UsersProfileVC.swift in Sources */,
 				EAC9F0191CD29FCB003B5F90 /* CreateUser.swift in Sources */,

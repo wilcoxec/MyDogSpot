@@ -18,6 +18,8 @@ class Post {
     private var _userImage: String!
     private var _userKey: String!
     
+    private var _postComments: Int!
+    
     private var _postKey: String!
     private var _postRef: Firebase!
     
@@ -81,6 +83,10 @@ class Post {
         
         if let uKey = dictionary["userID"] as? String {
             self._userKey = uKey;
+        }
+        
+        if let commentPost = dictionary["comments"] as? Int {
+            self._postComments = commentPost
         }
         
         self._postRef = DataService.ds.REF_POSTS.childByAppendingPath(self._postKey)

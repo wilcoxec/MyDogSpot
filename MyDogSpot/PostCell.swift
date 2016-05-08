@@ -22,6 +22,8 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var likeImage: UIImageView!
     
+    @IBOutlet weak var commentLabel: UILabel!
+    
     var post: Post!
     var request: Request?
     var likeRef: Firebase!
@@ -38,6 +40,7 @@ class PostCell: UITableViewCell {
        /// userTap.numberOfTapsRequired = 1
        // profileName.addGestureRecognizer(userTap)
        // profileName.userInteractionEnabled = true
+
     }
     
     override func drawRect(rect: CGRect) {
@@ -53,7 +56,14 @@ class PostCell: UITableViewCell {
         likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath(post.postKey)
 
         self.descriptionText.text = post.postDescription
-        self.likesLabel.text = "\(post.likes) likes"
+        
+        if(post.likes == 0){
+            self.likesLabel.text = ""
+        }
+        else{
+            self.likesLabel.text = "\(post.likes) likes"
+        }
+        
         
         if post.imageUrl != nil {
             if img != nil {
@@ -110,6 +120,9 @@ class PostCell: UITableViewCell {
             }
         })
     }
+    
+    
+
     
     
     func setUserInfo () {

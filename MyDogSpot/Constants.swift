@@ -27,6 +27,8 @@ let SEGUE_GO_TO_USER = "userProfile"
 
 let SEGUE_GO_TO_PROFILE = "profile"
 
+let SEGUE_COMMENTS_SECTION = "goToComments"
+
 
 let STATUS_ACCOUNT_DOESNOTEXIST = -8
 
