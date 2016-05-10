@@ -35,6 +35,9 @@
 		EAC9F01F1CD2E9ED003B5F90 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */; };
 		EAC9F0211CD3169B003B5F90 /* profileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC9F0201CD3169B003B5F90 /* profileImage.swift */; };
 		EACF5BB41CDF6B44001AC8D9 /* PostCommentTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF5BB31CDF6B44001AC8D9 /* PostCommentTextView.swift */; };
+		EACF5BB61CE02892001AC8D9 /* SignUpTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF5BB51CE02892001AC8D9 /* SignUpTextField.swift */; };
+		EACF5BB81CE15283001AC8D9 /* CreateDogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF5BB71CE15283001AC8D9 /* CreateDogVC.swift */; };
+		EACF5BBA1CE15FC6001AC8D9 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACF5BB91CE15FC6001AC8D9 /* Dog.swift */; };
 		EAD6221E1CD43B1000CBEB03 /* UsersProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +95,9 @@
 		EAC9F01E1CD2E9ED003B5F90 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		EAC9F0201CD3169B003B5F90 /* profileImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileImage.swift; sourceTree = "<group>"; };
 		EACF5BB31CDF6B44001AC8D9 /* PostCommentTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCommentTextView.swift; sourceTree = "<group>"; };
+		EACF5BB51CE02892001AC8D9 /* SignUpTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTextField.swift; sourceTree = "<group>"; };
+		EACF5BB71CE15283001AC8D9 /* CreateDogVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDogVC.swift; sourceTree = "<group>"; };
+		EACF5BB91CE15FC6001AC8D9 /* Dog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +215,7 @@
 				EAC9F01C1CD2E9B2003B5F90 /* PorfileVC.swift */,
 				EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */,
 				EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */,
+				EACF5BB71CE15283001AC8D9 /* CreateDogVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -224,6 +231,7 @@
 				EAC9F0201CD3169B003B5F90 /* profileImage.swift */,
 				EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */,
 				EACF5BB31CDF6B44001AC8D9 /* PostCommentTextView.swift */,
+				EACF5BB51CE02892001AC8D9 /* SignUpTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -234,6 +242,7 @@
 				EAC9F0141CD04E96003B5F90 /* Post.swift */,
 				EAC9F0181CD29FCB003B5F90 /* CreateUser.swift */,
 				EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */,
+				EACF5BB91CE15FC6001AC8D9 /* Dog.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -454,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EACF5BBA1CE15FC6001AC8D9 /* Dog.swift in Sources */,
 				EA2635E81CDE9FEF00A0EDA1 /* CommentCell.swift in Sources */,
 				EAA646BF1CB44F9700BDF57C /* ViewController.swift in Sources */,
 				EABBB3CD1CCFFCAD00ACE9E7 /* FeedVC.swift in Sources */,
@@ -463,6 +473,7 @@
 				EAA646F41CB462E200BDF57C /* MaterialTextField.swift in Sources */,
 				EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */,
 				EA2635E61CDE9D6E00A0EDA1 /* Comment.swift in Sources */,
+				EACF5BB61CE02892001AC8D9 /* SignUpTextField.swift in Sources */,
 				EAA646F21CB4616300BDF57C /* MaterialButton.swift in Sources */,
 				EAA646F01CB460BB00BDF57C /* Constants.swift in Sources */,
 				EAC9F0171CD29E2A003B5F90 /* CreateUserVC.swift in Sources */,
@@ -474,6 +485,7 @@
 				EAC9F01F1CD2E9ED003B5F90 /* ProfileView.swift in Sources */,
 				EAC9F0211CD3169B003B5F90 /* profileImage.swift in Sources */,
 				EAC9F0151CD04E96003B5F90 /* Post.swift in Sources */,
+				EACF5BB81CE15283001AC8D9 /* CreateDogVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

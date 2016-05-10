@@ -29,6 +29,9 @@ class PorfileVC: UIViewController {
     var dogImageURL: String!
     
     var userRef: Firebase!
+    var dogRef: Firebase!
+    
+    var dogs = [Dog]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,19 +49,35 @@ class PorfileVC: UIViewController {
             }
             
         })
-    
-    
+        
+        dogRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs")
+        
+        dogRef.observeEventType(.Value, withBlock: { snapshot in
+            
+            print(snapshot.value)
+            
+            self.dogs = []
+            
+            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
+                for snap in snapshots {
+                    if let dogDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let dog = Dog(dogKey: key, dictionary: dogDict)
+                        self.dogs.append(dog)
+                    }
+                }
+            }
+
+        })
+
     }
     
     func configureProfile(user: CreateUser) {
         
         
         userName.text = user.userName
-        dogName.text = user.dogName
         userLocation.text = user.userLocation
-        
         userImageURL = user.userImageUrl
-        dogImageURL = user.dogImageUrl
         
         
         imgRequest = Alamofire.request(.GET, userImageURL).validate(contentType: ["image/*"]).response(completionHandler: {
@@ -74,9 +93,10 @@ class PorfileVC: UIViewController {
         
         })
         
-        self.requestDogImage(dogImageURL)
+        //self.requestDogImage(dogImageURL)
         
     }
+    
     
     func requestDogImage(dogURL: String!) {
         

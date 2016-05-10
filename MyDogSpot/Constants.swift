@@ -29,6 +29,8 @@ let SEGUE_GO_TO_PROFILE = "profile"
 
 let SEGUE_COMMENTS_SECTION = "goToComments"
 
+let SEGUE_TO_CREATE_DOG = "createDog"
+
 
 let STATUS_ACCOUNT_DOESNOTEXIST = -8
 
