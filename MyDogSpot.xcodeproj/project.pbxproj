@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		217EB949BFF347A2065BBD6F /* Pods_MyDogSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DAD53DC5BE91B9D4E738D9 /* Pods_MyDogSpot.framework */; };
+		EA11D36A1CE2AC4900084AC0 /* CurrentUserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA11D3691CE2AC4900084AC0 /* CurrentUserProfileVC.swift */; };
+		EA11D36C1CE2AC7C00084AC0 /* DogCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA11D36B1CE2AC7C00084AC0 /* DogCollectionViewCell.swift */; };
 		EA2635E41CDE945700A0EDA1 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */; };
 		EA2635E61CDE9D6E00A0EDA1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */; };
 		EA2635E81CDE9FEF00A0EDA1 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */; };
@@ -62,6 +64,8 @@
 		18739A6F8DA1A41974076543 /* Pods-MyDogSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDogSpot.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyDogSpot/Pods-MyDogSpot.release.xcconfig"; sourceTree = "<group>"; };
 		73DAD53DC5BE91B9D4E738D9 /* Pods_MyDogSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyDogSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD28734B01678CB1826695A2 /* Pods-MyDogSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyDogSpot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyDogSpot/Pods-MyDogSpot.debug.xcconfig"; sourceTree = "<group>"; };
+		EA11D3691CE2AC4900084AC0 /* CurrentUserProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUserProfileVC.swift; sourceTree = "<group>"; };
+		EA11D36B1CE2AC7C00084AC0 /* DogCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DogCollectionViewCell.swift; sourceTree = "<group>"; };
 		EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
 		EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 				EAD6221D1CD43B1000CBEB03 /* UsersProfileVC.swift */,
 				EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */,
 				EACF5BB71CE15283001AC8D9 /* CreateDogVC.swift */,
+				EA11D3691CE2AC4900084AC0 /* CurrentUserProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 				EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */,
 				EACF5BB31CDF6B44001AC8D9 /* PostCommentTextView.swift */,
 				EACF5BB51CE02892001AC8D9 /* SignUpTextField.swift */,
+				EA11D36B1CE2AC7C00084AC0 /* DogCollectionViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 			files = (
 				EACF5BBA1CE15FC6001AC8D9 /* Dog.swift in Sources */,
 				EA2635E81CDE9FEF00A0EDA1 /* CommentCell.swift in Sources */,
+				EA11D36C1CE2AC7C00084AC0 /* DogCollectionViewCell.swift in Sources */,
 				EAA646BF1CB44F9700BDF57C /* ViewController.swift in Sources */,
 				EABBB3CD1CCFFCAD00ACE9E7 /* FeedVC.swift in Sources */,
 				EAC9F01D1CD2E9B2003B5F90 /* PorfileVC.swift in Sources */,
@@ -472,6 +479,7 @@
 				EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */,
 				EAA646F41CB462E200BDF57C /* MaterialTextField.swift in Sources */,
 				EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */,
+				EA11D36A1CE2AC4900084AC0 /* CurrentUserProfileVC.swift in Sources */,
 				EA2635E61CDE9D6E00A0EDA1 /* Comment.swift in Sources */,
 				EACF5BB61CE02892001AC8D9 /* SignUpTextField.swift in Sources */,
 				EAA646F21CB4616300BDF57C /* MaterialButton.swift in Sources */,
