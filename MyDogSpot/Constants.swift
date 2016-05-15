@@ -8,9 +8,12 @@
 
 import Foundation
 import UIKit
+import AWSS3
+import AWSCore
+
+
 
 let SHADOW_COLOR: CGFloat = 157.0 / 200.0
-
 
 let KEY_ID = "uid"
 
@@ -31,6 +34,25 @@ let SEGUE_COMMENTS_SECTION = "goToComments"
 
 let SEGUE_TO_CREATE_DOG = "createDog"
 
+let SEGUE_TO_DOG_PROFILE = "dogProfile"
+
+let SEGUE_TO_SKILL_VIEW = "toSkill"
+
 
 let STATUS_ACCOUNT_DOESNOTEXIST = -8
+
+
+let S3BucketName = "mydogspotapp"
+
+let CognitoPoolID = "us-east-1:d474c76f-b465-4329-9c74-eb2281c86a9c"
+
+
+
+
+
+
+
+
+
+
 

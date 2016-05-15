@@ -13,6 +13,12 @@
 		EA2635E41CDE945700A0EDA1 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */; };
 		EA2635E61CDE9D6E00A0EDA1 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */; };
 		EA2635E81CDE9FEF00A0EDA1 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */; };
+		EA3E16231CE7AD9800AEBD4A /* SkillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3E16221CE7AD9800AEBD4A /* SkillCell.swift */; };
+		EA3E16251CE7AE8100AEBD4A /* Skill.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3E16241CE7AE8100AEBD4A /* Skill.swift */; };
+		EA3E16271CE7B06600AEBD4A /* Endorsement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3E16261CE7B06600AEBD4A /* Endorsement.swift */; };
+		EA3E16291CE7B55200AEBD4A /* EndorsementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3E16281CE7B55200AEBD4A /* EndorsementCell.swift */; };
+		EA3E162B1CE7BE7D00AEBD4A /* CurrentDogProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3E162A1CE7BE7D00AEBD4A /* CurrentDogProfileVC.swift */; };
+		EA3E162F1CE7D9F000AEBD4A /* SkillVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA3E162E1CE7D9F000AEBD4A /* SkillVC.swift */; };
 		EAA646BD1CB44F9700BDF57C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646BC1CB44F9700BDF57C /* AppDelegate.swift */; };
 		EAA646BF1CB44F9700BDF57C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646BE1CB44F9700BDF57C /* ViewController.swift */; };
 		EAA646C21CB44F9700BDF57C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAA646C01CB44F9700BDF57C /* Main.storyboard */; };
@@ -69,6 +75,12 @@
 		EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
 		EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		EA2635E71CDE9FEF00A0EDA1 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		EA3E16221CE7AD9800AEBD4A /* SkillCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillCell.swift; sourceTree = "<group>"; };
+		EA3E16241CE7AE8100AEBD4A /* Skill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skill.swift; sourceTree = "<group>"; };
+		EA3E16261CE7B06600AEBD4A /* Endorsement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endorsement.swift; sourceTree = "<group>"; };
+		EA3E16281CE7B55200AEBD4A /* EndorsementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndorsementCell.swift; sourceTree = "<group>"; };
+		EA3E162A1CE7BE7D00AEBD4A /* CurrentDogProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentDogProfileVC.swift; sourceTree = "<group>"; };
+		EA3E162E1CE7D9F000AEBD4A /* SkillVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkillVC.swift; sourceTree = "<group>"; };
 		EAA646B91CB44F9600BDF57C /* MyDogSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDogSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA646BC1CB44F9700BDF57C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EAA646BE1CB44F9700BDF57C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -221,6 +233,8 @@
 				EA2635E31CDE945700A0EDA1 /* CommentsVC.swift */,
 				EACF5BB71CE15283001AC8D9 /* CreateDogVC.swift */,
 				EA11D3691CE2AC4900084AC0 /* CurrentUserProfileVC.swift */,
+				EA3E162A1CE7BE7D00AEBD4A /* CurrentDogProfileVC.swift */,
+				EA3E162E1CE7D9F000AEBD4A /* SkillVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -238,6 +252,8 @@
 				EACF5BB31CDF6B44001AC8D9 /* PostCommentTextView.swift */,
 				EACF5BB51CE02892001AC8D9 /* SignUpTextField.swift */,
 				EA11D36B1CE2AC7C00084AC0 /* DogCollectionViewCell.swift */,
+				EA3E16221CE7AD9800AEBD4A /* SkillCell.swift */,
+				EA3E16281CE7B55200AEBD4A /* EndorsementCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -249,6 +265,8 @@
 				EAC9F0181CD29FCB003B5F90 /* CreateUser.swift */,
 				EA2635E51CDE9D6E00A0EDA1 /* Comment.swift */,
 				EACF5BB91CE15FC6001AC8D9 /* Dog.swift */,
+				EA3E16241CE7AE8100AEBD4A /* Skill.swift */,
+				EA3E16261CE7B06600AEBD4A /* Endorsement.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -469,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA3E162F1CE7D9F000AEBD4A /* SkillVC.swift in Sources */,
 				EACF5BBA1CE15FC6001AC8D9 /* Dog.swift in Sources */,
 				EA2635E81CDE9FEF00A0EDA1 /* CommentCell.swift in Sources */,
 				EA11D36C1CE2AC7C00084AC0 /* DogCollectionViewCell.swift in Sources */,
@@ -476,10 +495,13 @@
 				EABBB3CD1CCFFCAD00ACE9E7 /* FeedVC.swift in Sources */,
 				EAC9F01D1CD2E9B2003B5F90 /* PorfileVC.swift in Sources */,
 				EAA646BD1CB44F9700BDF57C /* AppDelegate.swift in Sources */,
+				EA3E16231CE7AD9800AEBD4A /* SkillCell.swift in Sources */,
 				EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */,
+				EA3E16291CE7B55200AEBD4A /* EndorsementCell.swift in Sources */,
 				EAA646F41CB462E200BDF57C /* MaterialTextField.swift in Sources */,
 				EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */,
 				EA11D36A1CE2AC4900084AC0 /* CurrentUserProfileVC.swift in Sources */,
+				EA3E16251CE7AE8100AEBD4A /* Skill.swift in Sources */,
 				EA2635E61CDE9D6E00A0EDA1 /* Comment.swift in Sources */,
 				EACF5BB61CE02892001AC8D9 /* SignUpTextField.swift in Sources */,
 				EAA646F21CB4616300BDF57C /* MaterialButton.swift in Sources */,
@@ -487,9 +509,11 @@
 				EAC9F0171CD29E2A003B5F90 /* CreateUserVC.swift in Sources */,
 				EA2635E41CDE945700A0EDA1 /* CommentsVC.swift in Sources */,
 				EACF5BB41CDF6B44001AC8D9 /* PostCommentTextView.swift in Sources */,
+				EA3E16271CE7B06600AEBD4A /* Endorsement.swift in Sources */,
 				EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */,
 				EAD6221E1CD43B1000CBEB03 /* UsersProfileVC.swift in Sources */,
 				EAC9F0191CD29FCB003B5F90 /* CreateUser.swift in Sources */,
+				EA3E162B1CE7BE7D00AEBD4A /* CurrentDogProfileVC.swift in Sources */,
 				EAC9F01F1CD2E9ED003B5F90 /* ProfileView.swift in Sources */,
 				EAC9F0211CD3169B003B5F90 /* profileImage.swift in Sources */,
 				EAC9F0151CD04E96003B5F90 /* Post.swift in Sources */,

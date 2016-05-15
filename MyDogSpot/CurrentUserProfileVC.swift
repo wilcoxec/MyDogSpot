@@ -9,6 +9,12 @@
 import UIKit
 import Firebase
 import Alamofire
+import AWSS3
+import AWSCore
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
@@ -34,6 +40,8 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
     var dogRef: Firebase!
     
     var dogs = [Dog]()
+    
+    var DogProfileVC: CurrentDogProfileVC!
     
     
     
@@ -72,11 +80,14 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
                         let key = snap.key
                         let dog = Dog(dogKey: key, dictionary: dogDict)
                         self.dogs.append(dog)
+                        self.dogCollection.reloadData()
                     }
                 }
             }
             
         })
+        
+        dogCollection.reloadData()
         
     }
     
@@ -87,18 +98,39 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
         usersImageUrl = user.userImageUrl
         
         
-        userImageRequest = Alamofire.request(.GET, usersImageUrl).validate(contentType: ["image/*"]).response(completionHandler: {
-            request, response, data, err in
-            
-            if err == nil {
-                let uImg = UIImage(data: data!)
-                self.usersProfileImage.image = uImg
+        let downloadPath = NSTemporaryDirectory().stringByAppendingString(usersImageUrl)
+        let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
+        
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        
+        
+        let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+        readRequest.bucket = S3BucketName
+        readRequest.key =  usersImageUrl
+        readRequest.downloadingFileURL = downloadingFileURL
+        
+        transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                print("Upload failed ❌ (\(error))")
             }
-            else{
-                print(err.debugDescription)
+            if let exception = task.exception {
+                print("Upload failed ❌ (\(exception))")
+            }
+            if task.result != nil {
+                let img = task.result
+                print(img)
+                let image = UIImage(contentsOfFile: downloadPath)
+                self.usersProfileImage.image = image
+                
+            }
+            else {
+                print("Unexpected empty result.")
             }
             
-        })
+            return nil
+            
+        }
+
         
         
     }
@@ -124,9 +156,11 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
         }
     }
     
-    //func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let dog = dogs[indexPath.row]
         
-    //}
+        self.performSegueWithIdentifier(SEGUE_TO_DOG_PROFILE, sender: dog.dogKey)
+    }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dogs.count
@@ -138,6 +172,21 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("identifier")
+        print(segue.identifier)
+        
+        print("sender")
+        print(sender)
+        
+    
+        if(segue.identifier == SEGUE_TO_DOG_PROFILE){
+            let dogVC = segue.destinationViewController as! CurrentDogProfileVC
+            dogVC.DogKeyToReceive = sender as! String
+            
+        }
     }
 
 }

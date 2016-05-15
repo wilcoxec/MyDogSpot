@@ -9,6 +9,12 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import AWSCore
+import AWSS3
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +24,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        // configure authentication with Cognito
+        
+        
+        let CognitoPoolID = "us-east-1:d474c76f-b465-4329-9c74-eb2281c86a9c"
+        
+        let Region = AWSRegionType.USEast1
+        
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType:Region,
+                                                                identityPoolId:CognitoPoolID)
+        let configuration = AWSServiceConfiguration(region:Region, credentialsProvider:credentialsProvider)
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
+        
+        
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
 

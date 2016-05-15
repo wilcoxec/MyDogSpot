@@ -7,8 +7,14 @@
 //
 
 import UIKit
-import Alamofire
 import Firebase
+import Alamofire
+import AWSS3
+import AWSCore
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 class UsersProfileVC: UIViewController {
 
@@ -79,6 +85,41 @@ class UsersProfileVC: UIViewController {
         userImageURL = user.userImageUrl
         dogImageURL = user.dogImageUrl
         
+
+        let downloadPath = NSTemporaryDirectory().stringByAppendingString(userImageURL)
+        let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
+        
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        
+        
+        let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+        readRequest.bucket = S3BucketName
+        readRequest.key =  userImageURL
+        readRequest.downloadingFileURL = downloadingFileURL
+        
+        transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                print("Upload failed ❌ (\(error))")
+            }
+            if let exception = task.exception {
+                print("Upload failed ❌ (\(exception))")
+            }
+            if task.result != nil {
+                let img = task.result
+                print(img)
+                let image = UIImage(contentsOfFile: downloadPath)
+                self.profileImg.image = image
+
+            }
+            else {
+                print("Unexpected empty result.")
+            }
+            
+            return nil
+        
+        }
+        
+        
         
         imgRequest = Alamofire.request(.GET, userImageURL).validate(contentType: ["image/*"]).response(completionHandler: {
             request, response, data, err in
@@ -93,11 +134,49 @@ class UsersProfileVC: UIViewController {
             
         })
         
-        self.requestDogImage(dogImageURL)
+        //self.requestDogImage(dogImageURL)
+ 
+
         
     }
     
     func requestDogImage(dogURL: String!) {
+        
+        
+        let downloadPath = NSTemporaryDirectory().stringByAppendingString(dogURL)
+        let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
+        
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        
+        
+        let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+        readRequest.bucket = S3BucketName
+        readRequest.key =  dogURL
+        readRequest.downloadingFileURL = downloadingFileURL
+        
+        transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                print("Upload failed ❌ (\(error))")
+            }
+            if let exception = task.exception {
+                print("Upload failed ❌ (\(exception))")
+            }
+            if task.result != nil {
+                let img = task.result
+                print(img)
+                let image = UIImage(contentsOfFile: downloadPath)
+                self.dogImg.image = image
+                
+            }
+            else {
+                print("Unexpected empty result.")
+            }
+            
+            return nil
+            
+        }
+        
+
         
         dogRequest = Alamofire.request(.GET, dogURL).validate(contentType: ["image/*"]).response(completionHandler: {
             request, response, data, err in

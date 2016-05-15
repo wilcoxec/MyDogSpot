@@ -12,6 +12,8 @@ import Firebase
 class Dog {
     
     private var _dogname: String!
+    private var _dogBirth: String!
+    private var _dogGender: String!
     private var _dogImageUrl: String!
     private var _dogKey: String!
     
@@ -19,6 +21,14 @@ class Dog {
     
     var dogName: String {
         return _dogname
+    }
+    
+    var dogBirth: String{
+        return _dogBirth
+    }
+    
+    var dogGender: String{
+        return _dogGender
     }
     
     var dogImageUrl: String {
@@ -44,6 +54,14 @@ class Dog {
         
         if let dImg = dictionary["dogImageUrl"] as? String {
             self._dogImageUrl = dImg
+        }
+        
+        if let dBirth = dictionary["dogBirth"] as? String{
+            self._dogBirth = dBirth
+        }
+        
+        if let dGender = dictionary["dogGender"] as? String{
+            self._dogGender = dGender
         }
     }
 }

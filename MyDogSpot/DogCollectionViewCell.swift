@@ -7,9 +7,14 @@
 //
 
 import UIKit
-import Foundation
-import Alamofire
 import Firebase
+import Alamofire
+import AWSS3
+import AWSCore
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 class DogCollectionViewCell: UICollectionViewCell {
     
@@ -30,17 +35,39 @@ class DogCollectionViewCell: UICollectionViewCell {
         dogName.text = dog.dogName
         
         if dog.dogImageUrl != "" {
-            request = Alamofire.request(.GET, dog.dogImageUrl).validate(contentType: ["image/*"]).response(completionHandler: {
-                request, response, data, err in
-                
-                if err == nil {
-                    let img = UIImage(data: data!)!
-                    self.dogImage.image = img
+            
+            let downloadPath = NSTemporaryDirectory().stringByAppendingString(dog.dogImageUrl)
+            let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
+            
+            let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+            
+            
+            let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+            readRequest.bucket = S3BucketName
+            readRequest.key =  dog.dogImageUrl
+            readRequest.downloadingFileURL = downloadingFileURL
+            
+            transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
+                if let error = task.error {
+                    print("Upload failed ❌ (\(error))")
+                }
+                if let exception = task.exception {
+                    print("Upload failed ❌ (\(exception))")
+                }
+                if task.result != nil {
+                    let img = task.result
+                    print(img)
+                    let image = UIImage(contentsOfFile: downloadPath)
+                    self.dogImage.image = image
+                    
                 }
                 else {
-                    print(err.debugDescription)
+                    print("Unexpected empty result.")
                 }
-            })
+                
+                return nil
+                
+            }
         }
         
     }

@@ -136,21 +136,9 @@ class PostCell: UITableViewCell {
     
     func setUserInfo () {
         
-        //profileName.text = post.username
-        
         profileBtn.setTitle(post.username, forState: .Normal)
         
-        request = Alamofire.request(.GET, post.userImage!).validate(contentType: ["image/*"]).response(completionHandler: {
-            request, response, data, err in
-            
-            if err == nil {
-                let img = UIImage(data: data!)!
-                self.profileImg.image = img
-            }
-            else {
-                print(err.debugDescription)
-            }
-        })
+        
     }
     
     func setCommentCount(){

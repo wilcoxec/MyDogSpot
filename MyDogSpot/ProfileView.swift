@@ -14,10 +14,10 @@ import UIKit
 class ProfileView: UIView {
     
     @IBOutlet weak var profileImg: UIImageView!
-    @IBOutlet weak var dogImg: UIImageView!
+    
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userLocation: UILabel!
-    @IBOutlet weak var dogName: UILabel!
+    
     
     
     var userInfo: CreateUser!
@@ -49,11 +49,10 @@ class ProfileView: UIView {
         
         self.userName.text = userInfo.userName
         self.userLocation.text = userInfo.userLocation
-        self.dogName.text = userInfo.dogName
+        
         
         
         self.userImageURL = userInfo.userImageUrl
-        self.dogImageURL = userInfo.dogImageUrl
         
         
         imgRequest = Alamofire.request(.GET, userImageURL).validate(contentType: ["image/*"]).response(completionHandler: {
@@ -68,27 +67,11 @@ class ProfileView: UIView {
             }
             
         })
-        
-        self.requestDogImage(dogImageURL)
 
         
     }
     
-    func requestDogImage(dogURL: String!) {
-        
-        dogRequest = Alamofire.request(.GET, dogURL).validate(contentType: ["image/*"]).response(completionHandler: {
-            request, response, data, err in
-            
-            if err == nil {
-                let dImg = UIImage(data: data!)
-                self.dogImg.image = dImg
-            }
-            else{
-                print(err.debugDescription)
-            }
-            
-        })
-    }
+
 
     
     
