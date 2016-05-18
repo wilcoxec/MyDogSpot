@@ -113,6 +113,7 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
                     print("Unexpected empty result.")
                 }
 
+                
                 return nil
             }
             
@@ -121,46 +122,8 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
             //Print out error that all fields must be entered
         }
         
-        
-        /* let uImgData = UIImageJPEGRepresentation(uImg, 0.2)!
-         //let dImgData = UIImageJPEGRepresentation(dImg, 0.2)!
-         
-         
-         let keyData = "49ACILMSa3bb4f31c5b6f7aeee9e5623c70c83d7".dataUsingEncoding(NSUTF8StringEncoding)!
-         let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
-         
-         
-         //This came from alamofire github page  UPLOAD USER_IMAGE
-         Alamofire.upload(
-         .POST,
-         "https://post.imageshack.us/upload_api.php",
-         multipartFormData: { multipartFormData in
-         multipartFormData.appendBodyPart(data: uImgData, name: "fileupload", fileName: "image", mimeType: "image/jpg")
-         multipartFormData.appendBodyPart(data: keyData, name: "key")
-         multipartFormData.appendBodyPart(data: keyJSON, name: "format")
-         },
-         encodingCompletion: { encodingResult in
-         switch encodingResult {
-         case .Success(let upload, _, _):
-         upload.responseJSON { response in
-         if let info = response.result.value as? Dictionary<String, AnyObject> {
-         if let links = info["links"] as? Dictionary<String, AnyObject> {
-         if let userImgLink = links["image_link"] as? String {
-         print ("LINK: \(userImgLink)")
-         self.postUserToFirebase(userImgLink)
-         }
-         }
-         }
-         }
-         case .Failure(let encodingError):
-         print(encodingError)
-         }
-         }
-         )//End Alamo User Image
-         
-         */
-        
-        
+        self.performSegueWithIdentifier(SEGUE_TO_CREATE_DOG, sender: nil)
+
         
     }//end @IBAction createUser
     
@@ -179,7 +142,7 @@ class CreateUserVC: UIViewController, UIImagePickerControllerDelegate, UINavigat
         let imgPost = DataService.ds.REF_USER_CURRENT.childByAppendingPath("userImageUrl")
         imgPost.setValue(uImgUrl)
 
-        self.performSegueWithIdentifier(SEGUE_TO_CREATE_DOG, sender: nil)
+        //self.performSegueWithIdentifier(SEGUE_TO_CREATE_DOG, sender: nil)
 
   
     }//end postUserToFirebase

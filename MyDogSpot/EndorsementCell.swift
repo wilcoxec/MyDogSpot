@@ -9,6 +9,12 @@
 import UIKit
 import Firebase
 import Alamofire
+import AWSS3
+import AWSCore
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 class EndorsementCell: UITableViewCell {
     
@@ -40,19 +46,40 @@ class EndorsementCell: UITableViewCell {
         self.userName.setTitle(endorsement.userName, forState: .Normal)
         
         if endorsement.userImage != "" {
-            request = Alamofire.request(.GET, endorsement.userImage).validate(contentType: ["image/*"]).response(completionHandler: {
-                request, response, data, err in
-                
-                if err == nil {
-                    let img = UIImage(data: data!)!
-                    self.userImage.image = img
-                    //FeedVC.imageCache.setObject(img, forKey: self.comment.userImage!)
+            let downloadPath = NSTemporaryDirectory().stringByAppendingString(endorsement.userImage)
+            let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
+            
+            let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+            
+            
+            let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+            readRequest.bucket = S3BucketName
+            readRequest.key =  endorsement.userImage
+            readRequest.downloadingFileURL = downloadingFileURL
+            
+            transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
+                if let error = task.error {
+                    print("Upload failed ❌ (\(error))")
+                }
+                if let exception = task.exception {
+                    print("Upload failed ❌ (\(exception))")
+                }
+                if task.result != nil {
+                    let img = task.result
+                    print(img)
+                    let image = UIImage(contentsOfFile: downloadPath)
+                    self.userImage.image = image
+                    
                 }
                 else {
-                    print(err.debugDescription)
+                    print("Unexpected empty result.")
                 }
-            })
-        }
+                
+                return nil
+                
+            }//end download
+        }//end if
+        
     }
 
 }

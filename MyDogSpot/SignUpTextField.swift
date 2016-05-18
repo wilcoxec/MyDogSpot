@@ -15,7 +15,7 @@ class SignUpTextField: UITextField {
         let border = CALayer()
         let width = CGFloat(1.0)
         
-        let color = UIColor(red: 22.0/255.0, green: 28.0/255.0, blue: 38.0/255.0, alpha: 1)
+        let color = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 1)
         
         border.borderColor = color.CGColor
         border.frame = CGRect(x: 0, y: frame.size.height - width, width:  frame.size.width, height: frame.size.height)

@@ -7,8 +7,14 @@
 //
 
 import UIKit
-import Alamofire
 import Firebase
+import Alamofire
+import AWSS3
+import AWSCore
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 
 class PostCell: UITableViewCell {
 
@@ -79,18 +85,40 @@ class PostCell: UITableViewCell {
                 self.showcaseImg.image = img
             }
             else {
-                request = Alamofire.request(.GET, post.imageUrl!).validate(contentType: ["image/*"]).response(completionHandler: {
-                    request, response, data, err in
-                    
-                    if err == nil {
-                        let img = UIImage(data: data!)!
-                        self.showcaseImg.image = img
-                        FeedVC.imageCache.setObject(img, forKey: self.post.imageUrl!)
+                
+                let downloadPath = NSTemporaryDirectory().stringByAppendingString(post.imageUrl!)
+                let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
+                
+                let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+                
+                
+                let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+                readRequest.bucket = S3BucketName
+                readRequest.key =  post.imageUrl
+                readRequest.downloadingFileURL = downloadingFileURL
+                
+                transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
+                    if let error = task.error {
+                        print("Upload failed ❌ (\(error))")
+                    }
+                    if let exception = task.exception {
+                        print("Upload failed ❌ (\(exception))")
+                    }
+                    if task.result != nil {
+                        let img = task.result
+                        print(img)
+                        let image = UIImage(contentsOfFile: downloadPath)
+                        self.showcaseImg.image = image
+                        
                     }
                     else {
-                        print(err.debugDescription)
+                        print("Unexpected empty result.")
                     }
-                })
+                    
+                    return nil
+                    
+                }
+
             }
         }
         else {
@@ -139,6 +167,40 @@ class PostCell: UITableViewCell {
         profileBtn.setTitle(post.username, forState: .Normal)
         
         
+        let downloadPath = NSTemporaryDirectory().stringByAppendingString(post.userImage!)
+        let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
+        
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        
+        
+        let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+        readRequest.bucket = S3BucketName
+        readRequest.key =  post.userImage
+        readRequest.downloadingFileURL = downloadingFileURL
+        
+        transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                print("Upload failed ❌ (\(error))")
+            }
+            if let exception = task.exception {
+                print("Upload failed ❌ (\(exception))")
+            }
+            if task.result != nil {
+                let img = task.result
+                print(img)
+                let image = UIImage(contentsOfFile: downloadPath)
+                self.showcaseImg.image = image
+                
+            }
+            else {
+                print("Unexpected empty result.")
+            }
+            
+            return nil
+            
+        }
+ 
+        
     }
     
     func setCommentCount(){
@@ -147,8 +209,6 @@ class PostCell: UITableViewCell {
         var cCount: Int!
         
         cCount = 0
-        
-        
         commentRef.observeEventType(.Value, withBlock: {
             
             snapshot in
@@ -176,7 +236,6 @@ class PostCell: UITableViewCell {
         })
         
         self.commentsButton.setTitle("", forState: .Normal)
-        //self.commentsButton.titleLabel?.text = "comments"
         
     }
     

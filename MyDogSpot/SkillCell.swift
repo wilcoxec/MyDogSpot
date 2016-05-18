@@ -50,11 +50,6 @@ class SkillCell: UITableViewCell {
         self.skillKey = skill.skillKey
         
         self.skillName.text = skill.skillName
-        //self.numEndorsement.text = "\(skill.skillEndorse)"
-        
-        
-        
-        //self.skillRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs")
         
         self.setEndorsementCount()
         

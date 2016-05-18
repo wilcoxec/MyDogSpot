@@ -6,11 +6,15 @@
 //  Copyright © 2016 Erika Wilcox. All rights reserved.
 //
 
-import Foundation
-import Alamofire
-import Firebase
 import UIKit
-
+import Firebase
+import Alamofire
+import AWSS3
+import AWSCore
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+import AWSCognito
 class ProfileView: UIView {
     
     @IBOutlet weak var profileImg: UIImageView!
@@ -55,18 +59,39 @@ class ProfileView: UIView {
         self.userImageURL = userInfo.userImageUrl
         
         
-        imgRequest = Alamofire.request(.GET, userImageURL).validate(contentType: ["image/*"]).response(completionHandler: {
-            request, response, data, err in
-            
-            if err == nil {
-                let uImg = UIImage(data: data!)
-                self.profileImg.image = uImg
+        let downloadPath = NSTemporaryDirectory().stringByAppendingString(self.userImageURL)
+        let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
+        
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        
+        
+        let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
+        readRequest.bucket = S3BucketName
+        readRequest.key =  self.userImageURL
+        readRequest.downloadingFileURL = downloadingFileURL
+        
+        transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                print("Upload failed ❌ (\(error))")
             }
-            else{
-                print(err.debugDescription)
+            if let exception = task.exception {
+                print("Upload failed ❌ (\(exception))")
+            }
+            if task.result != nil {
+                let img = task.result
+                print(img)
+                let image = UIImage(contentsOfFile: downloadPath)
+                self.profileImg.image = image
+                
+            }
+            else {
+                print("Unexpected empty result.")
             }
             
-        })
+            return nil
+            
+        }
+
 
         
     }

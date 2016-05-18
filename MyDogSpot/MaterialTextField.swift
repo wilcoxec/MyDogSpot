@@ -11,16 +11,12 @@ import UIKit
 class MaterialTextField: UITextField {
 
     override func awakeFromNib() {
-        let border = CALayer()
-        let width = CGFloat(1.0)
-        border.borderColor = UIColor.whiteColor().CGColor
-        border.frame = CGRect(x: 0, y: frame.size.height - width, width:  frame.size.width, height: frame.size.height)
+        layer.cornerRadius = 2.0
+        layer.borderColor = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 0.2).CGColor
+        layer.borderWidth = 1.0
         
-        border.borderWidth = width
-        layer.addSublayer(border)
-        layer.masksToBounds = true
+        frame.size.height = 50;
         
-
     }
     
     override func textRectForBounds(bounds: CGRect) -> CGRect {

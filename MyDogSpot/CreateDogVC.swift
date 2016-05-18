@@ -20,6 +20,9 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
     
     @IBOutlet weak var dogNameTextField: SignUpTextField!
+    @IBOutlet weak var dogBirthTestField: SignUpTextField!
+    @IBOutlet weak var dogGenderTextField: SignUpTextField!
+    
     @IBOutlet weak var dogImage: UIImageView!
     @IBOutlet weak var addDogBtn: UIButton!
     
@@ -32,8 +35,6 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-
         dogImagePicker = UIImagePickerController()
         dogImagePicker.delegate = self
     }
@@ -57,10 +58,12 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     @IBAction func createDogByAdd(sender: AnyObject) {
         
         let dogNameTxt = dogNameTextField.text
+        let dogGender = dogGenderTextField.text
+        let dogBirth = dogBirthTestField.text
         
         let dImg = dogImage.image!
         
-        if dogNameTxt != "" && dogImageSelected == true {
+        if dogNameTxt != "" && dogGender != "" && dogBirth != "" && dogImageSelected == true {
             
             
             var path: NSString!
@@ -161,6 +164,7 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         }
         
         self.performSegueWithIdentifier(SEGUE_LOGIN_NEW_USER, sender: nil)
+      
         
     }
     
@@ -171,47 +175,29 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         
         var dogPost: Dictionary<String, AnyObject> = [
             "dogname": dogNameTextField.text!,
-            "dogImageUrl": dImgUrl
+            "dogImageUrl": dImgUrl,
+            "dogBirth": dogBirthTestField.text!,
+            "dogGender": dogGenderTextField.text!
         ]
         
         dogPostFirebase.setValue(dogPost)
         
         dogNameTextField.text = ""
+        dogGenderTextField.text = ""
+        dogBirthTestField.text = ""
         dogImageSelected = false
         dogImage.image = UIImage(named: "addphoto")
 
         
     }
     
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+        
+        var initViewController: ViewController {
+            return self.storyboard?.instantiateViewControllerWithIdentifier("initial") as! ViewController
+        }
+        
+        self.presentViewController(initViewController, animated: true, completion: nil)
+    }
     
-    /*let dImgData = UIImageJPEGRepresentation(dImg, 0.2)!
-     let keyData = "49ACILMSa3bb4f31c5b6f7aeee9e5623c70c83d7".dataUsingEncoding(NSUTF8StringEncoding)!
-     let keyJSON = "json".dataUsingEncoding(NSUTF8StringEncoding)!
-     
-     Alamofire.upload(
-     .POST,
-     "https://post.imageshack.us/upload_api.php",
-     multipartFormData: { multipartFormData in
-     multipartFormData.appendBodyPart(data: dImgData, name: "fileupload", fileName: "image", mimeType: "image/jpg")
-     multipartFormData.appendBodyPart(data: keyData, name: "key")
-     multipartFormData.appendBodyPart(data: keyJSON, name: "format")
-     },
-     encodingCompletion: { dogencodingResult in
-     switch dogencodingResult {
-     case .Success(let dogupload, _, _):
-     dogupload.responseJSON { dogresponse in
-     if let doginfo = dogresponse.result.value as? Dictionary<String, AnyObject> {
-     if let doglinks = doginfo["links"] as? Dictionary<String, AnyObject> {
-     if let dogImgLink = doglinks["image_link"] as? String {
-     print ("LINK: \(dogImgLink)")
-     self.postDogToFirebase(dogImgLink)
-     }
-     }
-     }
-     }
-     case .Failure(let encodingError):
-     print(encodingError)
-     }
-     }
-     )//End Alamo Dog Image*/
 }

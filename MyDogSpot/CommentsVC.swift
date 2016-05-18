@@ -89,12 +89,8 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell") as? CommentCell {
             
             cell.request?.cancel()
-            
-            //var img: UIImage?
-            
+
             cell.configureCommentCell(comment)
-            
-            //cell.configureCell(post, img: img)
             
             return cell
         }
@@ -143,7 +139,6 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                 let key = snapshot.key
                 let user = CreateUser(userKey: key, dictionary: userDict)
                 self.unwrapUserInfo(user)
-                //self.configureProfile(user)
             }
             
         })
