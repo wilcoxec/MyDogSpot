@@ -22,7 +22,7 @@ class SkillVC: UITableViewController{
     var skillKey: String!
     var dogKey: String!
     
-    var endorsementRef: Firebase!
+   // var endorsementRef: Firebase!
     
 
     override func viewDidLoad() {
@@ -31,27 +31,27 @@ class SkillVC: UITableViewController{
         skillKey = skillKeyReceived
         dogKey = dogKeyReceived
         
-        endorsementRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs").childByAppendingPath(self.dogKey).childByAppendingPath("skills").childByAppendingPath(self.skillKey).childByAppendingPath("endorsements")
-        
-        endorsementRef.observeEventType(.Value, withBlock: { snapshot in
-            
-            print(snapshot.value)
-            
-            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
-                for snap in snapshots{
-                    if let endorseDict = snap.value as? Dictionary<String, AnyObject>{
-                        let key = snap.key
-                        let endorse = Endorsement(endorsementKey: key, dictionary: endorseDict)
-                        self.users.append(endorse)
-                    }
-                }
-                
-            }
-            
-            self.tableView.reloadData()
-            
-        })
-        
+//        endorsementRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs").childByAppendingPath(self.dogKey).childByAppendingPath("skills").childByAppendingPath(self.skillKey).childByAppendingPath("endorsements")
+//        
+//        endorsementRef.observeEventType(.Value, withBlock: { snapshot in
+//            
+//            print(snapshot.value)
+//            
+//            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
+//                for snap in snapshots{
+//                    if let endorseDict = snap.value as? Dictionary<String, AnyObject>{
+//                        let key = snap.key
+//                        let endorse = Endorsement(endorsementKey: key, dictionary: endorseDict)
+//                        self.users.append(endorse)
+//                    }
+//                }
+//                
+//            }
+//            
+//            self.tableView.reloadData()
+//            
+//        })
+//        
         
         
 

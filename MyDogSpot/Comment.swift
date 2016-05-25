@@ -22,7 +22,7 @@ class Comment {
     
     private var _commentKey: String!
     //private var _commentKey: String!
-    private var _commentRef: Firebase!
+   // private var _commentRef: Firebase!
     
     
     

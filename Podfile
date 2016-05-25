@@ -5,7 +5,11 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'MyDogSpot' do
-pod 'Firebase', '>= 2.5.1'
+pod 'Firebase’
+pod 'Firebase/Auth'
+pod 'Firebase/Core'
+pod 'Firebase/Database'
+pod 'Firebase/Storage'
 pod 'Alamofire', '~> 3.3'
 
 

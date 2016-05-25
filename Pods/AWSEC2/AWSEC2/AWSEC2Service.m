@@ -26,6 +26,9 @@
 #import "AWSSynchronizedMutableDictionary.h"
 #import "AWSEC2Resources.h"
 
+static NSString *const AWSInfoEC2 = @"EC2";
+static NSString *const AWSEC2SDKVersion = @"2.4.1";
+
 @interface AWSEC2ResponseSerializer : AWSXMLResponseSerializer
 
 @end
@@ -37,8 +40,6 @@
 static NSDictionary *errorCodeDictionary = nil;
 + (void)initialize {
     errorCodeDictionary = @{
-                            @"AuthFailure" : @(AWSEC2ErrorAuthFailure),
-                            @"SignatureDoesNotMatch" : @(AWSEC2ErrorSignatureDoesNotMatch),
                             };
 }
 
@@ -99,30 +100,6 @@ static NSDictionary *errorCodeDictionary = nil;
 
 @implementation AWSEC2RequestRetryHandler
 
-- (AWSNetworkingRetryType)shouldRetry:(uint32_t)currentRetryCount
-                             response:(NSHTTPURLResponse *)response
-                                 data:(NSData *)data
-                                error:(NSError *)error {
-    AWSNetworkingRetryType retryType = [super shouldRetry:currentRetryCount
-                                                 response:response
-                                                     data:data
-                                                    error:error];
-    if(retryType == AWSNetworkingRetryTypeShouldNotRetry
-       && [error.domain isEqualToString:AWSEC2ErrorDomain]
-       && currentRetryCount < self.maxRetryCount) {
-        switch (error.code) {
-            case AWSEC2ErrorAuthFailure:
-                retryType = AWSNetworkingRetryTypeShouldRefreshCredentialsAndRetry;
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    return retryType;
-}
-
 @end
 
 @interface AWSRequest()
@@ -148,20 +125,37 @@ static NSDictionary *errorCodeDictionary = nil;
 
 static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
-+ (instancetype)defaultEC2 {
-    if (![AWSServiceManager defaultServiceManager].defaultServiceConfiguration) {
++ (void)initialize {
+    [super initialize];
+
+    if (![AWSiOSSDKVersion isEqualToString:AWSEC2SDKVersion]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"`defaultServiceConfiguration` is `nil`. You need to set it before using this method."
+                                       reason:[NSString stringWithFormat:@"AWSCore and AWSEC2 versions need to match. Check your SDK installation. AWSCore: %@ AWSEC2: %@", AWSiOSSDKVersion, AWSEC2SDKVersion]
                                      userInfo:nil];
     }
+}
 
++ (instancetype)defaultEC2 {
     static AWSEC2 *_defaultEC2 = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _defaultEC2 = [[AWSEC2 alloc] initWithConfiguration:AWSServiceManager.defaultServiceManager.defaultServiceConfiguration];
-#pragma clang diagnostic pop
+        AWSServiceConfiguration *serviceConfiguration = nil;
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] defaultServiceInfo:AWSInfoEC2];
+        if (serviceInfo) {
+            serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                               credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+        }
+
+        if (!serviceConfiguration) {
+            serviceConfiguration = [AWSServiceManager defaultServiceManager].defaultServiceConfiguration;
+        }
+
+        if (!serviceConfiguration) {
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                           reason:@"The service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration` before using this method."
+                                         userInfo:nil];
+        }
+        _defaultEC2 = [[AWSEC2 alloc] initWithConfiguration:serviceConfiguration];
     });
 
     return _defaultEC2;
@@ -172,15 +166,28 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     dispatch_once(&onceToken, ^{
         _serviceClients = [AWSSynchronizedMutableDictionary new];
     });
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [_serviceClients setObject:[[AWSEC2 alloc] initWithConfiguration:configuration]
                         forKey:key];
-#pragma clang diagnostic pop
 }
 
 + (instancetype)EC2ForKey:(NSString *)key {
-    return [_serviceClients objectForKey:key];
+    @synchronized(self) {
+        AWSEC2 *serviceClient = [_serviceClients objectForKey:key];
+        if (serviceClient) {
+            return serviceClient;
+        }
+
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] serviceInfo:AWSInfoEC2
+                                                                     forKey:key];
+        if (serviceInfo) {
+            AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                                                        credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+            [AWSEC2 registerEC2WithConfiguration:serviceConfiguration
+                                          forKey:key];
+        }
+
+        return [_serviceClients objectForKey:key];
+    }
 }
 
 + (void)removeEC2ForKey:(NSString *)key {

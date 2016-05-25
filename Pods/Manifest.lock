@@ -1,39 +1,75 @@
 PODS:
-  - Alamofire (3.3.1)
-  - AWSAutoScaling (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSCloudWatch (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSCognito (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSCore (2.3.6)
-  - AWSDynamoDB (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSEC2 (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSElasticLoadBalancing (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSIoT (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSKinesis (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSLambda (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSMachineLearning (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSMobileAnalytics (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSS3 (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSSES (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSSimpleDB (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSSNS (2.3.6):
-    - AWSCore (= 2.3.6)
-  - AWSSQS (2.3.6):
-    - AWSCore (= 2.3.6)
-  - Firebase (2.5.1)
+  - Alamofire (3.4.0)
+  - AWSAutoScaling (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSCloudWatch (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSCognito (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSCore (2.4.1)
+  - AWSDynamoDB (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSEC2 (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSElasticLoadBalancing (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSIoT (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSKinesis (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSLambda (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSMachineLearning (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSMobileAnalytics (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSS3 (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSSES (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSSimpleDB (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSSNS (2.4.1):
+    - AWSCore (= 2.4.1)
+  - AWSSQS (2.4.1):
+    - AWSCore (= 2.4.1)
+  - Firebase (3.2.0):
+    - Firebase/Core (= 3.2.0)
+  - Firebase/Analytics (3.2.0):
+    - FirebaseAnalytics (= 3.2.0)
+  - Firebase/Auth (3.2.0):
+    - Firebase/Analytics (= 3.2.0)
+    - FirebaseAuth (= 3.0.2)
+  - Firebase/Core (3.2.0):
+    - Firebase/Analytics (= 3.2.0)
+  - Firebase/Database (3.2.0):
+    - Firebase/Analytics (= 3.2.0)
+    - FirebaseDatabase (= 3.0.1)
+  - Firebase/Storage (3.2.0):
+    - Firebase/Analytics (= 3.2.0)
+    - FirebaseStorage (= 1.0.1)
+  - FirebaseAnalytics (3.2.0):
+    - FirebaseInstanceID (~> 1.0)
+    - GoogleInterchangeUtilities (~> 1.2)
+    - GoogleSymbolUtilities (~> 1.1)
+    - GoogleUtilities (~> 1.3)
+  - FirebaseAuth (3.0.2):
+    - FirebaseAnalytics (~> 3.2)
+    - GoogleNetworkingUtilities (~> 1.2)
+    - GoogleUtilities (~> 1.3)
+  - FirebaseDatabase (3.0.1):
+    - FirebaseAnalytics (~> 3.2)
+  - FirebaseInstanceID (1.0.6)
+  - FirebaseStorage (1.0.1):
+    - FirebaseAnalytics (~> 3.2)
+    - GoogleNetworkingUtilities (~> 1.2)
+  - GoogleInterchangeUtilities (1.2.1):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleNetworkingUtilities (1.2.1):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.1.1)
+  - GoogleUtilities (1.3.1):
+    - GoogleSymbolUtilities (~> 1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.3)
@@ -53,27 +89,40 @@ DEPENDENCIES:
   - AWSSimpleDB
   - AWSSNS
   - AWSSQS
-  - Firebase (>= 2.5.1)
+  - Firebase
+  - Firebase/Auth
+  - Firebase/Core
+  - Firebase/Database
+  - Firebase/Storage
 
 SPEC CHECKSUMS:
-  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
-  AWSAutoScaling: 49d9f49984a82852511be4caa2a510f522cd8de1
-  AWSCloudWatch: 45fb53f7b76b4d0260d54b3284fc30cb6c7ebdef
-  AWSCognito: af54fe65171c7c994c134e5d29b1ee60ee234825
-  AWSCore: 917d84b32974136194a905b98c0ae25c9f3350b8
-  AWSDynamoDB: 0bfd95eb10363090d8570a48d5feb4e3d7ec5264
-  AWSEC2: 42f0db0be7ded684b5d5ecf5aa444689fa2bc8ce
-  AWSElasticLoadBalancing: b68b0bb0dce50cc4d1c193c53a42b5963fe78381
-  AWSIoT: 2729aa56277a29575655fc5c150abd255fdf06c6
-  AWSKinesis: 89c0042637c088ba54f2bb892d285693b44d93e8
-  AWSLambda: 9882d7bf98d368fa7e0c98d0f6e15dbbd4eb0e26
-  AWSMachineLearning: 97768294558e0586d98eb34acaf5fa5961b7b35a
-  AWSMobileAnalytics: 56ce9e671640fbd702f8ce52b0f128e525f3e51c
-  AWSS3: 1caaf6b45100503fecf3d418c394519a89409a74
-  AWSSES: 8d33c48393d459c649cca781a4a4ae553379f846
-  AWSSimpleDB: 0e4f2160b572be584baf8e2ef6ba257117f75114
-  AWSSNS: 37c7f4c80657a621fbabccf7d0f352e3c018fbd0
-  AWSSQS: aa53b836c21a10611120e8bf361feef54fd73ae1
-  Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
+  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  AWSAutoScaling: 3b87242dfe7a2a2ab32f19841303c20269ac517f
+  AWSCloudWatch: bcca936523245b67502bca290b73cc43b3a2b399
+  AWSCognito: a57173a82505161bd1a9c8cfe393cea9b5b1f6bb
+  AWSCore: 9bfd632f04aaf12053e639d2a9120372844beb0d
+  AWSDynamoDB: 1e9b01602df37e9d5ef014eff9d7b16663add6bb
+  AWSEC2: a9d996e3d04f0042a20548e01a9ee84e497f977f
+  AWSElasticLoadBalancing: 2f6248ed06cc48c5f90d8bce72fea6206f7fcd5d
+  AWSIoT: c8d4c72ab2d817ec5b771c318cde77ef3b26d639
+  AWSKinesis: 720f54403be256082f37fdc2c661169c70d90824
+  AWSLambda: c6c99296e282c3fa78af41facff9b3bd4e1648d7
+  AWSMachineLearning: b5a57123c045116a360a84dc55840658b991da39
+  AWSMobileAnalytics: 7fb109f4011d40c5fe797f962007a9d50c812a1d
+  AWSS3: d7a3a694ffc4010e90b14755b5b9dbf70989c117
+  AWSSES: af07426ead2aafea11354ec3cdc53adc6ad2fe8b
+  AWSSimpleDB: 69c8e60cb2e8e6df83d9fad2b1cf64fe55cca9e4
+  AWSSNS: 69bd0886bd48f175a9bcfef0f78d47370a4cabad
+  AWSSQS: 735fb161c3046cef4c0c3ec1372538946fefcc34
+  Firebase: 6d4012da1598732a2b43f16d8355eca90f94ed59
+  FirebaseAnalytics: 6f75b04e6bfb8e0b6e9ef298e04c24eea3b13863
+  FirebaseAuth: 94b851fc345ce98036dfedfdc2eddeaef8fa3b4c
+  FirebaseDatabase: 34301d11621a83546f39f670d256477ba6f7fcea
+  FirebaseInstanceID: d014d574053a2fe84478f12f7bae96979e7051bb
+  FirebaseStorage: e9c32a8d246c07eeefd78180c22736aa1b81e81b
+  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
+  GoogleNetworkingUtilities: 3e83269048cfb498dc7ec83ab36813360965c74f
+  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
+  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
 
 COCOAPODS: 0.39.0

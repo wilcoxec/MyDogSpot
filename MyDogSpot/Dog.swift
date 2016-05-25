@@ -35,6 +35,7 @@ class Dog {
         return _dogImageUrl
     }
     
+    
     var dogKey: String {
         return _dogKey
     }
@@ -52,15 +53,15 @@ class Dog {
             self._dogname = dName
         }
         
-        if let dImg = dictionary["dogImageUrl"] as? String {
+        if let dImg = dictionary["dogImage"] as? String {
             self._dogImageUrl = dImg
         }
         
-        if let dBirth = dictionary["dogBirth"] as? String{
+        if let dBirth = dictionary["birthday"] as? String{
             self._dogBirth = dBirth
         }
         
-        if let dGender = dictionary["dogGender"] as? String{
+        if let dGender = dictionary["gender"] as? String{
             self._dogGender = dGender
         }
     }

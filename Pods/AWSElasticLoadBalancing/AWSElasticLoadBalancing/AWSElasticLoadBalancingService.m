@@ -26,6 +26,9 @@
 #import "AWSSynchronizedMutableDictionary.h"
 #import "AWSElasticLoadBalancingResources.h"
 
+static NSString *const AWSInfoElasticLoadBalancing = @"ElasticLoadBalancing";
+static NSString *const AWSElasticLoadBalancingSDKVersion = @"2.4.1";
+
 @interface AWSElasticLoadBalancingResponseSerializer : AWSXMLResponseSerializer
 
 @end
@@ -37,9 +40,6 @@
 static NSDictionary *errorCodeDictionary = nil;
 + (void)initialize {
     errorCodeDictionary = @{
-                            @"IncompleteSignature" : @(AWSElasticLoadBalancingErrorIncompleteSignature),
-                            @"InvalidClientTokenId" : @(AWSElasticLoadBalancingErrorInvalidClientTokenId),
-                            @"MissingAuthenticationToken" : @(AWSElasticLoadBalancingErrorMissingAuthenticationToken),
                             @"LoadBalancerNotFound" : @(AWSElasticLoadBalancingErrorAccessPointNotFound),
                             @"CertificateNotFound" : @(AWSElasticLoadBalancingErrorCertificateNotFound),
                             @"DuplicateLoadBalancerName" : @(AWSElasticLoadBalancingErrorDuplicateAccessPointName),
@@ -119,42 +119,6 @@ static NSDictionary *errorCodeDictionary = nil;
 
 @implementation AWSElasticLoadBalancingRequestRetryHandler
 
-- (AWSNetworkingRetryType)shouldRetry:(uint32_t)currentRetryCount
-                             response:(NSHTTPURLResponse *)response
-                                 data:(NSData *)data
-                                error:(NSError *)error {
-    AWSNetworkingRetryType retryType = [super shouldRetry:currentRetryCount
-                                                 response:response
-                                                     data:data
-                                                    error:error];
-    if(retryType == AWSNetworkingRetryTypeShouldNotRetry
-       && currentRetryCount < self.maxRetryCount) {
-        if ([error.domain isEqualToString:AWSElasticLoadBalancingErrorDomain]) {
-            switch (error.code) {
-                case AWSElasticLoadBalancingErrorIncompleteSignature:
-                case AWSElasticLoadBalancingErrorInvalidClientTokenId:
-                case AWSElasticLoadBalancingErrorMissingAuthenticationToken:
-                    retryType = AWSNetworkingRetryTypeShouldRefreshCredentialsAndRetry;
-                    break;
-
-                default:
-                    break;
-            }
-        } else if ([error.domain isEqualToString:AWSGeneralErrorDomain]) {
-            switch (error.code) {
-                case AWSGeneralErrorSignatureDoesNotMatch:
-                    retryType = AWSNetworkingRetryTypeShouldCorrectClockSkewAndRetry;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    return retryType;
-}
-
 @end
 
 @interface AWSRequest()
@@ -180,20 +144,37 @@ static NSDictionary *errorCodeDictionary = nil;
 
 static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
-+ (instancetype)defaultElasticLoadBalancing {
-    if (![AWSServiceManager defaultServiceManager].defaultServiceConfiguration) {
++ (void)initialize {
+    [super initialize];
+
+    if (![AWSiOSSDKVersion isEqualToString:AWSElasticLoadBalancingSDKVersion]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"`defaultServiceConfiguration` is `nil`. You need to set it before using this method."
+                                       reason:[NSString stringWithFormat:@"AWSCore and AWSElasticLoadBalancing versions need to match. Check your SDK installation. AWSCore: %@ AWSElasticLoadBalancing: %@", AWSiOSSDKVersion, AWSElasticLoadBalancingSDKVersion]
                                      userInfo:nil];
     }
+}
 
++ (instancetype)defaultElasticLoadBalancing {
     static AWSElasticLoadBalancing *_defaultElasticLoadBalancing = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _defaultElasticLoadBalancing = [[AWSElasticLoadBalancing alloc] initWithConfiguration:AWSServiceManager.defaultServiceManager.defaultServiceConfiguration];
-#pragma clang diagnostic pop
+        AWSServiceConfiguration *serviceConfiguration = nil;
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] defaultServiceInfo:AWSInfoElasticLoadBalancing];
+        if (serviceInfo) {
+            serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                               credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+        }
+
+        if (!serviceConfiguration) {
+            serviceConfiguration = [AWSServiceManager defaultServiceManager].defaultServiceConfiguration;
+        }
+
+        if (!serviceConfiguration) {
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                           reason:@"The service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration` before using this method."
+                                         userInfo:nil];
+        }
+        _defaultElasticLoadBalancing = [[AWSElasticLoadBalancing alloc] initWithConfiguration:serviceConfiguration];
     });
 
     return _defaultElasticLoadBalancing;
@@ -204,15 +185,28 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     dispatch_once(&onceToken, ^{
         _serviceClients = [AWSSynchronizedMutableDictionary new];
     });
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [_serviceClients setObject:[[AWSElasticLoadBalancing alloc] initWithConfiguration:configuration]
                         forKey:key];
-#pragma clang diagnostic pop
 }
 
 + (instancetype)ElasticLoadBalancingForKey:(NSString *)key {
-    return [_serviceClients objectForKey:key];
+    @synchronized(self) {
+        AWSElasticLoadBalancing *serviceClient = [_serviceClients objectForKey:key];
+        if (serviceClient) {
+            return serviceClient;
+        }
+
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] serviceInfo:AWSInfoElasticLoadBalancing
+                                                                     forKey:key];
+        if (serviceInfo) {
+            AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                                                        credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+            [AWSElasticLoadBalancing registerElasticLoadBalancingWithConfiguration:serviceConfiguration
+                                                                            forKey:key];
+        }
+
+        return [_serviceClients objectForKey:key];
+    }
 }
 
 + (void)removeElasticLoadBalancingForKey:(NSString *)key {

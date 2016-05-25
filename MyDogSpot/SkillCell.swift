@@ -18,8 +18,8 @@ class SkillCell: UITableViewCell {
     
     var skill: Skill!
     
-    var skillRef: Firebase!
-    var endorsementRef: Firebase!
+    //var skillRef: Firebase!
+    //var endorsementRef: Firebase!
     
     var request: Request?
     
@@ -64,21 +64,21 @@ class SkillCell: UITableViewCell {
         print(self.dogKey)
         print(self.skillKey)
         
-        endorsementRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs").childByAppendingPath(self.dogKey).childByAppendingPath("skills").childByAppendingPath(self.skillKey).childByAppendingPath("endorsements")
-        
-        endorsementRef.observeEventType(.Value, withBlock: { snapshot in
-            
-            print(snapshot.value)
-            
-            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
-                for snap in snapshots{
-                    eCount = eCount + 1
-                }
-                
-                self.numEndorsement.text = "\(eCount)"
-            }
-
-        })
+//        endorsementRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs").childByAppendingPath(self.dogKey).childByAppendingPath("skills").childByAppendingPath(self.skillKey).childByAppendingPath("endorsements")
+//        
+//        endorsementRef.observeEventType(.Value, withBlock: { snapshot in
+//            
+//            print(snapshot.value)
+//            
+//            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
+//                for snap in snapshots{
+//                    eCount = eCount + 1
+//                }
+//                
+//                self.numEndorsement.text = "\(eCount)"
+//            }
+//
+//        })
         self.numEndorsement.text = "\(eCount)"
         //self.numEndorsement.text = "\(eCount)"
         

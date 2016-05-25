@@ -22,13 +22,13 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     
     var userName: String!
     var userImage: String!
-    var userRef: Firebase!
+    //var userRef: Firebase!
     var userID: String!
     
     
     var keySent: String!
     var postKey: String!
-    var commentsRef: Firebase!
+    //var commentsRef: Firebase!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,29 +40,29 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         print("This is the post key: ")
         print(postKey)
         
-        commentsRef = DataService.ds.REF_POSTS.childByAppendingPath(postKey).childByAppendingPath("comments")
-        
-        commentsRef.observeEventType(.Value, withBlock: {
-        
-            snapshot in
-            print(snapshot.value)
-            self.comments = []
-            
-            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
-                for snap in snapshots {
-                    if let commentDict = snap.value as? Dictionary<String, AnyObject>{
-                        
-                        print(commentDict)
-                        let key = snap.key
-                        let comment = Comment(commentKey: key, dictionary: commentDict)
-                        self.comments.append(comment)
-                    }
-                }
-            }
-            
-            self.tableView.reloadData()
-            
-        })
+//        commentsRef = DataService.ds.REF_POSTS.childByAppendingPath(postKey).childByAppendingPath("comments")
+//        
+//        commentsRef.observeEventType(.Value, withBlock: {
+//        
+//            snapshot in
+//            print(snapshot.value)
+//            self.comments = []
+//            
+//            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
+//                for snap in snapshots {
+//                    if let commentDict = snap.value as? Dictionary<String, AnyObject>{
+//                        
+//                        print(commentDict)
+//                        let key = snap.key
+//                        let comment = Comment(commentKey: key, dictionary: commentDict)
+//                        self.comments.append(comment)
+//                    }
+//                }
+//            }
+//            
+//            self.tableView.reloadData()
+//            
+//        })
         
         self.getUserInfo()
     }
@@ -118,8 +118,8 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             "commentText": commentField.text!
         ]
         
-        let firebaseComment = DataService.ds.REF_POSTS.childByAppendingPath(postKey).childByAppendingPath("comments").childByAutoId()
-        firebaseComment.setValue(commentPost)
+        //let firebaseComment = DataService.ds.REF_POSTS.childByAppendingPath(postKey).childByAppendingPath("comments").childByAutoId()
+        //firebaseComment.setValue(commentPost)
         
         
         commentField.text = ""
@@ -129,23 +129,23 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
 
     func getUserInfo() {
-        userRef = DataService.ds.REF_USER_CURRENT
-        
-        userRef.observeEventType(.Value, withBlock: { snapshot in
-            
-            print(snapshot.value)
-            
-            if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
-                let key = snapshot.key
-                let user = CreateUser(userKey: key, dictionary: userDict)
-                self.unwrapUserInfo(user)
-            }
-            
-        })
+//        userRef = DataService.ds.REF_USER_CURRENT
+//        
+//        userRef.observeEventType(.Value, withBlock: { snapshot in
+//            
+//            print(snapshot.value)
+//            
+//            if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
+//                let key = snapshot.key
+//                let user = CreateUser(userKey: key, dictionary: userDict)
+//                self.unwrapUserInfo(user)
+//            }
+//            
+//        })
         
     }
     
-    func unwrapUserInfo(user: CreateUser) {
+    func unwrapUserInfo(user: User) {
         self.userName = user.userName
         self.userImage = user.userImageUrl
         self.userID = user.userKey

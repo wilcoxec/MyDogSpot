@@ -26,6 +26,9 @@
 #import "AWSSynchronizedMutableDictionary.h"
 #import "AWSSNSResources.h"
 
+static NSString *const AWSInfoSNS = @"SNS";
+static NSString *const AWSSNSSDKVersion = @"2.4.1";
+
 @interface AWSSNSResponseSerializer : AWSXMLResponseSerializer
 
 @end
@@ -37,9 +40,6 @@
 static NSDictionary *errorCodeDictionary = nil;
 + (void)initialize {
     errorCodeDictionary = @{
-                            @"IncompleteSignature" : @(AWSSNSErrorIncompleteSignature),
-                            @"InvalidClientTokenId" : @(AWSSNSErrorInvalidClientTokenId),
-                            @"MissingAuthenticationToken" : @(AWSSNSErrorMissingAuthenticationToken),
                             @"AuthorizationError" : @(AWSSNSErrorAuthorizationError),
                             @"EndpointDisabled" : @(AWSSNSErrorEndpointDisabled),
                             @"InternalError" : @(AWSSNSErrorInternalError),
@@ -110,42 +110,6 @@ static NSDictionary *errorCodeDictionary = nil;
 
 @implementation AWSSNSRequestRetryHandler
 
-- (AWSNetworkingRetryType)shouldRetry:(uint32_t)currentRetryCount
-                             response:(NSHTTPURLResponse *)response
-                                 data:(NSData *)data
-                                error:(NSError *)error {
-    AWSNetworkingRetryType retryType = [super shouldRetry:currentRetryCount
-                                                 response:response
-                                                     data:data
-                                                    error:error];
-    if(retryType == AWSNetworkingRetryTypeShouldNotRetry
-       && currentRetryCount < self.maxRetryCount) {
-        if ([error.domain isEqualToString:AWSSNSErrorDomain]) {
-            switch (error.code) {
-                case AWSSNSErrorIncompleteSignature:
-                case AWSSNSErrorInvalidClientTokenId:
-                case AWSSNSErrorMissingAuthenticationToken:
-                    retryType = AWSNetworkingRetryTypeShouldRefreshCredentialsAndRetry;
-                    break;
-
-                default:
-                    break;
-            }
-        } else if ([error.domain isEqualToString:AWSGeneralErrorDomain]) {
-            switch (error.code) {
-                case AWSGeneralErrorSignatureDoesNotMatch:
-                    retryType = AWSNetworkingRetryTypeShouldCorrectClockSkewAndRetry;
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    return retryType;
-}
-
 @end
 
 @interface AWSRequest()
@@ -171,20 +135,37 @@ static NSDictionary *errorCodeDictionary = nil;
 
 static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
-+ (instancetype)defaultSNS {
-    if (![AWSServiceManager defaultServiceManager].defaultServiceConfiguration) {
++ (void)initialize {
+    [super initialize];
+
+    if (![AWSiOSSDKVersion isEqualToString:AWSSNSSDKVersion]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"`defaultServiceConfiguration` is `nil`. You need to set it before using this method."
+                                       reason:[NSString stringWithFormat:@"AWSCore and AWSSNS versions need to match. Check your SDK installation. AWSCore: %@ AWSSNS: %@", AWSiOSSDKVersion, AWSSNSSDKVersion]
                                      userInfo:nil];
     }
+}
 
++ (instancetype)defaultSNS {
     static AWSSNS *_defaultSNS = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _defaultSNS = [[AWSSNS alloc] initWithConfiguration:AWSServiceManager.defaultServiceManager.defaultServiceConfiguration];
-#pragma clang diagnostic pop
+        AWSServiceConfiguration *serviceConfiguration = nil;
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] defaultServiceInfo:AWSInfoSNS];
+        if (serviceInfo) {
+            serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                               credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+        }
+
+        if (!serviceConfiguration) {
+            serviceConfiguration = [AWSServiceManager defaultServiceManager].defaultServiceConfiguration;
+        }
+
+        if (!serviceConfiguration) {
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                           reason:@"The service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration` before using this method."
+                                         userInfo:nil];
+        }
+        _defaultSNS = [[AWSSNS alloc] initWithConfiguration:serviceConfiguration];
     });
 
     return _defaultSNS;
@@ -195,15 +176,28 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     dispatch_once(&onceToken, ^{
         _serviceClients = [AWSSynchronizedMutableDictionary new];
     });
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [_serviceClients setObject:[[AWSSNS alloc] initWithConfiguration:configuration]
                         forKey:key];
-#pragma clang diagnostic pop
 }
 
 + (instancetype)SNSForKey:(NSString *)key {
-    return [_serviceClients objectForKey:key];
+    @synchronized(self) {
+        AWSSNS *serviceClient = [_serviceClients objectForKey:key];
+        if (serviceClient) {
+            return serviceClient;
+        }
+
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] serviceInfo:AWSInfoSNS
+                                                                     forKey:key];
+        if (serviceInfo) {
+            AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                                                        credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+            [AWSSNS registerSNSWithConfiguration:serviceConfiguration
+                                          forKey:key];
+        }
+
+        return [_serviceClients objectForKey:key];
+    }
 }
 
 + (void)removeSNSForKey:(NSString *)key {

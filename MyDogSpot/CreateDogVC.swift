@@ -47,11 +47,11 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         
-        if picker == dogImagePicker {
-            dogImagePicker.dismissViewControllerAnimated(true, completion: nil)
-            dogImage.image = image
-            dogImageSelected = true
-        }
+
+        dogImagePicker.dismissViewControllerAnimated(true, completion: nil)
+        dogImage.image = image
+        dogImageSelected = true
+
         
     }
     
@@ -65,47 +65,28 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         
         if dogNameTxt != "" && dogGender != "" && dogBirth != "" && dogImageSelected == true {
             
+            let image = dImg
             
-            var path: NSString!
-            path = NSTemporaryDirectory().stringByAppendingString("image.png")
+            let imageData = UIImageJPEGRepresentation(image, 0.8)
             
-            var imageData: NSData!
-            imageData = UIImagePNGRepresentation(dImg)
+            let imagePath = FIRAuth.auth()!.currentUser!.uid +
+                "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"
             
-            imageData.writeToFile(path as String, atomically: true)
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
             
-            var url: NSURL!
-            url = NSURL(fileURLWithPath: path as String)
-            
-            let uploadRequest = AWSS3TransferManagerUploadRequest()
-            
-            uploadRequest.bucket = S3BucketName
-            uploadRequest.key = NSProcessInfo.processInfo().globallyUniqueString + "." + "png"
-            uploadRequest.contentType = "image/png"
-            uploadRequest.body = url
-            
-            let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-            
-            transferManager.upload(uploadRequest).continueWithBlock { (task) -> AnyObject! in
-                if let error = task.error {
-                    print("Upload failed ❌ (\(error))")
-                }
-                if let exception = task.exception {
-                    print("Upload failed ❌ (\(exception))")
-                }
-                if task.result != nil {
-                    let s3URL = NSURL(string: "http://s3.amazonaws.com/\(S3BucketName)/\(uploadRequest.key!)")!
-                    print("Uploaded to:\n\(s3URL)")
+            let uploadREF = REF_STORAGE.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
+                if let error = error {
+                    print("Error uploading: \(error)")
                     
-                    self.postDogToFirebase(uploadRequest.key)
                 }
-                else {
-                    print("Unexpected empty result.")
+                else{
+                    let downloadURL = metadata!.downloadURL()?.absoluteString
+                    print(downloadURL)
+                    self.postDogToFirebase(downloadURL)
                 }
-                
-                return nil
             }
-
+            
             
         }
         
@@ -120,50 +101,31 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         
         if dogNameTxt != "" && dogImageSelected == true {
             
-            var path: NSString!
-            path = NSTemporaryDirectory().stringByAppendingString("image.png")
+            let image = dImg
             
-            var imageData: NSData!
-            imageData = UIImagePNGRepresentation(dImg)
+            let imageData = UIImageJPEGRepresentation(image, 0.8)
             
-            imageData.writeToFile(path as String, atomically: true)
+            let imagePath = FIRAuth.auth()!.currentUser!.uid +
+                "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"
             
-            var url: NSURL!
-            url = NSURL(fileURLWithPath: path as String)
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
             
-            let uploadRequest = AWSS3TransferManagerUploadRequest()
-            
-            uploadRequest.bucket = S3BucketName
-            uploadRequest.key = NSProcessInfo.processInfo().globallyUniqueString + "." + "png"
-            uploadRequest.contentType = "image/png"
-            uploadRequest.body = url
-            
-            let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-            
-            transferManager.upload(uploadRequest).continueWithBlock { (task) -> AnyObject! in
-                if let error = task.error {
-                    print("Upload failed ❌ (\(error))")
-                }
-                if let exception = task.exception {
-                    print("Upload failed ❌ (\(exception))")
-                }
-                if task.result != nil {
-                    let s3URL = NSURL(string: "http://s3.amazonaws.com/\(S3BucketName)/\(uploadRequest.key!)")!
-                    print("Uploaded to:\n\(s3URL)")
+            let uploadREF = REF_STORAGE.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
+                if let error = error {
+                    print("Error uploading: \(error)")
                     
-                    self.postDogToFirebase(uploadRequest.key)
                 }
-                else {
-                    print("Unexpected empty result.")
+                else{
+                    let downloadURL = metadata!.downloadURL()?.absoluteString
+                    print(downloadURL)
+                    self.postDogToFirebase(downloadURL)
                 }
-                
-                return nil
             }
-
             
         }
         
-        self.performSegueWithIdentifier(SEGUE_LOGIN_NEW_USER, sender: nil)
+        //self.performSegueWithIdentifier(SEGUE_LOGIN_NEW_USER, sender: nil)
       
         
     }
@@ -171,16 +133,18 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
     func postDogToFirebase(dImgUrl: String!){
         
-        let dogPostFirebase = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs").childByAutoId()
+        let newDog = REF_DOGS.childByAutoId()
         
-        var dogPost: Dictionary<String, AnyObject> = [
-            "dogname": dogNameTextField.text!,
-            "dogImageUrl": dImgUrl,
-            "dogBirth": dogBirthTestField.text!,
-            "dogGender": dogGenderTextField.text!
-        ]
+        newDog.key
         
-        dogPostFirebase.setValue(dogPost)
+        REF_DOGS.child(newDog.key).child("dogname").setValue(dogNameTextField.text)
+        REF_DOGS.child(newDog.key).child("birthday").setValue(dogBirthTestField.text)
+        REF_DOGS.child(newDog.key).child("gender").setValue(dogGenderTextField.text)
+        REF_DOGS.child(newDog.key).child("dogImage").setValue(dImgUrl)
+        REF_DOGS.child(newDog.key).child("owner").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(true)
+        
+        REF_USERS.child((FIRAuth.auth()?.currentUser?.uid)!).child("dogs").child(newDog.key).setValue(true)
+        
         
         dogNameTextField.text = ""
         dogGenderTextField.text = ""

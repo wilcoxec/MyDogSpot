@@ -31,7 +31,7 @@ class UsersProfileVC: UIViewController {
     
     var toPass:String!
     
-    var userInfo: CreateUser!
+    var userInfo: User!
     
     var imgRequest: Request?
     var dogRequest: Request?
@@ -39,7 +39,7 @@ class UsersProfileVC: UIViewController {
     var userImageURL: String!
     var dogImageURL: String!
     
-    var userRef: Firebase!
+    //var userRef: Firebase!
     
     var userKeyString:String!
     
@@ -53,37 +53,37 @@ class UsersProfileVC: UIViewController {
         print("this is the user name that was sent:")
         print(userKeyString)
         
-        
-        userRef = DataService.ds.REF_USERS
-        
-        //let userKeyString = userInfoFromVC
-
-        
-        userRef.queryOrderedByKey().queryEqualToValue(userKeyString)
-            .observeEventType(.ChildAdded, withBlock: { snapshot in
-                print(snapshot.value)
-                
-                if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
-                    let key = snapshot.key
-                    let user = CreateUser(userKey: key, dictionary: userDict)
-                    self.configureProfile(user)
-                }
-            })
+//        
+//        userRef = DataService.ds.REF_USERS
+//        
+//        //let userKeyString = userInfoFromVC
+//
+//        
+//        userRef.queryOrderedByKey().queryEqualToValue(userKeyString)
+//            .observeEventType(.ChildAdded, withBlock: { snapshot in
+//                print(snapshot.value)
+//                
+//                if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
+//                    let key = snapshot.key
+//                    let user = CreateUser(userKey: key, dictionary: userDict)
+//                    self.configureProfile(user)
+//                }
+//            })
 
         
     }
     
     
     
-    func configureProfile(user: CreateUser) {
+    func configureProfile(user: User) {
         
         
         userName.text = user.userName
-        dogName.text = user.dogName
+
         userLocation.text = user.userLocation
         
         userImageURL = user.userImageUrl
-        dogImageURL = user.dogImageUrl
+
         
 
         let downloadPath = NSTemporaryDirectory().stringByAppendingString(userImageURL)

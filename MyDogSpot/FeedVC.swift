@@ -25,7 +25,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     
     var posts = [Post]()
     
-    var user: CreateUser!
+    var user: User!
     
     
     var UserVC: UsersProfileVC!
@@ -40,7 +40,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var userName: String!
     var userImage: String!
     
-    var userRef: Firebase!
+    //var userRef: Firebase!
     
     var userID: String!
     
@@ -59,33 +59,35 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.estimatedRowHeight = 400
-        imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
+        //tableView.estimatedRowHeight = 400
+        //imagePicker = UIImagePickerController()
+        //imagePicker.delegate = self
         
-        DataService.ds.REF_POSTS.observeEventType(.Value, withBlock: { snapshot in
+        
+        REF_POSTS.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             print(snapshot.value)
             
             self.posts = []
             
-            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
-                
+            if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshots {
-                    
-                    if let postDict = snap.value as? Dictionary<String, AnyObject>{
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let post = Post(postKey: key, dictionary: postDict)
                         self.posts.append(post)
+                        
+                        self.setPostUserInfo(post)
+                        
                     }
+                    
                 }
+                
+                
             }
-            
-            self.tableView.reloadData()
+        
+        
         })
-        
-        self.getUserInfo()
-        
-        
+
         
     }
     
@@ -103,154 +105,55 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as? PostCell {
-            
+        
             cell.request?.cancel()
-            
+        
             var img: UIImage?
-            
-            if let url = post.imageUrl {
-                img = FeedVC.imageCache.objectForKey(url) as? UIImage
-            }
-            
+        
+//            if let url = post.imageUrl {
+//                img = FeedVC.imageCache.objectForKey(url) as? UIImage
+//            }
+        
             cell.configureCell(post, img: img)
-            
+        
             return cell
         }
         else {
             return PostCell()
         }
+        //return tableView.dequeueReusableCellWithIdentifier("PostCell") as! PostCell
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let post = posts[indexPath.row]
-        
-        if post.imageUrl == nil {
-            return 200
-        }
-        else {
-            return tableView.estimatedRowHeight
-        }
-        
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        imagePicker.dismissViewControllerAnimated(true, completion: nil)
-        imageSelectorImage.image = image
-        imageSelected = true
-    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        let post = posts[indexPath.row]
+//        
+//        if post.imageUrl == nil {
+//            return 200
+//        }
+//        else {
+//            return tableView.estimatedRowHeight
+//        }
+//        
+//    }
 
-
-    @IBAction func selectImage(sender: UITapGestureRecognizer) {
-        presentViewController(imagePicker, animated: true, completion: nil)
-        
-    }// end of @IBAction func selectImage
     
-    @IBAction func makePost(sender: AnyObject) {
+    func setPostUserInfo(post: Post) {
         
-        if let txt = postField.text where txt != "" {
-            
-            if let img = imageSelectorImage.image where imageSelected == true {
-                
-                var path: NSString!
-                path = NSTemporaryDirectory().stringByAppendingString("image.png")
-                
-                var imageData: NSData!
-                imageData = UIImagePNGRepresentation(img)
-                
-                imageData.writeToFile(path as String, atomically: true)
-                
-                var url: NSURL!
-                url = NSURL(fileURLWithPath: path as String)
-                
-                let uploadRequest = AWSS3TransferManagerUploadRequest()
-                
-                uploadRequest.bucket = S3BucketName
-                uploadRequest.key = NSProcessInfo.processInfo().globallyUniqueString + "." + "png"
-                uploadRequest.contentType = "image/png"
-                uploadRequest.body = url
-                
-                let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-                
-                transferManager.upload(uploadRequest).continueWithBlock { (task) -> AnyObject! in
-                    if let error = task.error {
-                        print("Upload failed ❌ (\(error))")
-                    }
-                    if let exception = task.exception {
-                        print("Upload failed ❌ (\(exception))")
-                    }
-                    if task.result != nil {
-                        let s3URL = NSURL(string: "http://s3.amazonaws.com/\(S3BucketName)/\(uploadRequest.key!)")!
-                        print("Uploaded to:\n\(s3URL)")
-                        self.postToFirebase(uploadRequest.key)
-                        //self.postUserToFirebase(uploadRequest.key)
-                    }
-                    else {
-                        print("Unexpected empty result.")
-                    }
-                    
-                    return nil
-                }
-
-                
-            }
-            else {
-                self.postToFirebase(nil)
-            }
-            
-            
-        }
-        
-    }//end of @IBAction makePost
-    
-    func postToFirebase(imgUrl: String?) {
-        
-        var post: Dictionary<String, AnyObject> = [
-            "username": userName,
-            "userImageUrl": userImage,
-            "description": postField.text!,
-            "likes": 0,
-            "userID": userID
-        ]
-        
-        //Check if an image exists in the post
-        if imgUrl != nil {
-            post["imageUrl"] = imgUrl!
-        }
-        
-        //Create new id for post object and set value of object
-        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
-        firebasePost.setValue(post)
-        
-        postField.text = ""
-        imageSelectorImage.image = UIImage(named: "camera")
-        imageSelected = false
-        
-        tableView.reloadData()
-        
-        
-    }//end of func postToFirebase
-    
-    
-    func getUserInfo() {
-        userRef = DataService.ds.REF_USER_CURRENT
-        
-        userRef.observeEventType(.Value, withBlock: { snapshot in
+        REF_USERS.child(post.postUserKey).observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             
             print(snapshot.value)
             
             if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
                 let key = snapshot.key
-                let user = CreateUser(userKey: key, dictionary: userDict)
-                self.unwrapUserInfo(user)
-                //self.configureProfile(user)
+                let user = User(userKey: key, dictionary: userDict)
+                post.setUserInfo(user)
             }
-
+            
         })
-        
     }
     
-    func unwrapUserInfo(user: CreateUser) {
+    func unwrapUserInfo(user: User) {
         
         self.userName = user.userName
         self.userImage = user.userImageUrl
@@ -318,7 +221,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         print("this is the cell:")
         print(uCell)
         
-        UserIDtoSend = uCell.userKey
+        //UserIDtoSend = uCell.userKey
         
         print(UserIDtoSend)
 
@@ -354,6 +257,112 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         self.performSegueWithIdentifier(SEGUE_COMMENTS_SECTION, sender: sender)
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        imageSelectorImage.image = image
+        imageSelected = true
+    }
+    
+    
+    @IBAction func selectImage(sender: UITapGestureRecognizer) {
+        presentViewController(imagePicker, animated: true, completion: nil)
+        
+    }// end of @IBAction func selectImage
+    
+    
+    @IBAction func makePost(sender: AnyObject) {
+        
+        if let txt = postField.text where txt != "" {
+            
+            if let img = imageSelectorImage.image where imageSelected == true {
+                
+                var path: NSString!
+                path = NSTemporaryDirectory().stringByAppendingString("image.png")
+                
+                var imageData: NSData!
+                imageData = UIImagePNGRepresentation(img)
+                
+                imageData.writeToFile(path as String, atomically: true)
+                
+                var url: NSURL!
+                url = NSURL(fileURLWithPath: path as String)
+                
+                let uploadRequest = AWSS3TransferManagerUploadRequest()
+                
+                uploadRequest.bucket = S3BucketName
+                uploadRequest.key = NSProcessInfo.processInfo().globallyUniqueString + "." + "png"
+                uploadRequest.contentType = "image/png"
+                uploadRequest.body = url
+                
+                let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+                
+                transferManager.upload(uploadRequest).continueWithBlock { (task) -> AnyObject! in
+                    if let error = task.error {
+                        print("Upload failed ❌ (\(error))")
+                    }
+                    if let exception = task.exception {
+                        print("Upload failed ❌ (\(exception))")
+                    }
+                    if task.result != nil {
+                        let s3URL = NSURL(string: "http://s3.amazonaws.com/\(S3BucketName)/\(uploadRequest.key!)")!
+                        print("Uploaded to:\n\(s3URL)")
+                        self.postToFirebase(uploadRequest.key)
+                        //self.postUserToFirebase(uploadRequest.key)
+                    }
+                    else {
+                        print("Unexpected empty result.")
+                    }
+                    
+                    return nil
+                }
+                
+                
+            }
+            else {
+                self.postToFirebase(nil)
+            }
+            
+            
+        }
+        
+    }//end of @IBAction makePost
+    
+    func postToFirebase(imgUrl: String?) {
+        
+        var post: Dictionary<String, AnyObject> = [
+            "username": userName,
+            "userImageUrl": userImage,
+            "description": postField.text!,
+            "likes": 0,
+            "userID": userID
+        ]
+        
+        //Check if an image exists in the post
+        if imgUrl != nil {
+            post["imageUrl"] = imgUrl!
+        }
+        
+        //Create new id for post object and set value of object
+        //let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        //firebasePost.setValue(post)
+        
+        postField.text = ""
+        imageSelectorImage.image = UIImage(named: "camera")
+        imageSelected = false
+        
+        tableView.reloadData()
+        
+        
+    }//end of func postToFirebase
    
 }
 

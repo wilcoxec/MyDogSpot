@@ -28,12 +28,15 @@ class CurrentDogProfileVC: UIViewController, UITableViewDelegate, UITableViewDat
     
     var dog: Dog!
     
-    var DogInfoToSend: String!
     var DogKeyToReceive: String!
+    var DogNameToReceive: String!
+    var DogBirthToReceive: String!
+    var DogGenderToRecieve: String!
+    var DogImageToReceive: String!
     
     var dogKey: String!
-    var dogRef: Firebase!
-    var dogSkillRef: Firebase!
+    
+    
     
     var dogRequest: Request?
     
@@ -48,85 +51,54 @@ class CurrentDogProfileVC: UIViewController, UITableViewDelegate, UITableViewDat
         skillsTableView.dataSource = self
         
         dogKey = DogKeyToReceive
+        self.dogNameLabel.text = DogNameToReceive
+        self.dogBirthLabel.text = DogBirthToReceive
+        self.dogGenderLabel.text = DogGenderToRecieve
         
-        dogRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs").childByAppendingPath(dogKey)
         
-        dogRef.observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value)
-            
-            if let dogDict = snapshot.value as? Dictionary<String, AnyObject>{
-                let key = snapshot.key
-                let dog = Dog(dogKey: key, dictionary: dogDict)
-                self.configureDogProfile(dog)
-                
+        if let url = NSURL(string: DogImageToReceive){
+            if let data = NSData(contentsOfURL: url) {
+                self.dogProfileImage.image = UIImage(data: data)
             }
+        }
         
-        })
+        
+
         
         //Dog Skills
-        dogSkillRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs").childByAppendingPath(dogKey).childByAppendingPath("skills")
-        
-        dogSkillRef.observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value)
-            
-            self.skills = []
-            
-            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
-                for snap in snapshots {
-                    if let skillDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let skill = Skill(skillKey: key, dictionary: skillDict)
-                        self.skills.append(skill)
-                        self.skillsTableView.reloadData()
-                    }
-                }
-            }
-
-        })
+//        dogSkillRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs").childByAppendingPath(dogKey).childByAppendingPath("skills")
+//        
+//        dogSkillRef.observeEventType(.Value, withBlock: { snapshot in
+//            print(snapshot.value)
+//            
+//            self.skills = []
+//            
+//            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
+//                for snap in snapshots {
+//                    if let skillDict = snap.value as? Dictionary<String, AnyObject> {
+//                        let key = snap.key
+//                        let skill = Skill(skillKey: key, dictionary: skillDict)
+//                        self.skills.append(skill)
+//                        self.skillsTableView.reloadData()
+//                    }
+//                }
+//            }
+//
+//        })
         
         self.skillsTableView.reloadData()
         
     }
     
-    func configureDogProfile(dog: Dog){
+    func getDogSkills(){
         
-        self.dogNameLabel.text = dog.dogName
-        self.dogBirthLabel.text = dog.dogBirth
-        self.dogGenderLabel.text = dog.dogGender
+    }
+    
+    func configureDogProfile(){
         
-        let downloadPath = NSTemporaryDirectory().stringByAppendingString(dog.dogImageUrl)
-        let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
-        
-        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-        
-        
-        let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
-        readRequest.bucket = S3BucketName
-        readRequest.key =  dog.dogImageUrl
-        readRequest.downloadingFileURL = downloadingFileURL
-        
-        transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
-            if let error = task.error {
-                print("Upload failed ❌ (\(error))")
-            }
-            if let exception = task.exception {
-                print("Upload failed ❌ (\(exception))")
-            }
-            if task.result != nil {
-                let img = task.result
-                print(img)
-                let image = UIImage(contentsOfFile: downloadPath)
-                self.dogProfileImage.image = image
-                
-            }
-            else {
-                print("Unexpected empty result.")
-            }
-            
-            return nil
-            
-        }
-
+        //self.dogNameLabel.text = dog.dogName
+        //self.dogBirthLabel.text = dog.dogBirth
+        //self.dogGenderLabel.text = dog.dogGender
         
     }
     
@@ -155,7 +127,6 @@ class CurrentDogProfileVC: UIViewController, UITableViewDelegate, UITableViewDat
             return SkillCell()
         }
         
-        self.skillsTableView.reloadData()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -166,6 +137,15 @@ class CurrentDogProfileVC: UIViewController, UITableViewDelegate, UITableViewDat
         
         self.performSegueWithIdentifier(SEGUE_TO_SKILL_VIEW, sender: send)
     }
+    
+    
+    @IBAction func editSkills(sender: AnyObject) {
+        
+        
+        self.performSegueWithIdentifier(SEGUE_TO_EDIT_SKILL_VIEW, sender: sender)
+        
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         

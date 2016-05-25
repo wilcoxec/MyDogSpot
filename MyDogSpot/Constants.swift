@@ -15,7 +15,7 @@ import AWSCore
 
 let SHADOW_COLOR: CGFloat = 157.0 / 200.0
 
-let KEY_ID = "uid"
+//let KEY_ID = "uid"
 
 
 let SEGUE_LOGGED_IN = "loggedIn"
@@ -38,8 +38,9 @@ let SEGUE_TO_DOG_PROFILE = "dogProfile"
 
 let SEGUE_TO_SKILL_VIEW = "toSkill"
 
+let SEGUE_TO_EDIT_SKILL_VIEW = "editSkill"
 
-let STATUS_ACCOUNT_DOESNOTEXIST = -8
+
 
 
 let S3BucketName = "mydogspotapp"

@@ -32,16 +32,16 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
     
     var usersImageUrl: String!
     
-    var userInfo: CreateUser!
+    var userInfo: User!
     
     var userImageRequest: Request?
     
-    var userRef: Firebase!
-    var dogRef: Firebase!
     
     var dogs = [Dog]()
     
     var DogProfileVC: CurrentDogProfileVC!
+    
+    var dogKeys = [String]()
     
     
     
@@ -51,38 +51,41 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
         
         dogCollection.delegate = self
         dogCollection.dataSource = self
-
-        userRef = DataService.ds.REF_USER_CURRENT
         
-        userRef.observeEventType(.Value, withBlock: { snapshot in
+        
+        //Get the users info
+        REF_USERS.child((FIRAuth.auth()?.currentUser?.uid)!).observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             
             print(snapshot.value)
             
             if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
                 let key = snapshot.key
-                let user = CreateUser(userKey: key, dictionary: userDict)
+                let user = User(userKey: key, dictionary: userDict)
                 self.configureProfile(user)
             }
             
         })
         
-        dogRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("dogs")
         
-        dogRef.observeEventType(.Value, withBlock: { snapshot in
+        //Get the dogs info
+        REF_USERS.child((FIRAuth.auth()?.currentUser?.uid)!).child("dogs").observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             
             print(snapshot.value)
             
-            self.dogs = []
+            self.dogKeys = []
             
-            if let snapshots = snapshot.children.allObjects as? [FDataSnapshot]{
+            if let snapshots = snapshot.children.allObjects as? [FIRDataSnapshot]{
                 for snap in snapshots {
-                    if let dogDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let dog = Dog(dogKey: key, dictionary: dogDict)
-                        self.dogs.append(dog)
-                        self.dogCollection.reloadData()
-                    }
+                    print(snap)
+                    self.dogKeys.append(snap.key)
+//                    if let dogDict = snap.value as? Dictionary<String, AnyObject> {
+//                        let key = snap.key
+//                        self.dogKeys.append(key)
+//                        self.dogCollection.reloadData()
+//                    }
                 }
+                
+                self.configureDogCollection(self.dogKeys)
             }
             
         })
@@ -91,48 +94,38 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
         
     }
     
-    func configureProfile(user: CreateUser) {
+    func configureProfile(user: User) {
  
         usersName.text = user.userName
         usersLocation.text = user.userLocation
         usersImageUrl = user.userImageUrl
         
-        
-        let downloadPath = NSTemporaryDirectory().stringByAppendingString(usersImageUrl)
-        let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
-        
-        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-        
-        
-        let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
-        readRequest.bucket = S3BucketName
-        readRequest.key =  usersImageUrl
-        readRequest.downloadingFileURL = downloadingFileURL
-        
-        transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
-            if let error = task.error {
-                print("Upload failed ❌ (\(error))")
+        if let url = NSURL(string: user.userImageUrl){
+            if let data = NSData(contentsOfURL: url) {
+                usersProfileImage.image = UIImage(data: data)
             }
-            if let exception = task.exception {
-                print("Upload failed ❌ (\(exception))")
-            }
-            if task.result != nil {
-                let img = task.result
-                print(img)
-                let image = UIImage(contentsOfFile: downloadPath)
-                self.usersProfileImage.image = image
-                
-            }
-            else {
-                print("Unexpected empty result.")
-            }
+        }
+        
+    }
+    
+    
+    func configureDogCollection(dogKeys: [String]){
+        
+        for dog in self.dogKeys {
             
-            return nil
+            print(dog)
+            
+            REF_DOGS.child(dog).observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
+                if let dogDict = snapshot.value as? Dictionary<String, AnyObject> {
+                    let key = snapshot.key
+                    let dog = Dog(dogKey: key, dictionary: dogDict)
+                    self.dogs.append(dog)
+                    self.dogCollection.reloadData()
+                }
+            })
             
         }
-
-        
-        
+        self.dogCollection.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -157,9 +150,12 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let dog = dogs[indexPath.row]
+        //let dog = dogs[indexPath.row]
+        //let dog = self.dogKeys[indexPath.row]
         
-        self.performSegueWithIdentifier(SEGUE_TO_DOG_PROFILE, sender: dog.dogKey)
+        let dogInfo = indexPath.row
+        
+        self.performSegueWithIdentifier(SEGUE_TO_DOG_PROFILE, sender: dogInfo)
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -180,11 +176,16 @@ class CurrentUserProfileVC: UIViewController, UICollectionViewDelegate, UICollec
         
         print("sender")
         print(sender)
-        
-    
+
         if(segue.identifier == SEGUE_TO_DOG_PROFILE){
+            let dog = dogs[sender as! Int]
+
             let dogVC = segue.destinationViewController as! CurrentDogProfileVC
-            dogVC.DogKeyToReceive = sender as! String
+            dogVC.DogKeyToReceive = dog.dogKey
+            dogVC.DogNameToReceive = dog.dogName
+            dogVC.DogBirthToReceive = dog.dogBirth
+            dogVC.DogGenderToRecieve = dog.dogGender
+            dogVC.DogImageToReceive = dog.dogImageUrl
             
         }
     }

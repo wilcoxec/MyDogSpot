@@ -10,102 +10,109 @@ import Foundation
 import Firebase
 
 class Post {
-    private var _postDescription: String!
-    private var _imageUrl: String?
-    private var _likes: Int!
+    private var _postText: String!
+    private var _postImage: String?
+    private var _postLikes: Int!
     
-    private var _username: String!
-    private var _userImage: String!
-    private var _userKey: String!
+    private var _postDate: Int!
+    
+    private var _postUser: String!
+    private var _postUserImg: String!
+    private var _postUserKey: String!
     
     private var _postComments: Int!
-    
     private var _postKey: String!
-    private var _postRef: Firebase!
+
     
     
-    var postDescription: String {
-        return _postDescription
+    var postText: String {
+        return _postText
     }
     
-    var imageUrl: String? {
-        return _imageUrl
+    var postImage: String? {
+        return _postImage
     }
     
-    var likes: Int {
-        return _likes
+    var postLikes: Int {
+        return _postLikes
     }
     
-    var username: String {
-        return _username
+    var postUser: String {
+        return _postUser
     }
     
-    var userImage: String! {
-        return _userImage
+    var postUserImg: String! {
+        return _postUserImg
     }
     
     var postKey: String {
         return _postKey
     }
     
-    var userKey: String {
-        return _userKey
+    var postUserKey: String {
+        return _postUserKey
     }
     
-    var postcomments: Int!{
+    var postComments: Int {
         return _postComments
     }
     
-    init(description: String, imageUrl: String?, username: String){
-        self._postDescription = description
-        self._imageUrl = imageUrl
-        self._username = username
+    var postDate: Int {
+        return _postDate
     }
+    
+
     
     init(postKey: String, dictionary: Dictionary<String, AnyObject>) {
         self._postKey = postKey
         
         if let likes = dictionary["likes"] as? Int {
-            self._likes = likes
+            self._postLikes = likes
         }
         
-        if let imgUrl = dictionary["imageUrl"] as? String {
-            self._imageUrl = imgUrl
+        if let imgUrl = dictionary["image"] as? String {
+            self._postImage = imgUrl
         }
         
-        if let desc = dictionary["description"] as? String {
-            self._postDescription = desc
+        if let desc = dictionary["text"] as? String {
+            self._postText = desc
+        }
+
+        if let comments = dictionary["comments"] as? Int {
+            self._postComments = comments
         }
         
-        if let userUrl = dictionary["userImageUrl"] as? String {
-            self._userImage = userUrl
+        if let date = dictionary["date"] as? Int {
+            self._postDate = date
         }
         
-        if let userName = dictionary["username"] as? String {
-            self._username = userName
+        if let userInfo = dictionary["user"] as? Dictionary<String, AnyObject> {
+            //self._postUserKey = userInfo.key
+            print(userInfo)
+            for (key, _) in userInfo {
+                self._postUserKey = key
+                print(self._postUserKey)
+            }
+            
         }
-        
-        if let uKey = dictionary["userID"] as? String {
-            self._userKey = uKey;
-        }
-        
-        if let commentPost = dictionary["comments"] as? Int {
-            self._postComments = commentPost
-        }
-        
-        self._postRef = DataService.ds.REF_POSTS.childByAppendingPath(self._postKey)
         
     }
     
-    func adjustLikes(addLike: Bool) {
-        if addLike {
-            _likes = _likes + 1
-        }
-        else {
-            _likes = _likes - 1
-        }
+    func setUserInfo(user: User){
         
-        _postRef.childByAppendingPath("likes").setValue(_likes)
+        self._postUser = user.userName
+        self._postUserImg = user.userImageUrl
+    }
+    
+    func adjustLikes(addLike: Bool) {
+//        if addLike {
+//            _likes = _likes + 1
+//        }
+//        else {
+//            _likes = _likes - 1
+//        }
+        
+       // _postRef.childByAppendingPath("likes").setValue(_likes)
     }
 }
 

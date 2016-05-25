@@ -94,11 +94,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Firebase.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-MyDogSpot.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -122,16 +117,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>19C9F6FA7AEC4B95674DCA7EA0429B51</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2424F3B8426EC2E6A0EEA813BFA12ACD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3B41A9B1D49827D58E203AF61D34F608</key>
 		<dict>
 			<key>primary</key>
@@ -142,7 +127,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6F3FC672462A9FCCD25930BACE41E941</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7051517F12CD2BBD8AE2AD214DB4EC0C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>787ADFDC43AC596B7714B24B851BD6D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -168,11 +163,6 @@
 			<true/>
 		</dict>
 		<key>AC89BF0B23F90017D2FE812E7D8478EF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B7AC9326D819482593FE118E915409D7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

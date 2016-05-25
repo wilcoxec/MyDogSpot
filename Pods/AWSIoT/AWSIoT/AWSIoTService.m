@@ -25,6 +25,9 @@
 #import <AWSCore/AWSSynchronizedMutableDictionary.h>
 #import "AWSIoTResources.h"
 
+static NSString *const AWSInfoIoT = @"IoT";
+static NSString *const AWSIoTSDKVersion = @"2.4.1";
+
 @interface AWSIoTResponseSerializer : AWSJSONResponseSerializer
 
 @end
@@ -36,9 +39,6 @@
 static NSDictionary *errorCodeDictionary = nil;
 + (void)initialize {
     errorCodeDictionary = @{
-                            @"IncompleteSignature" : @(AWSIoTErrorIncompleteSignature),
-                            @"InvalidClientTokenId" : @(AWSIoTErrorInvalidClientTokenId),
-                            @"MissingAuthenticationToken" : @(AWSIoTErrorMissingAuthenticationToken),
                             @"CertificateStateException" : @(AWSIoTErrorCertificateState),
                             @"DeleteConflictException" : @(AWSIoTErrorDeleteConflict),
                             @"InternalException" : @(AWSIoTErrorInternal),
@@ -118,32 +118,6 @@ static NSDictionary *errorCodeDictionary = nil;
 
 @implementation AWSIoTRequestRetryHandler
 
-- (AWSNetworkingRetryType)shouldRetry:(uint32_t)currentRetryCount
-                             response:(NSHTTPURLResponse *)response
-                                 data:(NSData *)data
-                                error:(NSError *)error {
-    AWSNetworkingRetryType retryType = [super shouldRetry:currentRetryCount
-                                                 response:response
-                                                     data:data
-                                                    error:error];
-    if(retryType == AWSNetworkingRetryTypeShouldNotRetry
-       && [error.domain isEqualToString:AWSIoTErrorDomain]
-       && currentRetryCount < self.maxRetryCount) {
-        switch (error.code) {
-            case AWSIoTErrorIncompleteSignature:
-            case AWSIoTErrorInvalidClientTokenId:
-            case AWSIoTErrorMissingAuthenticationToken:
-                retryType = AWSNetworkingRetryTypeShouldRefreshCredentialsAndRetry;
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    return retryType;
-}
-
 @end
 
 @interface AWSRequest()
@@ -170,20 +144,37 @@ static NSDictionary *errorCodeDictionary = nil;
 
 static AWSSynchronizedMutableDictionary *_serviceClients = nil;
 
-+ (instancetype)defaultIoT {
-    if (![AWSServiceManager defaultServiceManager].defaultServiceConfiguration) {
++ (void)initialize {
+    [super initialize];
+
+    if (![AWSiOSSDKVersion isEqualToString:AWSIoTSDKVersion]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"`defaultServiceConfiguration` is `nil`. You need to set it before using this method."
+                                       reason:[NSString stringWithFormat:@"AWSCore and AWSIoT versions need to match. Check your SDK installation. AWSCore: %@ AWSIoT: %@", AWSiOSSDKVersion, AWSIoTSDKVersion]
                                      userInfo:nil];
     }
+}
 
++ (instancetype)defaultIoT {
     static AWSIoT *_defaultIoT = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        _defaultIoT = [[AWSIoT alloc] initWithConfiguration:AWSServiceManager.defaultServiceManager.defaultServiceConfiguration];
-#pragma clang diagnostic pop
+        AWSServiceConfiguration *serviceConfiguration = nil;
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] defaultServiceInfo:AWSInfoIoT];
+        if (serviceInfo) {
+            serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                               credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+        }
+
+        if (!serviceConfiguration) {
+            serviceConfiguration = [AWSServiceManager defaultServiceManager].defaultServiceConfiguration;
+        }
+
+        if (!serviceConfiguration) {
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                           reason:@"The service configuration is `nil`. You need to configure `Info.plist` or set `defaultServiceConfiguration` before using this method."
+                                         userInfo:nil];
+        }
+        _defaultIoT = [[AWSIoT alloc] initWithConfiguration:serviceConfiguration];
     });
 
     return _defaultIoT;
@@ -194,15 +185,28 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     dispatch_once(&onceToken, ^{
         _serviceClients = [AWSSynchronizedMutableDictionary new];
     });
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     [_serviceClients setObject:[[AWSIoT alloc] initWithConfiguration:configuration]
                         forKey:key];
-#pragma clang diagnostic pop
 }
 
 + (instancetype)IoTForKey:(NSString *)key {
-    return [_serviceClients objectForKey:key];
+    @synchronized(self) {
+        AWSIoT *serviceClient = [_serviceClients objectForKey:key];
+        if (serviceClient) {
+            return serviceClient;
+        }
+
+        AWSServiceInfo *serviceInfo = [[AWSInfo defaultAWSInfo] serviceInfo:AWSInfoIoT
+                                                                     forKey:key];
+        if (serviceInfo) {
+            AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
+                                                                                        credentialsProvider:serviceInfo.cognitoCredentialsProvider];
+            [AWSIoT registerIoTWithConfiguration:serviceConfiguration
+                                          forKey:key];
+        }
+
+        return [_serviceClients objectForKey:key];
+    }
 }
 
 + (void)removeIoTForKey:(NSString *)key {

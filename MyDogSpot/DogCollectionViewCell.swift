@@ -35,40 +35,12 @@ class DogCollectionViewCell: UICollectionViewCell {
         dogName.text = dog.dogName
         
         if dog.dogImageUrl != "" {
-            
-            let downloadPath = NSTemporaryDirectory().stringByAppendingString(dog.dogImageUrl)
-            let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
-            
-            let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-            
-            
-            let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
-            readRequest.bucket = S3BucketName
-            readRequest.key =  dog.dogImageUrl
-            readRequest.downloadingFileURL = downloadingFileURL
-            
-            transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
-                if let error = task.error {
-                    print("Upload failed ❌ (\(error))")
+            if let url = NSURL(string: dog.dogImageUrl){
+                if let data = NSData(contentsOfURL: url) {
+                    dogImage.image = UIImage(data: data)
                 }
-                if let exception = task.exception {
-                    print("Upload failed ❌ (\(exception))")
-                }
-                if task.result != nil {
-                    let img = task.result
-                    print(img)
-                    let image = UIImage(contentsOfFile: downloadPath)
-                    self.dogImage.image = image
-                    
-                }
-                else {
-                    print("Unexpected empty result.")
-                }
-                
-                return nil
-                
             }
         }
-        
+            
     }
 }

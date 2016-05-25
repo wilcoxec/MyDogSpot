@@ -24,7 +24,7 @@ class ProfileView: UIView {
     
     
     
-    var userInfo: CreateUser!
+    var userInfo: User!
     
     var userImageURL: String!
     var dogImageURL: String!
@@ -47,7 +47,7 @@ class ProfileView: UIView {
         
     }
     
-    func configureProfile(user: CreateUser) {
+    func configureProfile(user: User) {
         
         self.userInfo = user
         
