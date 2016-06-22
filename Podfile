@@ -11,6 +11,9 @@ pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
 pod 'Alamofire', '~> 3.3'
+pod 'SDWebImage', '~>3.7’
+pod 'SDWebImage/WebP'
+pod 'Kingfisher', '~> 2.4'
 
 
 pod 'AWSAutoScaling'

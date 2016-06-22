@@ -22,6 +22,18 @@ let SEGUE_LOGGED_IN = "loggedIn"
 
 let SEGUE_CREATE_USER = "createUser"
 
+let SEGUE_ADD_USER_PHOTO = "addUserPhoto"
+
+let SEGUE_ADD_DOG_PHOTO = "addDogPhoto"
+
+let SEGUE_CONFIRM = "confirmProfile"
+
+let SEGUE_SIGN_UP = "signUp"
+
+let SEGUE_CREATE_USER_AFTER_SIGN_UP = "createUserAfterSignUp"
+
+let SEGUE_ADD_ANOTHER_DOG = "addAnotherDog"
+
 let SEGUE_GO_TO_FEED = "goToFeed"
 
 let SEGUE_LOGIN_NEW_USER = "loginNewUser"
@@ -39,6 +51,8 @@ let SEGUE_TO_DOG_PROFILE = "dogProfile"
 let SEGUE_TO_SKILL_VIEW = "toSkill"
 
 let SEGUE_TO_EDIT_SKILL_VIEW = "editSkill"
+
+let SEGUE_LOGGED_IN_FB = "loggedInFB"
 
 
 

@@ -32,10 +32,10 @@ class ViewController: UIViewController {
         
     
         //Check if the user is already logged in
-        if FIRAuth.auth()?.currentUser != nil {
-            print(FIRAuth.auth()?.currentUser?.email)
-            self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-        }
+//        if FIRAuth.auth()?.currentUser != nil {
+//           print(FIRAuth.auth()?.currentUser?.email)
+//           self.performSegueWithIdentifier(SEGUE_LOGGED_IN_FB, sender: nil)
+//        }
 
     }
     
@@ -90,48 +90,12 @@ class ViewController: UIViewController {
             }
         }
     }
-
-    @IBAction func attemptLogin(sender: UIButton!){
+    @IBAction func SignUpPressed(sender: AnyObject) {
         
-        if let email = emailField.text where email != "", let pwd = passwordField.text where pwd != ""{
-            
-            
-          FIRAuth.auth()?.signInWithEmail(email, password: pwd, completion: { (user, error) in
-            
-            if error != nil {
-                if error?.code == 17011{
-                    
-                    FIRAuth.auth()?.createUserWithEmail(email, password: pwd, completion: { (user, error) in
-                        
-                        if error != nil {
-                            self.showErrorAlert("Could not create account", msg: (error?.localizedFailureReason)!)
-                        }
-                        else {
-                            
-                            REF_USERS.child(user!.uid).setValue(["provider": email])
-                            print(FIRAuth.auth()?.currentUser?.uid)
-                            self.performSegueWithIdentifier(SEGUE_CREATE_USER, sender: nil)
-                            
-                            
-                        }
-                    })
-                }
-            }
-            
-            self.performSegueWithIdentifier(SEGUE_LOGGED_IN, sender: nil)
-          
-          
-          })
-            
-
-            
-        }
-        else{
-            showErrorAlert("Email and Password Required", msg: "You must enter an email and password.")
-        }
-            
+        self.performSegueWithIdentifier(SEGUE_SIGN_UP, sender: nil)
     }
-    
+
+        
     
     func showErrorAlert(title: String, msg: String) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)

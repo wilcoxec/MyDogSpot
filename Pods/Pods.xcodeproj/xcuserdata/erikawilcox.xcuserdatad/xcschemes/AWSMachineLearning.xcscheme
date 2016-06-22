@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '1C781AF9B9281512AF412C13'
+               BlueprintIdentifier = 'BFAAFEEF58D053A1C2C687A3'
                BlueprintName = 'AWSMachineLearning'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'AWSMachineLearning.framework'>

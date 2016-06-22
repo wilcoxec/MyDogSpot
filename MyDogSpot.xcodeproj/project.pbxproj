@@ -44,6 +44,11 @@
 		EAA646FA1CB473CF00BDF57C /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA646F71CB473CF00BDF57C /* FBSDKCoreKit.framework */; };
 		EAA646FB1CB473CF00BDF57C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA646F81CB473CF00BDF57C /* FBSDKLoginKit.framework */; };
 		EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA646FD1CB6CF0700BDF57C /* DataService.swift */; };
+		EAA7594E1D03387A0005B05A /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA7594D1D03387A0005B05A /* SignInVC.swift */; };
+		EAA759501D0346610005B05A /* AddUserPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA7594F1D0346610005B05A /* AddUserPhotoVC.swift */; };
+		EAA759521D0347320005B05A /* AddDogPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA759511D0347320005B05A /* AddDogPhotoVC.swift */; };
+		EAA759541D034F080005B05A /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA759531D034F080005B05A /* SignUpVC.swift */; };
+		EAA759561D0353FF0005B05A /* ConfirmProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA759551D0353FF0005B05A /* ConfirmProfileVC.swift */; };
 		EABBB3CD1CCFFCAD00ACE9E7 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABBB3CC1CCFFCAD00ACE9E7 /* FeedVC.swift */; };
 		EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABBB3CE1CCFFFD600ACE9E7 /* PostCell.swift */; };
 		EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */; };
@@ -122,6 +127,11 @@
 		EAA646F71CB473CF00BDF57C /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		EAA646F81CB473CF00BDF57C /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		EAA646FD1CB6CF0700BDF57C /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		EAA7594D1D03387A0005B05A /* SignInVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		EAA7594F1D0346610005B05A /* AddUserPhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserPhotoVC.swift; sourceTree = "<group>"; };
+		EAA759511D0347320005B05A /* AddDogPhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDogPhotoVC.swift; sourceTree = "<group>"; };
+		EAA759531D034F080005B05A /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
+		EAA759551D0353FF0005B05A /* ConfirmProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmProfileVC.swift; sourceTree = "<group>"; };
 		EABBB3CC1CCFFCAD00ACE9E7 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		EABBB3CE1CCFFFD600ACE9E7 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		EABBB3D01CD0028800ACE9E7 /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
@@ -255,6 +265,11 @@
 				EA11D3691CE2AC4900084AC0 /* CurrentUserProfileVC.swift */,
 				EA3E162A1CE7BE7D00AEBD4A /* CurrentDogProfileVC.swift */,
 				EA3E162E1CE7D9F000AEBD4A /* SkillVC.swift */,
+				EAA7594D1D03387A0005B05A /* SignInVC.swift */,
+				EAA7594F1D0346610005B05A /* AddUserPhotoVC.swift */,
+				EAA759511D0347320005B05A /* AddDogPhotoVC.swift */,
+				EAA759531D034F080005B05A /* SignUpVC.swift */,
+				EAA759551D0353FF0005B05A /* ConfirmProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -538,25 +553,30 @@
 				EA3E16231CE7AD9800AEBD4A /* SkillCell.swift in Sources */,
 				EABBB3D11CD0028800ACE9E7 /* MaterialView.swift in Sources */,
 				EA3E16291CE7B55200AEBD4A /* EndorsementCell.swift in Sources */,
+				EAA759521D0347320005B05A /* AddDogPhotoVC.swift in Sources */,
 				EAA646F41CB462E200BDF57C /* MaterialTextField.swift in Sources */,
 				EAA646FE1CB6CF0700BDF57C /* DataService.swift in Sources */,
 				EA11D36A1CE2AC4900084AC0 /* CurrentUserProfileVC.swift in Sources */,
 				EA3E16251CE7AE8100AEBD4A /* Skill.swift in Sources */,
 				EA2635E61CDE9D6E00A0EDA1 /* Comment.swift in Sources */,
+				EAA759541D034F080005B05A /* SignUpVC.swift in Sources */,
 				EACF5BB61CE02892001AC8D9 /* SignUpTextField.swift in Sources */,
 				EAA646F21CB4616300BDF57C /* MaterialButton.swift in Sources */,
 				EAA646F01CB460BB00BDF57C /* Constants.swift in Sources */,
 				EAC9F0171CD29E2A003B5F90 /* CreateUserVC.swift in Sources */,
 				EA2635E41CDE945700A0EDA1 /* CommentsVC.swift in Sources */,
 				EACF5BB41CDF6B44001AC8D9 /* PostCommentTextView.swift in Sources */,
+				EAA7594E1D03387A0005B05A /* SignInVC.swift in Sources */,
 				EA3E16271CE7B06600AEBD4A /* Endorsement.swift in Sources */,
 				EABBB3CF1CCFFFD600ACE9E7 /* PostCell.swift in Sources */,
 				EAD6221E1CD43B1000CBEB03 /* UsersProfileVC.swift in Sources */,
 				EAC9F0191CD29FCB003B5F90 /* User.swift in Sources */,
+				EAA759501D0346610005B05A /* AddUserPhotoVC.swift in Sources */,
 				EA3E162B1CE7BE7D00AEBD4A /* CurrentDogProfileVC.swift in Sources */,
 				EAC9F01F1CD2E9ED003B5F90 /* ProfileView.swift in Sources */,
 				EAC9F0211CD3169B003B5F90 /* profileImage.swift in Sources */,
 				EAC9F0151CD04E96003B5F90 /* Post.swift in Sources */,
+				EAA759561D0353FF0005B05A /* ConfirmProfileVC.swift in Sources */,
 				EACF5BB81CE15283001AC8D9 /* CreateDogVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

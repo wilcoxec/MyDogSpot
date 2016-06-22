@@ -94,7 +94,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Kingfisher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MyDogSpot.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>libwebp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -117,17 +132,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>379FF2E9DB61B0895D59A3FB6472C6A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3B41A9B1D49827D58E203AF61D34F608</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>63A2B70CD13FFB7C60AF5BEB9EB2CE03</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6F3FC672462A9FCCD25930BACE41E941</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -148,6 +163,11 @@
 			<true/>
 		</dict>
 		<key>7BB24175093D7F20531C6FD7CB7D1C9C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8B8CB395115B1872B14C4316BC9DB418</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -183,6 +203,16 @@
 			<true/>
 		</dict>
 		<key>D1B3D231EED9AD3B2A77C4CE93023F11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF7A532492FD18C614414AFFDEEAABBF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E96E13C4D3B5B5FC0651440734C2BF4D</key>
 		<dict>
 			<key>primary</key>
 			<true/>

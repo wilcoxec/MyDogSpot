@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '07FA60E7E3AC556037011407'
+               BlueprintIdentifier = '9A12A1727701CECD2E101899'
                BlueprintName = 'AWSIoT'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'AWSIoT.framework'>

@@ -9,12 +9,9 @@
 import UIKit
 import Firebase
 import Alamofire
-import AWSS3
-import AWSCore
-import AWSDynamoDB
-import AWSSQS
-import AWSSNS
-import AWSCognito
+import SDWebImage
+import Kingfisher
+
 
 class PostCell: UITableViewCell {
 
@@ -63,83 +60,35 @@ class PostCell: UITableViewCell {
     }
 
     func configureCell(post: Post, img: UIImage?) {
-//        self.post = post
-//        
-//        likeRef = DataService.ds.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath(post.postKey)
-//        
-//        self.descriptionText.text = post.postDescription
-//        
-//        if(post.likes == 0){
-//            self.likesLabel.text = ""
-//        }
-//        else if (post.likes == 1){
-//            self.likesLabel.text = "\(post.likes) like"
-//        }
-//        else{
-//            self.likesLabel.text = "\(post.likes) likes"
-//        }
-//        
-//        self.setCommentCount()
-//        
-//
-//        if post.imageUrl != nil {
-//            if img != nil {
-//                self.showcaseImg.image = img
-//            }
-//            else {
-//                
-//                let downloadPath = NSTemporaryDirectory().stringByAppendingString(post.imageUrl!)
-//                let downloadingFileURL = NSURL(fileURLWithPath: downloadPath )
-//                
-//                let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-//                
-//                
-//                let readRequest : AWSS3TransferManagerDownloadRequest = AWSS3TransferManagerDownloadRequest()
-//                readRequest.bucket = S3BucketName
-//                readRequest.key =  post.imageUrl
-//                readRequest.downloadingFileURL = downloadingFileURL
-//                
-//                transferManager.download(readRequest).continueWithBlock { (task) -> AnyObject! in
-//                    if let error = task.error {
-//                        print("Upload failed ❌ (\(error))")
-//                    }
-//                    if let exception = task.exception {
-//                        print("Upload failed ❌ (\(exception))")
-//                    }
-//                    if task.result != nil {
-//                        let img = task.result
-//                        print(img)
-//                        let image = UIImage(contentsOfFile: downloadPath)
-//                        self.showcaseImg.image = image
-//                        
-//                    }
-//                    else {
-//                        print("Unexpected empty result.")
-//                    }
-//                    
-//                    return nil
-//                    
-//                }
-//
-//            }
-//        }
-//        else {
-//            self.showcaseImg.hidden = true
-//        }
-//        
-//        self.setUserInfo()
-//
-//        //See if the like for post exists
-//        likeRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-//            
-//            //If the like does not exist in the post
-//            if let likeDoesNotExist = snapshot.value as? NSNull {
-//                self.likeImage.image = UIImage(named: "like")
-//            }
-//            else {
-//                self.likeImage.image = UIImage(named: "likeFill")
-//            }
-//        })
+        
+        self.post = post
+        self.postText.text = post.postText
+        
+        if post.postImage != nil {
+            
+            if img != nil{
+                self.postImage.image = img
+            }
+            else {
+                
+                print(post.postImage)
+                
+                let fileRef = STORAGE.reference().child(post.postImage!)
+                
+                fileRef.downloadURLWithCompletion { (URL, error) -> Void in
+                    if (error != nil) {
+                        print("Error downloading:\(error)")
+                    } else {
+                        // Get the download URL for 'images/stars.jpg'
+                        print(URL)
+                        self.postImage.kf_setImageWithURL(URL!)
+                    }
+                }
+                
+            }
+            
+        }
+
         
        
     }//end of func configureCell

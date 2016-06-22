@@ -16,7 +16,7 @@ class MaterialButton: UIButton {
         //layer.cornerRadius = 0.5 * bounds.size.width
         //layer.masksToBounds = true;
         
-        layer.cornerRadius = 15.0
+        layer.cornerRadius = 5.0
         //layer.shadowColor = UIColor(red: SHADOW_COLOR, green: SHADOW_COLOR, blue: SHADOW_COLOR, alpha: 0.5).CGColor
         //layer.shadowOpacity = 0.8
         //layer.shadowRadius = 5.0

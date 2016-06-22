@@ -21,117 +21,57 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
     
     @IBOutlet weak var dogNameTextField: SignUpTextField!
     @IBOutlet weak var dogBirthTestField: SignUpTextField!
-    @IBOutlet weak var dogGenderTextField: SignUpTextField!
-    
-    @IBOutlet weak var dogImage: UIImageView!
-    @IBOutlet weak var addDogBtn: UIButton!
-    
-    var dogImagePicker: UIImagePickerController!
-    
-    var dogImageSelected = false
 
+    @IBOutlet weak var genderSelect: UISegmentedControl!
     
+    var dogGender: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dogImagePicker = UIImagePickerController()
-        dogImagePicker.delegate = self
+        dogGender = "Male"
+
     }
 
-    @IBAction func dogImageTap(sender: UITapGestureRecognizer) {
-        presentViewController(dogImagePicker, animated: true, completion: nil)
-        
-        
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        
 
-        dogImagePicker.dismissViewControllerAnimated(true, completion: nil)
-        dogImage.image = image
-        dogImageSelected = true
-
-        
-    }
     
     @IBAction func createDogByAdd(sender: AnyObject) {
         
         let dogNameTxt = dogNameTextField.text
-        let dogGender = dogGenderTextField.text
         let dogBirth = dogBirthTestField.text
-        
-        let dImg = dogImage.image!
-        
-        if dogNameTxt != "" && dogGender != "" && dogBirth != "" && dogImageSelected == true {
-            
-            let image = dImg
-            
-            let imageData = UIImageJPEGRepresentation(image, 0.8)
-            
-            let imagePath = FIRAuth.auth()!.currentUser!.uid +
-                "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"
-            
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/jpeg"
-            
-            let uploadREF = REF_STORAGE.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
-                if let error = error {
-                    print("Error uploading: \(error)")
-                    
-                }
-                else{
-                    let downloadURL = metadata!.downloadURL()?.absoluteString
-                    print(downloadURL)
-                    self.postDogToFirebase(downloadURL)
-                }
-            }
-            
+  
+        if dogNameTxt != "" && dogBirth != "" {
+            self.postDogToFirebase()
             
         }
         
     }
     
-    
-    @IBAction func createDogAndContinue(sender: AnyObject) {
+    @IBAction func genderSelect(sender: AnyObject) {
         
-        let dogNameTxt = dogNameTextField.text
-        
-        let dImg = dogImage.image!
-        
-        if dogNameTxt != "" && dogImageSelected == true {
-            
-            let image = dImg
-            
-            let imageData = UIImageJPEGRepresentation(image, 0.8)
-            
-            let imagePath = FIRAuth.auth()!.currentUser!.uid +
-                "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"
-            
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/jpeg"
-            
-            let uploadREF = REF_STORAGE.child(imagePath).putData(imageData!, metadata: metadata) { (metadata, error) in
-                if let error = error {
-                    print("Error uploading: \(error)")
-                    
-                }
-                else{
-                    let downloadURL = metadata!.downloadURL()?.absoluteString
-                    print(downloadURL)
-                    self.postDogToFirebase(downloadURL)
-                }
-            }
-            
+        switch genderSelect.selectedSegmentIndex
+        {
+        case 0:
+            dogGender = "Male"
+        case 1:
+            dogGender = "Female"
+        default:
+            break
         }
-        
-        //self.performSegueWithIdentifier(SEGUE_LOGIN_NEW_USER, sender: nil)
-      
         
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        let dogPhotoVC = segue.destinationViewController as! AddDogPhotoVC
+        dogPhotoVC.dogKeyReceived = sender as! String
+
+        
+    }
     
-    func postDogToFirebase(dImgUrl: String!){
+    func postDogToFirebase(){
+        
+        print(dogGender)
         
         let newDog = REF_DOGS.childByAutoId()
         
@@ -139,29 +79,19 @@ class CreateDogVC: UIViewController, UIImagePickerControllerDelegate, UINavigati
         
         REF_DOGS.child(newDog.key).child("dogname").setValue(dogNameTextField.text)
         REF_DOGS.child(newDog.key).child("birthday").setValue(dogBirthTestField.text)
-        REF_DOGS.child(newDog.key).child("gender").setValue(dogGenderTextField.text)
-        REF_DOGS.child(newDog.key).child("dogImage").setValue(dImgUrl)
+        REF_DOGS.child(newDog.key).child("gender").setValue(dogGender)
         REF_DOGS.child(newDog.key).child("owner").child((FIRAuth.auth()?.currentUser?.uid)!).setValue(true)
         
         REF_USERS.child((FIRAuth.auth()?.currentUser?.uid)!).child("dogs").child(newDog.key).setValue(true)
         
         
         dogNameTextField.text = ""
-        dogGenderTextField.text = ""
         dogBirthTestField.text = ""
-        dogImageSelected = false
-        dogImage.image = UIImage(named: "addphoto")
-
         
+        self.performSegueWithIdentifier(SEGUE_ADD_DOG_PHOTO, sender: newDog.key)
+
+
     }
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
-        
-        var initViewController: ViewController {
-            return self.storyboard?.instantiateViewControllerWithIdentifier("initial") as! ViewController
-        }
-        
-        self.presentViewController(initViewController, animated: true, completion: nil)
-    }
     
 }

@@ -8,6 +8,8 @@
 import UIKit
 import Firebase
 import Alamofire
+import SDWebImage
+
 import AWSS3
 import AWSCore
 import AWSDynamoDB
@@ -50,6 +52,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
     var imagePicker: UIImagePickerController!
     
     static var imageCache = NSCache()
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,11 +62,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
 
         tableView.delegate = self
         tableView.dataSource = self
-        
-        //tableView.estimatedRowHeight = 400
-        //imagePicker = UIImagePickerController()
-        //imagePicker.delegate = self
-        
+                
         
         REF_POSTS.observeEventType(FIRDataEventType.Value, withBlock: { (snapshot) in
             print(snapshot.value)
@@ -85,7 +85,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
                 
             }
         
-        
+            self.tableView.reloadData()
         })
 
         
@@ -110,9 +110,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UIIm
         
             var img: UIImage?
         
-//            if let url = post.imageUrl {
-//                img = FeedVC.imageCache.objectForKey(url) as? UIImage
-//            }
+            if let url = post.postImage {
+                img = FeedVC.imageCache.objectForKey(url) as? UIImage
+            }
         
             cell.configureCell(post, img: img)
         

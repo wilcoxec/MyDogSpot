@@ -102,6 +102,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-MyDogSpot/AWSSQS.framework"
   install_framework "Pods-MyDogSpot/AWSSimpleDB.framework"
   install_framework "Pods-MyDogSpot/Alamofire.framework"
+  install_framework "Pods-MyDogSpot/Kingfisher.framework"
+  install_framework "Pods-MyDogSpot/SDWebImage.framework"
+  install_framework "Pods-MyDogSpot/libwebp.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MyDogSpot/AWSAutoScaling.framework"
@@ -122,4 +125,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MyDogSpot/AWSSQS.framework"
   install_framework "Pods-MyDogSpot/AWSSimpleDB.framework"
   install_framework "Pods-MyDogSpot/Alamofire.framework"
+  install_framework "Pods-MyDogSpot/Kingfisher.framework"
+  install_framework "Pods-MyDogSpot/SDWebImage.framework"
+  install_framework "Pods-MyDogSpot/libwebp.framework"
 fi
